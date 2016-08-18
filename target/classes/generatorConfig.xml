@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 数据库驱动包 -->
+    <classPathEntry location="/Users/work/Spingmybaits/src/jdbcdriver/mysql-connector-java-5.1.39-bin.jar" />
+    <context id="aisSnsTables" targetRuntime="Ibatis2Java5">
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://172.19.30.22:3306/ams?useUnicode=true"
+                userId="root"
+                password="Mls@20160421">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 生成vo对象 -->
+        <javaModelGenerator targetPackage="com.alibaba.webx.tutorial1.app1.vo"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="false" />
+        </javaModelGenerator>
+
+        <!-- 生成用于查询的Example对象 -->
+        <sqlMapGenerator targetPackage="database/sqlmap/map" targetProject="./">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的类文件以及配置文件 -->
+        <javaClientGenerator type="SPRING"
+                             targetPackage="com.alibaba.webx.tutorial1.app1.dao"
+                             implementationPackage="com.alibaba.webx.tutorial1.app1.dao.impl"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
+        <table tableName="t_token" domainObjectName="Token"></table>
+    </context>
+
+</generatorConfiguration>
