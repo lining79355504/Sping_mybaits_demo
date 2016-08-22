@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="Spingmybaits" />
+        <module name="mort-group" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Spingmybaits" target="1.5" />
+      <module name="mort-group" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

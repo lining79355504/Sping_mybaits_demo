@@ -40,6 +40,9 @@
 
         <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
         <table tableName="t_token" domainObjectName="Token"></table>
+        <table tableName="t_subscribe_relation" domainObjectName="SubscribeRelation"></table>
+        <table tableName="t_subscribe_service" domainObjectName="SubscribeService"></table>
+        <table tableName="t_subscribe_service_category" domainObjectName="SubscribeServiceSategory"></table>
     </context>
 
 </generatorConfiguration>
