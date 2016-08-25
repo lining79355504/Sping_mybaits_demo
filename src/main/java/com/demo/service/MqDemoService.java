@@ -13,6 +13,7 @@ public interface MqDemoService {
 
     public CountDownLatch getLatch();
 
+    public String getDbUrl();
 
 }
 

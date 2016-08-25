@@ -5,7 +5,7 @@
 
 
 
-    <display-name>阿波罗-蘑菇街用户登录注册系统</display-name>
+    <display-name>mort test</display-name>
 
 
     <listener>
@@ -13,11 +13,11 @@
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/spring-core.xml</param-value>
+        <param-value>classpath*:spring-core.xml</param-value>
     </context-param>
 
     <servlet>
-        <servlet-name>oms-dispatcher</servlet-name>
+        <servlet-name>mort-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -27,7 +27,7 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>oms-dispatcher</servlet-name>
+        <servlet-name>mort-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 

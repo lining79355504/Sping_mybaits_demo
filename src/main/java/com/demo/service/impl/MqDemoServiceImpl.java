@@ -1,6 +1,7 @@
 package com.demo.service.impl;
 
 import com.demo.service.MqDemoService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CountDownLatch;
@@ -10,6 +11,10 @@ import java.util.concurrent.CountDownLatch;
  */
 @Service("mqDemoServiceImpl")
 public class MqDemoServiceImpl implements MqDemoService {
+
+    //引入配置
+    @Value("#{mortTestConfigs['database.url']}")
+    private String dbUrl;
 
 
     private CountDownLatch latch = new CountDownLatch(1);
@@ -23,6 +28,7 @@ public class MqDemoServiceImpl implements MqDemoService {
         return latch;
     }
 
-
-
+    public String getDbUrl(){
+        return dbUrl;
+    }
 }
