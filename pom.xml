@@ -31,7 +31,7 @@
             <artifactId>spring-core</artifactId>
             <version>4.3.2.RELEASE</version>
             <type>jar</type>
-       </dependency>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -324,5 +324,44 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <build>
+                <filters>
+                    <filter>${basedir}/dev_config.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>pre</id>
+            <build>
+                <filters>
+                    <filter>${basedir}/pre_config.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>online</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <filters>
+                    <filter>${basedir}/online_config.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <filters>
+                    <filter>/tmp/eless/conf/config.properties</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

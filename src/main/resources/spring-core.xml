@@ -36,17 +36,7 @@
 
    </util:properties>
 
-
-   <bean id="costaConfig"
-         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-      <property name="order" value="1"/>
-      <property name="ignoreUnresolvablePlaceholders" value="true"/>
-      <property name="locations">
-         <list>
-            <value>classpath*:test.properties</value>
-         </list>
-      </property>
-   </bean>
+   <context:property-placeholder location="classpath*:test.properties"/>
 
 
    <!-- 配置数据源-->

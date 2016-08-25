@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath*:spring-core.xml"})
-@ActiveProfiles("pre")
 public class SpringTest {
 
 
@@ -26,8 +25,7 @@ public class SpringTest {
     @Test
     public void testSpringInit(){
 
-        System.out.println(System.getProperties());
         System.out.println(mqDemoService.getDbUrl());
-        Assert.assertTrue(mqDemoService.getDbUrl() != null && "abc".equals(mqDemoService.getDbUrl()));
+        Assert.assertTrue(mqDemoService.getDbUrl() != null && "jdbc:mysql://172.19.30.22/ams".equals(mqDemoService.getDbUrl()));
     }
 }
