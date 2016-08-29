@@ -39,7 +39,7 @@
    <context:property-placeholder location="classpath*:test.properties"/>
 
 
-   <!-- 配置数据源-->
+   <!-- 配置数据源  根据 id="jdbcDataSource" ref 到mybatis jdbc 数据连接-->
    <bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName">
          <value>com.mysql.jdbc.Driver</value>
