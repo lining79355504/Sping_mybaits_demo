@@ -23,8 +23,8 @@ public class AmsDbTestServiceImpl {
 
         Token token = tokenMapper.selectByPrimaryKey( Integer.valueOf(11) );
 
-        //System.out.println(token.getToken());
-        System.out.println(token.toString());
+        System.out.println(token.getToken());
+        //System.out.println(token.toString());
 
     }
 
