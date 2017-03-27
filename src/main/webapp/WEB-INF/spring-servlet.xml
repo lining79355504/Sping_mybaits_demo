@@ -21,6 +21,34 @@
 
 
     <!--<aop:aspectj-autoproxy />-->
+    <bean id="springMethodInterceptor" class="com.demo.aop.MyAnnotationHandler"/>
+
+
+    <!--<aop:config>-->
+        <!--<aop:aspect id="myAnnotationCutPoint" ref="springMethodInterceptor">-->
+            <!--&lt;!&ndash; 切入点 &ndash;&gt;-->
+            <!--<aop:pointcut id="myAnnotationCutPoint"-->
+                          <!--expression="execution(* com.demo.controller.HelloWorld.*(..)) "/>-->
+            <!--&lt;!&ndash; 在切入点指定拦截器 &ndash;&gt;-->
+        <!--</aop:aspect>-->
+
+    <!--</aop:config>-->
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>    <!--使用cglib代理-->
+
+    <aop:config proxy-target-class="true">
+            <!-- 切入点 -->
+            <aop:pointcut id="myAnnotationCutPoint"
+                          expression="execution(* com.demo.controller.*.*(..)) "/>
+        <!--expression="execution(* com.demo.controller.*.*(..)) "/>-->
+            <!-- 在切入点指定拦截器-->
+        <aop:advisor advice-ref="springMethodInterceptor" pointcut-ref="myAnnotationCutPoint"/>
+
+
+    </aop:config>
+
+
+
 
     <!-- 设置返回HTTP内容为UTF8编码 -->
     <mvc:annotation-driven>

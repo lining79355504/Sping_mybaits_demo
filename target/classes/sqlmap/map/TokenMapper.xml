@@ -44,6 +44,15 @@
     from t_token
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_token
+    where token = #{token}
+    AND  nick_name =#{nick_name}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbggenerated

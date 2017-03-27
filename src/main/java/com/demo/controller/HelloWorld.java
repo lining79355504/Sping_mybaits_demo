@@ -1,6 +1,7 @@
 package com.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.demo.annotataion.MyAnnotation;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,21 +29,24 @@ public class HelloWorld {
     @Autowired
     private AmsDbTestServiceImpl amsDbTestService ;
 
+
+
     //引入配置
     @Value("#{mortTestConfigs['database.url']}")
     private String dbUrl ;
 
     @ResponseBody
     @RequestMapping("/hello")
-    public String index() {
+    @MyAnnotation(value = "hello")
+    public String index(HttpServletRequest req, HttpServletResponse res) {
         Greeting greeting = new Greeting();
-        System.out.println(greeting.sayHello());
+        //System.out.println(greeting.sayHello());
 
         System.out.println(dbUrl);
 
-        amsDbTestService.getAllAms();
+        //amsDbTestService.getAllAms();
 
-        mqDemoServiceImpl.receiveMessage("oms_name");
+        //mqDemoServiceImpl.receiveMessage("oms_name");
 
         return "asasassa";
     }

@@ -18,7 +18,7 @@
 
    <context:component-scan base-package="com.demo.service"/>
    <context:component-scan base-package="com.demo.mapper"/>
-
+   <!--<context:component-scan base-package="com.demo.controller"/>-->
 
     <!--<aop:aspectj-autoproxy />-->
 
@@ -117,6 +117,7 @@
    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
       <property name="connectionFactory"   ref="connectionFactory" />
    </bean>
+
 
    <!--spring bean config end -->
 

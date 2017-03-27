@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.3.2.RELEASE</version>
+            <version>4.3.5.RELEASE</version>
             <type>jar</type>
         </dependency>
 
@@ -298,6 +298,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.20</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.9</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -305,6 +310,18 @@
             <version>3.0.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.5.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!--redis jedis package -->
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
         <dependency>
@@ -338,6 +355,11 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
             <version>1.9.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0-b01</version>
         </dependency>
 
     </dependencies>
