@@ -34,7 +34,7 @@
 
     <!--</aop:config>-->
 
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>    <!--使用cglib代理-->
 
     <aop:config proxy-target-class="true">
             <!-- 切入点 -->
@@ -46,6 +46,7 @@
 
 
     </aop:config>
+
 
 
 
@@ -63,6 +64,12 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-    
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.demo.aop.MvcInterceptors"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
