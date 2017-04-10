@@ -35,6 +35,12 @@ public class HelloWorld {
     @Value("#{mortTestConfigs['database.url']}")
     private String dbUrl ;
 
+    /*
+        @RequestParam Map<String, String> params   get post 都可已接收 全部的参数转为一个map
+    *    public void export(@RequestParam Map<String, String> params ,HttpServletResponse response){
+    *
+    *    }
+    * */
     @ResponseBody
     @RequestMapping("/hello")
     @MyAnnotation(value = "hello")
