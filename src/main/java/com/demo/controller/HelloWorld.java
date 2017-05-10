@@ -6,12 +6,17 @@ import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +33,10 @@ public class HelloWorld {
 
     @Autowired
     private AmsDbTestServiceImpl amsDbTestService ;
+
+
+    @Autowired
+    protected RedisTemplate<String, String> redisTemplate;
 
 
 
@@ -53,6 +62,21 @@ public class HelloWorld {
         //amsDbTestService.getAllAms();
 
         //mqDemoServiceImpl.receiveMessage("oms_name");
+
+
+        //spring-data-redis set key value
+        redisTemplate.executePipelined(new RedisCallback<Object>() {
+
+
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+
+                connection.set(redisTemplate.getStringSerializer().serialize("user.uid." + 121232321),
+                        redisTemplate.getStringSerializer().serialize("mort"));
+                return null;
+            }
+        });
+
+
 
         return "asasassa";
     }

@@ -1,6 +1,8 @@
 package com.demo.controller;
 
 import com.demo.annotataion.MyAnnotation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,10 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class Greeting {
 
+    Logger logger = LoggerFactory.getLogger(Greeting.class);
+
     @ResponseBody
     @RequestMapping("/helloWorld")
     @MyAnnotation(value = "helloWorld")
     public String sayHello(HttpServletRequest req, HttpServletResponse res) {
+        logger.info("test {} ",1);
+        logger.error("test error {} ,{},{},{},{},{},{},{},{} " , 3,3,3,3,3,3,3,3);
         return "Hello world!";
     }
 

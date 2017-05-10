@@ -36,6 +36,7 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>    <!--使用cglib代理-->
 
+    <!--aop 拦截器-->
     <aop:config proxy-target-class="true">
             <!-- 切入点 -->
             <aop:pointcut id="myAnnotationCutPoint"
@@ -65,6 +66,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!--interceptors 拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>

@@ -38,7 +38,7 @@
    </util:properties>
 
    <!-- 配置文件引入 必须在resource 下 对应环境下的  dev_config.properties  -->
-   <context:property-placeholder location="classpath*:test.properties"/>
+   <context:property-placeholder location="classpath*:*.properties"/>
 
 
    <!--&lt;!&ndash; 配置数据源  根据 id="jdbcDataSource" ref 到mybatis jdbc 数据连接&ndash;&gt;-->
