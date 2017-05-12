@@ -26,3 +26,7 @@ hs_err_pid*
 .idea/inspectionProfiles/
 target/generated-sources/
 target/generated-test-sources/
+target/*
+target/classes/com/
+target/mort-group-1.0-SNAPSHOT/WEB-INF/classes/com/
+target/mort-group-1.0-SNAPSHOT/WEB-INF/lib/
