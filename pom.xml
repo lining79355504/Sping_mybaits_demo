@@ -7,7 +7,7 @@
     <groupId>com.demo</groupId>
     <artifactId>mort-group</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
 
     <properties>
         <dao.target.dir>src/main/java</dao.target.dir>
@@ -31,7 +31,10 @@
             <artifactId>logback-classic</artifactId>
             <version>1.1.7</version>
         </dependency>
-
+        <!--<dependency>-->
+            <!--<groupId>com.demo</groupId>-->
+            <!--<artifactId>smartDAL</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -398,6 +401,14 @@
                     <!--</execution>-->
                 <!--</executions>-->
             <!--</plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
