@@ -7,7 +7,10 @@
 
     <display-name>mort test</display-name>
 
-
+    <listener>
+        <listener-class>com.demo.servletContextLister.MyServletContextListerTest</listener-class>
+    </listener>
+    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
