@@ -31,6 +31,8 @@ public class MyServletContextListerTest implements ServletContextListener {
     * ServletRequestAttributeListener  监听Requset中的属性操作
 
       HttpSessionAttributeListener  监听Session中的属性操作   统计在线人数 监听http session连接创建
+
+      可以做一些启动时缓存的初始化  datasource的初始化  一般不用
     *
     *
     *
