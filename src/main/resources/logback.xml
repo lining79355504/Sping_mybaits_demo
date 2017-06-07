@@ -26,7 +26,7 @@
             <maxHistory>7</maxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <MaxFileSize>1MB</MaxFileSize>
+                <MaxFileSize>2GB</MaxFileSize>
             </TimeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -44,8 +44,8 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/error.%d{yyyy-MM-dd_HH_mm}.%i.log.zip</fileNamePattern>   <!--logback会从 fileNamePattern 中推导出滚动的间隔-->
             <maxHistory>7</maxHistory>   <!-- 触发 根据回滚时间来处理 %d{yyyy-MM-dd_HH_mm} 就表示按分钟rolling 针对7d  -->
-            <maxFileSize>20MB</maxFileSize>  <!--  实时 rolling  -->
-            <totalSizeCap>1GB</totalSizeCap>   <!-- 根据回滚时间来处理 %d{yyyy-MM-dd_HH_mm} 就表示按分钟rolling 触发  -->
+            <maxFileSize>2GB</maxFileSize>  <!--  实时 rolling  -->
+            <totalSizeCap>4GB</totalSizeCap>   <!-- 根据回滚时间来处理 %d{yyyy-MM-dd_HH_mm} 就表示按分钟rolling 触发  -->
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${ENCODER_PATTERN}</pattern>
@@ -62,8 +62,8 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/sync.%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
             <maxHistory>7</maxHistory>
-            <maxFileSize>20MB</maxFileSize>
-            <totalSizeCap>1GB</totalSizeCap>
+            <maxFileSize>2GB</maxFileSize>
+            <totalSizeCap>4GB</totalSizeCap>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${ENCODER_PATTERN}</pattern>
