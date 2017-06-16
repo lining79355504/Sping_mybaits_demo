@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.demo.annotataion.MyAnnotation;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
@@ -20,6 +22,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by 2015-218-pc on 8/18/16.
@@ -39,10 +43,16 @@ public class HelloWorld {
     protected RedisTemplate<String, String> redisTemplate;
 
 
+    private AtomicInteger redisQps = new AtomicInteger();
 
     //引入配置
     @Value("#{mortTestConfigs['database.url']}")
     private String dbUrl ;
+
+    @Value("#{flowControl['flow.all']}")
+    private int flowAll;
+
+    private final static Logger logger = LoggerFactory.getLogger(HelloWorld.class);
 
     /*
         @RequestParam Map<String, String> params   get post 都可已接收 全部的参数转为一个map
@@ -65,20 +75,48 @@ public class HelloWorld {
 
 
         //spring-data-redis set key value
-        redisTemplate.executePipelined(new RedisCallback<Object>() {
+//        redisTemplate.executePipelined(new RedisCallback<Object>() {
+//            @Override
+//            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+//                byte[] ret = connection.get(redisTemplate.getStringSerializer().serialize("user.uid." + 121232321));
+//                return redisTemplate.getStringSerializer().deserialize(ret);
+//            }
+//
+//
+//            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+//
+//                connection.set(redisTemplate.getStringSerializer().serialize("user.uid." + 121232321),
+//                        redisTemplate.getStringSerializer().serialize("mort"));
+//                return null;
+//            }
+//        });
+
+        String ret = "" ;
+        logger.info(" redis qps is :  {}" , redisQps.incrementAndGet());
+        try {
+
+            ret = redisTemplate.opsForValue().get("user.uid." + 121232321);
+        }catch (Exception e){
+            logger.info(" redisTemplate.opsForValue().get  exception  is : {} " , e);
+        }finally {
+            logger.info(" redis qps is :  {} , {} " , redisQps.decrementAndGet()  , ret );
+        }
 
 
-            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+        //redisTemplate.opsForValue().set("user.uid.121232321" , "qwqwqwqwqw");
 
-                connection.set(redisTemplate.getStringSerializer().serialize("user.uid." + 121232321),
-                        redisTemplate.getStringSerializer().serialize("mort"));
-                return null;
-            }
-        });
+        //redisTemplate.opsForSet();
 
-
-
-        return "asasassa";
+//      String ret = redisTemplate.execute(new RedisCallback<String>() {
+//            @Override
+//            public String doInRedis(RedisConnection connection) throws DataAccessException {
+//                byte[] ret = connection.get(redisTemplate.getStringSerializer().serialize("user.uid." + 121232321));
+//                return redisTemplate.getStringSerializer().deserialize(ret);
+//            }
+//        });
+//
+//
+       return ret ;
     }
 
 
