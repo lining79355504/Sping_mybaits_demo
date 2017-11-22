@@ -75,6 +75,24 @@
         <appender-ref ref="SYNC_FILE" />    <!-- 会将 log.sys包下面的类 DEBUG 及其以上级别的日志输出到 appender 是 SYNC_FILE的文件-->
     </logger>    <!-- addtivity = true  则会向root级别的升级打印 相当于打印输出2次 是否向上级传递打印信息  默认true-->
 
+
+
+    <!--logstash distribute log  sys -->
+    <!--<appender name="LOGSTASH" class="ch.qos.logback.classic.net.SocketAppender">-->
+        <!--<param name="remoteHost" value="120.0.0.1" />-->
+        <!--<param name="port" value="4560"/>   &lt;!&ndash; log default port 4560 &ndash;&gt;-->
+        <!--<param name="ReconnectionDelay" value="60000" />-->
+        <!--<param name="LocationInfo" value="true" />-->
+        <!--<param name="Threshold" value="DEBUG" />-->
+    <!--</appender>-->
+
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>127.0.0.1:4560</destination>
+
+        <!-- encoder is required -->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+
     <!-- 级别 trace debug  info warn error  -->
     <!-- logback.xml 配置文件的寻找方式 -->
     <root>
@@ -82,5 +100,6 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
         <appender-ref ref="ERROR_FILE" />   <!--ERROR_FILE 这个appender 有自己的level级别配置 因此只输出 warn和error的 -->
+        <appender-ref ref="LOGSTASH"/>
     </root>
 </configuration>
