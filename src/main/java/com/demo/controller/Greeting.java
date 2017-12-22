@@ -28,6 +28,7 @@ public class Greeting {
 
     public static void main(String[] args) {
 
+        int intArray[];
         String str = "GZ1" ;
         //if(str == "GZ1"){
         if(str.equals("GZ1")){
