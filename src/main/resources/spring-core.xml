@@ -114,6 +114,8 @@
    </bean>
 
 
+
+
    <!--  spring  redis bean setting    -->
    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
       <property name="maxIdle" value="${redis.maxIdle}" />
