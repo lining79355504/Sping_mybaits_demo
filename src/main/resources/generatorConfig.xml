@@ -5,13 +5,13 @@
 
 <generatorConfiguration>
     <!-- 数据库驱动包 -->
-    <classPathEntry location="/Users/work/Spingmybaits/src/jdbcdriver/mysql-connector-java-5.1.39-bin.jar" />
+    <classPathEntry location="/Users/mort/Sping_mybaits_demo/src/jdbcdriver/mysql-connector-java-5.1.39-bin.jar" />
     <context id="aisSnsTables" targetRuntime="MyBatis3">
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://172.19.30.22:3306/ams?useUnicode=true"
+                connectionURL="jdbc:mysql://127.0.0.1:3306/deal_detail?useUnicode=true"
                 userId="root"
-                password="Mls@20160421">
+                password="123456">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -40,10 +40,11 @@
 
         <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
         <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
-        <table tableName="t_token" domainObjectName="Token" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="t_subscribe_relation" domainObjectName="SubscribeRelation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="t_subscribe_service" domainObjectName="SubscribeService" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="t_subscribe_service_category" domainObjectName="SubscribeServiceSategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <!--<table tableName="t_token" domainObjectName="Token" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="t_subscribe_relation" domainObjectName="SubscribeRelation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="t_subscribe_service" domainObjectName="SubscribeService" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="t_subscribe_service_category" domainObjectName="SubscribeServiceSategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="stock_deal" domainObjectName="StockDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 
 </generatorConfiguration>

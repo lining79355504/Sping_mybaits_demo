@@ -2,6 +2,8 @@ package com.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.demo.annotataion.MyAnnotation;
+import com.demo.dao.StockDetail;
+import com.demo.mapper.StockDetailMapper;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
 import org.slf4j.Logger;
@@ -41,6 +43,9 @@ public class HelloWorld {
 
     @Autowired
     protected RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
+    private StockDetailMapper stockDetailMapper;
 
 
     private AtomicInteger redisQps = new AtomicInteger();
@@ -102,6 +107,9 @@ public class HelloWorld {
             logger.info(" redis qps is :  {} , {} " , redisQps.decrementAndGet()  , ret );
         }
 
+        StockDetail stockDetail = stockDetailMapper.selectByPrimaryKey(104469L);
+
+        ret = JSONObject.toJSONString(stockDetail);
 
         //redisTemplate.opsForValue().set("user.uid.121232321" , "qwqwqwqwqw");
 

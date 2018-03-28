@@ -23,9 +23,9 @@ public class AmsDbTestServiceImpl {
 
         //TokenDAOImpl tokenDAOImpl = new TokenDAOImpl();
 
-        Token token = tokenMapper.selectByPrimaryKey( Integer.valueOf(11) );
+        Token token = tokenMapper.selectByPrimaryKey( 11L);
 
-        System.out.println(token.getToken());
+        System.out.println(token.getDealTime());
         //System.out.println(token.toString());
 
     }

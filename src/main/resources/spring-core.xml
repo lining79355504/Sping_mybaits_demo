@@ -102,7 +102,7 @@
    <!-- MyBatis配置 -->
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="jdbcDataSource" />
-      <!--<property name="configLocation" value="/WEB-INF/conf/MyBatisConfiguration.xml" />-->
+      <property name="configLocation" value="classpath:conf/MyBatisConfiguration.xml" />
       <property name="mapperLocations" value="classpath*:/sqlmap/map/*Mapper.xml" />
       <!--<property name="typeAliasesPackage" value="${mybatis.alias.basepackage}" />-->
    </bean>

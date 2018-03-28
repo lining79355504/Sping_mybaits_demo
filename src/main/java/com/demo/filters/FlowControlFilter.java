@@ -35,6 +35,7 @@ public class FlowControlFilter  implements Filter{
         System.out.println("init");
 
         flowUrlMap.put("/hello" , 100);
+        flowUrlMap.put("/helloWorld" , 100);
 
 
     }
@@ -55,7 +56,7 @@ public class FlowControlFilter  implements Filter{
                 httpResponse.setStatus(800);
                 return;
 
-            }else if(currentQpsAdd > Integer.valueOf(String.valueOf(flowUrlMap.get(httpRequest.getRequestURI()))).intValue()){
+            }else if(null != flowUrlMap.get(httpRequest.getRequestURI()) && currentQpsAdd > Integer.valueOf(String.valueOf(flowUrlMap.get(httpRequest.getRequestURI()))).intValue()){
                  logger.info(" api over flow :{} , {} , limit is {} " ,httpRequest.getContextPath() , currentQpsAdd , flowUrlMap.get(httpRequest.getContextPath()) );
                 httpResponse.setStatus(800);
                 return;
