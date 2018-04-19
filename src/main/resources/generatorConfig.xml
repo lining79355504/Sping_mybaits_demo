@@ -7,11 +7,18 @@
     <!-- 数据库驱动包 -->
     <classPathEntry location="/Users/mort/Sping_mybaits_demo/src/jdbcdriver/mysql-connector-java-5.1.39-bin.jar" />
     <context id="aisSnsTables" targetRuntime="MyBatis3">
+        <!--<jdbcConnection-->
+                <!--driverClass="com.mysql.jdbc.Driver"-->
+                <!--connectionURL="jdbc:mysql://127.0.0.1:3306/deal_detail?useUnicode=true"-->
+                <!--userId="root"-->
+                <!--password="123456">-->
+        <!--</jdbcConnection>-->
+
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://127.0.0.1:3306/deal_detail?useUnicode=true"
-                userId="root"
-                password="123456">
+                connectionURL="jdbc:mysql://10.72.218.6:3306/PCTPointMerge?useUnicode=true"
+                userId="pctpointmerge"
+                password="dp!@nfvrmXoaW">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -44,7 +51,7 @@
         <!--<table tableName="t_subscribe_relation" domainObjectName="SubscribeRelation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="t_subscribe_service" domainObjectName="SubscribeService" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="t_subscribe_service_category" domainObjectName="SubscribeServiceSategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table tableName="stock_deal" domainObjectName="StockDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="PCT_PointApply" domainObjectName="PointApply" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 
 </generatorConfiguration>

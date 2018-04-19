@@ -20,7 +20,7 @@ public class Greeting {
     @RequestMapping("/helloWorld")
     @MyAnnotation(value = "helloWorld")
     public String sayHello(HttpServletRequest req, HttpServletResponse res) {
-        logger.info("test {} ",1);
+        logger.info("test asasa{} ",11212);
         logger.error("test error {} ,{},{},{},{},{},{},{},{} " , 3,3,3,3,3,3,3,3);
         return "Hello world!";
     }
