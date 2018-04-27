@@ -19,6 +19,7 @@
    <context:component-scan base-package="com.demo.service"/>
    <context:component-scan base-package="com.demo.mapper"/>
    <context:component-scan base-package="com.demo.springCore"/>
+   <context:component-scan base-package="com.demo.utils"/>
    <!--<context:component-scan base-package="com.demo.filters"/>-->
    <!--<context:component-scan base-package="com.demo.bean"/>-->
    <bean id="user" class="com.demo.bean.UserEntity">
@@ -155,7 +156,17 @@
    </bean>
 
 
+
+   <util:properties id="redisConf">
+      <prop key="redisConf.host">${redis.host}</prop>
+      <prop key="redisConf.port">${redis.port}</prop>
+      <prop key="redisConf.port">${redis.passwd}</prop>
+   </util:properties>
+
+
    <!--spring bean config end -->
+
+
 
 
 

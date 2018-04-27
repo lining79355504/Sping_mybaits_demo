@@ -1,6 +1,7 @@
 import com.demo.service.MqDemoService;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
+import com.demo.utils.LockUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,10 +23,23 @@ public class SpringTest {
     @Autowired
     private MqDemoService mqDemoService ;
 
+    @Autowired
+    private LockUtils lockUtils;
+
     @Test
     public void testSpringInit(){
 
         System.out.println(mqDemoService.getDbUrl());
         Assert.assertTrue(mqDemoService.getDbUrl() != null && "jdbc:mysql://172.19.30.22/ams".equals(mqDemoService.getDbUrl()));
+    }
+
+
+
+    @Test
+    public void lockTest(){
+
+        lockUtils.getLock("174874816" , 2,3);
+
+
     }
 }

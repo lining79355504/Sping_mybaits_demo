@@ -99,7 +99,6 @@ public class HelloWorld {
         String ret = "" ;
         logger.info(" redis qps is :  {}" , redisQps.incrementAndGet());
         try {
-
             ret = redisTemplate.opsForValue().get("user.uid." + 121232321);
         }catch (Exception e){
             logger.info(" redisTemplate.opsForValue().get  exception  is : {} " , e);
