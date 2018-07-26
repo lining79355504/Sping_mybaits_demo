@@ -167,6 +167,17 @@
    <!--spring bean config end -->
 
 
+   <!--自定义 property 解析文件-->
+   <bean id="propertyConfigurer" class="com.demo.utils.PropertyPlaceholder">
+      <property name="order" value="2"/>
+      <property name="ignoreUnresolvablePlaceholders" value="true" />
+      <property name="locations">
+         <list>
+            <value>classpath:test.properties</value>
+         </list>
+      </property>
+   </bean>
+
 
 
 

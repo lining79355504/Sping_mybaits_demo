@@ -39,5 +39,21 @@ public class MyAnnotationHandler implements MethodInterceptor {
         }
         //执行被拦截的方法，切记，如果此方法不调用，则被拦截的方法不会被执行。
         return invocation.proceed();
+
+
+
+        /*
+        *
+        *
+        根据 ProceedingJoinPoint 获取method  及其属性
+        Signature sig = pjp.getSignature();
+        MethodSignature msig = null;
+        msig = (MethodSignature) sig;
+        AnnotationUtils.getAnnotation(pjp.getTarget().getClass().getMethod(msig.getName() , msig.getParameterTypes()) , MyAnnotation.class);
+
+        *
+        * */
+
+
     }
 }
