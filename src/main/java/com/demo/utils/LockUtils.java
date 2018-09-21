@@ -16,7 +16,7 @@ import java.util.UUID;
  * Author:  mort
  * Date :  26/04/2018
  */
-@Service
+//@Service
 public class LockUtils {
 
 

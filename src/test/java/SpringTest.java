@@ -1,3 +1,4 @@
+import com.demo.file.ExcelUtil;
 import com.demo.service.MqDemoService;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
@@ -23,8 +24,11 @@ public class SpringTest {
     @Autowired
     private MqDemoService mqDemoService ;
 
+//    @Autowired
+//    private LockUtils lockUtils;
+
     @Autowired
-    private LockUtils lockUtils;
+    private ExcelUtil excelUtil ;
 
     @Test
     public void testSpringInit(){
@@ -38,8 +42,33 @@ public class SpringTest {
     @Test
     public void lockTest(){
 
-        lockUtils.getLock("174874816" , 2,3);
+//        lockUtils.getLock("174874816" , 2,3);
 
 
     }
+
+
+    @Test
+    public void getTest(){
+
+        excelUtil.excelHandler();
+    }
+
+
+    @Test
+    public void postTest(){
+
+
+        try {
+            excelUtil.httpPostWithJSON("http://localhost:8080/oss/point/ajax/pointReissueAjax");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void cookerSetTest(){
+        excelUtil.cookerSet();
+    }
+
 }
