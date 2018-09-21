@@ -232,4 +232,7 @@ public class ExcelUtil {
     }
 
 
+    public String retTest(Integer param){
+        return String.valueOf(param);
+    }
 }

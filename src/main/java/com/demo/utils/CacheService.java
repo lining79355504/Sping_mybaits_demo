@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * Author:  lining17
  * Date :  2018/9/10
  */
-@Service
 public class CacheService<K,V> {
 
 
@@ -23,7 +22,7 @@ public class CacheService<K,V> {
 
 
 
-    public V get(K key, int cacheTime , CacheInterface cacheInterface){
+    public  V get(K key, int cacheTime , CacheInterface cacheInterface){
 
         if (null == bizHashMap.get(key) ||
                 (System.currentTimeMillis() / 1000 - bizHashMap.get(key).getTime() > cacheTime)) {
@@ -35,10 +34,17 @@ public class CacheService<K,V> {
 
     public void set(K key , CacheInterface cacheInterface){
         CacheDO <V> cacheDO = new CacheDO<V>();
-        cacheDO.setObject((V) cacheInterface.cache().get(key));
+        cacheDO.setObject((V) cacheInterface.cache(key).get(key));
         cacheDO.setTime(System.currentTimeMillis()/1000);
+        logger.info("cacheDO value  {}",cacheDO);
         bizHashMap.put(key,cacheDO) ;
     }
+
+
+//    static {
+//
+//        new Thread();
+//    }
 
 }
 
