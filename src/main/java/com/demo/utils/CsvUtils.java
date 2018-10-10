@@ -67,4 +67,8 @@ public class CsvUtils {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        write();
+    }
 }
