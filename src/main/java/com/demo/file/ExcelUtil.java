@@ -74,7 +74,7 @@ public class ExcelUtil {
     public void excelHandler() {
 
 
-        String excelPath = "/Users/mort/Downloads/商户报错系统升级补偿.xlsx";
+        String excelPath = "/Users/lining/Downloads/菜单业务——补发积分929.xlsx";
 
 
         try {
@@ -109,6 +109,7 @@ public class ExcelUtil {
                         int firstCellIndex = row.getFirstCellNum();
                         int lastCellIndex = row.getLastCellNum();
                         String userID = "";
+                        String pointValue = "";
                         String platFormType = "";
                         String outOrderId = "";
                         String outBiz = "";
@@ -122,12 +123,15 @@ public class ExcelUtil {
 
                                 switch (cIndex) {
 
+                                    //第一列
                                     case 0:
                                         userID = cell.toString();
                                         break;
+                                    //第二列
                                     case 1:
-                                        outBiz = cell.toString();
+                                        pointValue = cell.toString();
                                         break;
+                                    //第二列
                                     case 2:
                                         outOrderId = cell.toString();
                                         break;
@@ -143,9 +147,12 @@ public class ExcelUtil {
                                 + "&outOrderId=" + outOrderId
                                 + "&outBiz=" + outBiz;
 
+                        //online
+//                        url = "http://infoplatform.dper.com/oss/point/ajax/pointReissueAjax?points="+pointValue+"&userId=" + userID + "&useRange=1&memo="+URLEncoder.encode("拍菜单通过");
 
-                        url = "http://test.infoplatform.dianping.com/oss/point/ajax/pointReissueAjax?points=10&userId=" +
-                                userID + "&useRange=1&memo="+URLEncoder.encode("商户报错系统升级积分补偿");
+                        //offline
+                        url = "http://test.infoplatform.dianping.com/oss/point/ajax/pointReissueAjax?points="+pointValue+"&userId=" +
+                                userID + "&useRange=1&memo="+URLEncoder.encode("拍菜单通过");
 
                         logger.info("url is {}" , url);
 //                    HttpClient client = new DefaultHttpClient();
@@ -163,10 +170,10 @@ public class ExcelUtil {
 //                    }
 
                         // online
-                        String cookie = "_ga=GA1.2.2110259256.1528704657; ssoid=ecadf18707*94911bb58658e82fa6df6; JSESSIONID=5EFD76C3B02B440B4E1A557E2AC6F458";
+                        String cookie = "ssoid=6a6d855833*745d2a32ed70ac6b7f2e0; JSESSIONID=A01DB5379A820B42EAC2BC0ACBA1FAB1";
 
                         //offline
-//                        cookie = "_hc.v=\"\\\"5d1b0ed0-a075-4253-9309-fdc108e25295.1493087242\\\"\"; _lxsdk_cuid=15e7f4f19f3c8-09dc4cfa04e3d7-31637e01-13c680-15e7f4f19f3c8; _lxsdk=15e7f4f19f3c8-09dc4cfa04e3d7-31637e01-13c680-15e7f4f19f3c8; ctu=4da2a4ca1e00ee2316d666c2186602675b47c38565289ff319b5df388a6ff16e; Hm_lvt_dbeeb675516927da776beeb1d9802bd4=1507864879; __mta=151436550.1507864857173.1509515931478.1509515942206.19; s_ViewType=10; aburl=1; _tr.u=H28fAgtC32iykA5q; ua=ACE_2598; __utma=1.1480696191.1493106114.1503404145.1517387691.12; cityid=1; switchcityflashtoast=1; cy=1; cye=shanghai; ssoid=dd12d8a20a*24a55a353a18837d871a2; JSESSIONID=8D0751EC13E971D6D6113EDAECE21F9C";
+                        cookie = "cy=1; cye=shanghai; _lxsdk_cuid=1660f548429c8-0c51adca929c0d-336b7b05-13c680-1660f548429c8; _lxsdk=1660f548429c8-0c51adca929c0d-336b7b05-13c680-1660f548429c8; _hc.v=8cd117a9-5443-4946-6a0f-8f20a36b144a.1537855489; ssoid=386b2409db*849b6a23fb88016db2ebd; JSESSIONID=6744EA4845427C0B7AD339E4C32C32A5";
 
                         URL urlStr = new URL(url);
                         URLConnection conn = urlStr.openConnection();
@@ -202,12 +209,12 @@ public class ExcelUtil {
 
 
         String url = "http://localhost:8080/oss/point/ajax/pointReissueAjax?points=10&userId=" +
-                121212 + "&useRange=1&memo="+URLEncoder.encode("商户报错系统升级积分补偿");
+                121212 + "&useRange=1&memo="+URLEncoder.encode("拍菜单通过");
 
         url = "http://infoplatform.dper.com/";
 
 
-        String cookie = "_ga=GA1.2.2110259256.1528704657; ssoid=ecadf18707*94911bb58658e82fa6df6; JSESSIONID=5EFD76C3B02B440B4E1A557E2AC6F458";
+        String cookie = "ssoid=6a6d855833*745d2a32ed70ac6b7f2e0; JSESSIONID=068925E2604E0CF94115D46F9EEC32BF";
 
         URL urlStr = null;
         try {

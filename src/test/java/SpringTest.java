@@ -4,6 +4,7 @@ import com.demo.service.MqDemoService;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
 import com.demo.utils.CacheService;
+import com.demo.utils.CsvUtils;
 import com.demo.utils.LockUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -120,6 +121,14 @@ public class SpringTest {
         });
 
         logger.info("ret is {}" , ret );
+
+    }
+
+
+    @Test
+    public void scvTest(){
+
+        CsvUtils.write();
 
     }
 
