@@ -3,6 +3,11 @@ package com.demo.berkeleyDB;
 /**
  * Author:  lining17
  * Date :  2019-07-16
+ * berkeleyDB local disk index light DB  作为一些大量数据（百兆级别）的meta数据配置使用放在磁盘有索引，快速查询，节省内存空间。
+ * 不用安装server端 不用特殊运维，项目每次启动和数据更新时初始化。
+ *
+ * 数据量小的配置 置于内存中 例如metaBase lion等
+ *
  */
 
 import com.sleepycat.je.*;
