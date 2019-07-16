@@ -6,7 +6,9 @@ package com.demo.berkeleyDB;
  * berkeleyDB local disk index light DB  作为一些大量数据（百兆级别）的meta数据配置使用放在磁盘有索引，快速查询，节省内存空间。
  * 不用安装server端 不用特殊运维，项目每次启动和数据更新时初始化。
  *
- * 数据量小的配置 置于内存中 例如metaBase lion等
+ * 数据量小的配置 置于内存中 例如metaBase lion等 本地也有一份配置文件 但是不支持磁盘索引
+ *
+ * 和以每个key为文件单独命名文件作为配置的优势，berkeleyDB 读取速度快于本地文件流式读取
  *
  */
 
