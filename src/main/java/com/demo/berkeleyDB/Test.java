@@ -15,6 +15,8 @@ package com.demo.berkeleyDB;
  *    减少了单机查询发往集中的DB es hbase等带来的压力。
  *    集群统计也可以分布式单机统计后聚合类似es。实现无中心分布式监控。
  *
+ *    关于大文件大数据百兆级别 不想全放内存，配置使用LRU + 本地berkeley DB 实现不依赖中心的分布式快速大数据配置。
+ *
  */
 
 import com.sleepycat.je.*;
