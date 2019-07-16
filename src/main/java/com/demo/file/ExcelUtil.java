@@ -74,7 +74,7 @@ public class ExcelUtil {
     public void excelHandler() {
 
 
-        String excelPath = "/Users/lining/Downloads/菜单业务——补发积分929.xlsx";
+        String excelPath = "/Users/mort/Downloads/1122攻略补发积分.xlsx";
 
 
         try {
@@ -112,6 +112,7 @@ public class ExcelUtil {
                         String pointValue = "";
                         String platFormType = "";
                         String outOrderId = "";
+                        //TODO 待修改
                         String outBiz = "";
 
                         for (int cIndex = firstCellIndex; cIndex < lastCellIndex; cIndex++) {   //遍历列
@@ -148,11 +149,11 @@ public class ExcelUtil {
                                 + "&outBiz=" + outBiz;
 
                         //online
-//                        url = "http://infoplatform.dper.com/oss/point/ajax/pointReissueAjax?points="+pointValue+"&userId=" + userID + "&useRange=1&memo="+URLEncoder.encode("拍菜单通过");
-
+//                        url = "http://infoplatform.dper.com/oss/point/ajax/pointReissueAjax?points="+pointValue+"&outBiz="+outBiz+"&userId="+
+//                                userID + "&useRange=1&memo="+URLEncoder.encode("攻略补发积分");
                         //offline
-                        url = "http://test.infoplatform.dianping.com/oss/point/ajax/pointReissueAjax?points="+pointValue+"&userId=" +
-                                userID + "&useRange=1&memo="+URLEncoder.encode("拍菜单通过");
+                        url = "http://test.infoplatform.dianping.com/oss/point/ajax/pointReissueAjax?points="+pointValue+"&outBiz="+outBiz+"&userId="+
+                                userID + "&useRange=1&memo="+URLEncoder.encode("攻略补发积分");
 
                         logger.info("url is {}" , url);
 //                    HttpClient client = new DefaultHttpClient();
@@ -170,10 +171,10 @@ public class ExcelUtil {
 //                    }
 
                         // online
-                        String cookie = "ssoid=6a6d855833*745d2a32ed70ac6b7f2e0; JSESSIONID=A01DB5379A820B42EAC2BC0ACBA1FAB1";
+                        String cookie = "_ga=GA1.2.2110259256.1528704657; ssoid=ef6d1a2d95*d426c9de51ae119339077; JSESSIONID=F351CE074179EF9C6EE34C4D54113AAD";
 
                         //offline
-                        cookie = "cy=1; cye=shanghai; _lxsdk_cuid=1660f548429c8-0c51adca929c0d-336b7b05-13c680-1660f548429c8; _lxsdk=1660f548429c8-0c51adca929c0d-336b7b05-13c680-1660f548429c8; _hc.v=8cd117a9-5443-4946-6a0f-8f20a36b144a.1537855489; ssoid=386b2409db*849b6a23fb88016db2ebd; JSESSIONID=6744EA4845427C0B7AD339E4C32C32A5";
+//                        cookie = "_hc.v=\"\\\"5d1b0ed0-a075-4253-9309-fdc108e25295.1493087242\\\"\"; _lxsdk_cuid=15e7f4f19f3c8-09dc4cfa04e3d7-31637e01-13c680-15e7f4f19f3c8; _lxsdk=15e7f4f19f3c8-09dc4cfa04e3d7-31637e01-13c680-15e7f4f19f3c8; __mta=151436550.1507864857173.1509515931478.1509515942206.19; s_ViewType=10; aburl=1; _tr.u=H28fAgtC32iykA5q; ua=ACE_2598; __utma=1.1480696191.1493106114.1503404145.1517387691.12; cityid=1; switchcityflashtoast=1; Hm_lvt_e6f449471d3527d58c46e24efb4c343e=1542609193; Hm_lpvt_e6f449471d3527d58c46e24efb4c343e=1542609193; _lx_utm=utm_source%3DBaidu%26utm_medium%3Dorganic; ssoid=e1ecd7c049*c45b7b0f61ad255d39071; JSESSIONID=80084095A42730C87E7811F6347DEEAD";
 
                         URL urlStr = new URL(url);
                         URLConnection conn = urlStr.openConnection();

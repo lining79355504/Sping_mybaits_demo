@@ -1,9 +1,14 @@
 package com.demo.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Author:  lining17
@@ -77,6 +82,8 @@ public class DateUtil {
 
     public static long getNextMonth(Date date) {
         Calendar cd = Calendar.getInstance();
+
+//        cd.setTime(new Date(119,9,10));  // 自定义时间设置  Date 其实时间1900  月份0-11 日 1-31
         cd.setTime(date);
 
         cd.add(Calendar.MONTH, 1);
@@ -96,7 +103,10 @@ public class DateUtil {
 
 
 
+
+
     public static void main(String[] args) {
+
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//小写的mm表示的是分钟
         String dstr="2018-05-16 15:30:43";
         Date date = null;
@@ -106,6 +116,7 @@ public class DateUtil {
             e.printStackTrace();
         }
         System.out.println("args = [" + getOffsetTime(date,10) + "]");
+
     }
 
 }

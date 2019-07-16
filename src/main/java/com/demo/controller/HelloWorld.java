@@ -6,6 +6,7 @@ import com.demo.dao.StockDetail;
 import com.demo.mapper.StockDetailMapper;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
+import com.google.common.util.concurrent.RateLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,14 @@ public class HelloWorld {
     @RequestMapping("/hello")
     @MyAnnotation(value = "hello")
     public String index(HttpServletRequest req, HttpServletResponse res) {
+
+        RateLimiter rateLimiter = RateLimiter.create(5);
+
+        rateLimiter.setRate(200);
+        rateLimiter.tryAcquire();
+
+        rateLimiter.acquire();
+
         Greeting greeting = new Greeting();
         //System.out.println(greeting.sayHello());
 
@@ -137,7 +146,7 @@ public class HelloWorld {
         //Map map = (Map)jasonObject;
         //System.out.println(map.get(String.valueOf(4097)));
 
-        String shopCids = "#682# #1395# #724#";
+        final String shopCids = "#682# #1395# #724#";
 
         String shopCid[] = shopCids.split("#");
         JSONObject jasonObject = JSONObject.parseObject(str);

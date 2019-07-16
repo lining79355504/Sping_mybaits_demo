@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.channels.NotYetConnectedException;
 
 @Controller
 public class Greeting {
@@ -40,5 +42,14 @@ public class Greeting {
             System.out.println("not equal ");
 
         }
+        try {
+            throwsIo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void throwsIo() throws IOException {
+        throw new NotYetConnectedException();
     }
 }

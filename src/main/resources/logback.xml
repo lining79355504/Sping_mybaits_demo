@@ -6,7 +6,7 @@
     <property name="LOG_HOME" value="${log.dir:-logs}/${APP_NAME}" />
     <!-- 日志输出格式 -->
     <property name="ENCODER_PATTERN"
-              value="[%d{yyyy-MM-dd  HH:mm:ss.SSS}] [%thread] %-5level %logger{80} - %msg%n" />
+              value="[%d{yyyy-MM-dd  HH:mm:ss.SSS}] [%thread] %-5level %logger{80}:%L - %msg%n" />
     <contextName>${APP_NAME}</contextName>
 
     <!-- 控制台日志：输出全部日志到控制台  不设置 idea 的console 看不到-->
@@ -14,6 +14,7 @@
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>${ENCODER_PATTERN}</Pattern>
         </encoder>
+        <includeLocation>false</includeLocation>
     </appender>
 
     <!-- 文件日志：输出全部日志到文件 -->
@@ -32,8 +33,14 @@
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${ENCODER_PATTERN}</pattern>
         </encoder>
-
-
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--过滤 Error-->
+            <level>ERROR</level>
+            <!--匹配到就禁止-->
+            <onMatch>DENY</onMatch>
+            <!--没有匹配到就允许-->
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
     </appender>
 
     <!-- 错误日志：用于将错误日志输出到独立文件 -->
@@ -70,10 +77,12 @@
         </encoder>
     </appender>
 
+    <!-- additivity：这个属性的意思是需不需要打印此logger继承的父logger，如果是false则只打印当前logger；如果是true则继续打印上一层的logger，直到root。-->
+
     <!--制定自己的包下的文件 输出到自己定义的log 文件里  防止在一个文件里被日志淹没 -->
     <logger name="log.sync" level="DEBUG" addtivity="true">
         <appender-ref ref="SYNC_FILE" />    <!-- 会将 log.sys包下面的类 DEBUG 及其以上级别的日志输出到 appender 是 SYNC_FILE的文件-->
-    </logger>    <!-- addtivity = true  则会向root级别的升级打印 相当于打印输出2次 是否向上级传递打印信息  默认true-->
+    </logger>    <!-- addtivity = true  则会向root级别的升级打印 相当于打印输出2次 是否向上级传递打印信息  默认true 例如不想 不想重复输出到tomcat catalina太多日志-->
 
 
 
@@ -95,11 +104,19 @@
 
     <!-- 级别 trace debug  info warn error  -->
     <!-- logback.xml 配置文件的寻找方式 -->
-    <root>
+    <!--不需要打印location(日志 patternLayout 中的%L 行号)信息 全异步不加location打印性能提升很大， immediateFlush="false"
+    全异步配置：
+     System.setProperty("log4j2.contextSelector, "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
+      全异步配置：
+     -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+
+     -->
+    <root includeLocation="false">
         <level value="DEBUG" />
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
         <appender-ref ref="ERROR_FILE" />   <!--ERROR_FILE 这个appender 有自己的level级别配置 因此只输出 warn和error的 -->
         <appender-ref ref="LOGSTASH"/>
     </root>
+
 </configuration>

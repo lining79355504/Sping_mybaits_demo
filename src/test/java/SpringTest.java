@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSON;
 import com.demo.file.ExcelUtil;
 import com.demo.inf.CacheInterface;
 import com.demo.service.MqDemoService;
@@ -6,6 +7,7 @@ import com.demo.service.impl.MqDemoServiceImpl;
 import com.demo.utils.CacheService;
 import com.demo.utils.CsvUtils;
 import com.demo.utils.LockUtils;
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +21,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by 2015-218-pc on 8/25/16.
@@ -52,6 +53,9 @@ public class SpringTest {
 
     @Test
     public void lockTest(){
+
+        Map  map = new HashMap();
+        System.out.printf(JSON.toJSONString(map.get("adasd")));
 
 //        lockUtils.getLock("174874816" , 2,3);
 
@@ -129,6 +133,67 @@ public class SpringTest {
     public void scvTest(){
 
         CsvUtils.write();
+
+    }
+
+
+    public static void main(String[] args){
+//        List<DishStoryAuditResultDTO> list = new ArrayList<>();
+//        DishStoryAuditResultDTO dishStoryAuditResultDTO = new DishStoryAuditResultDTO();
+//        dishStoryAuditResultDTO.setDishStoryPerfectionDetailId(54583);
+//        dishStoryAuditResultDTO.setDishStoryPerfectionRecordId(17155);
+//        dishStoryAuditResultDTO.setWhetherPass(true);
+//        list.add(dishStoryAuditResultDTO);
+//        JacksonSerializer serializer = new JacksonSerializer();
+//        System.out.println(serializer.serializeObject(list));
+
+
+//        List<DishStoryAuditResultDTO> list = new ArrayList<>();
+//        DishStoryAuditResultDTO dishStoryAuditResultDTO = new DishStoryAuditResultDTO();
+//        dishStoryAuditResultDTO.setDishStoryPerfectionDetailId(54583);
+//        dishStoryAuditResultDTO.setDishStoryPerfectionRecordId(17155);
+//        dishStoryAuditResultDTO.setWhetherPass(true);
+//        list.add(dishStoryAuditResultDTO);
+//        System.out.println(com.dianping.pigeon.remoting.common.codec.json.JacksonUtils.serialize(list));
+//        System.out.println(com.dianping.pigeon.remoting.common.codec.json.JacksonUtils.serialize("lining17"));
+
+
+    }
+
+
+    @Test
+    public void jsonDiffTest(){
+
+
+        String strJson ="{\"map\":{\"a\":123.12312}}";
+
+        TestDto testDto = new TestDto();
+
+        //fastJson 可以在反序列化的时候自动将类型映射强转
+        TestDto testDtoStr = JSON.parseObject(strJson, TestDto.class); //如果是内嵌类 这样用必须申明为static
+
+        Gson gson = new Gson();
+        //Gson 则不会吧double转为long 会抛出异常
+        gson.fromJson(strJson,TestDto.class);
+
+
+
+    }
+
+    public static class TestDto{
+
+
+        Map<String,Long> map = new HashMap<String,Long>();
+
+
+        public Map<String, Long> getMap() {
+            return map;
+        }
+
+        public void setMap(Map<String, Long> map) {
+            this.map = map;
+        }
+
 
     }
 
