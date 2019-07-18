@@ -1,204 +1,0 @@
-[INFO] Scanning for projects...
-[WARNING] 
-[WARNING] Some problems were encountered while building the effective model for com.demo:mort-group:war:1.0-SNAPSHOT
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: junit:junit:jar -> version 3.8.1 vs 4.12 @ line 205, column 21
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: log4j:log4j:jar -> duplicate declaration of version 1.2.17 @ line 233, column 21
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:javax.servlet-api:jar -> duplicate declaration of version 3.0.1 @ line 294, column 21
-[WARNING] 
-[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
-[WARNING] 
-[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
-[WARNING] 
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-site-plugin/3.3/maven-site-plugin-3.3.pom
-1003 B   3 KB     6 KB   9 KB   13 KB   13 KB   17 KB   19 KB   21 KB           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-site-plugin/3.3/maven-site-plugin-3.3.pom (21 KB at 5.1 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-antrun-plugin/1.3/maven-antrun-plugin-1.3.pom
-785 B   2 KB    5 KB   5 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-antrun-plugin/1.3/maven-antrun-plugin-1.3.pom (5 KB at 18.0 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-plugins/12/maven-plugins-12.pom
-752 B   2 KB    6 KB   9 KB   10 KB   12 KB           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-plugins/12/maven-plugins-12.pom (12 KB at 25.8 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-antrun-plugin/1.3/maven-antrun-plugin-1.3.jar
-1/24 KB   3/24 KB   4/24 KB   5/24 KB   8/24 KB   9/24 KB   11/24 KB   15/24 KB   17/24 KB   19/24 KB   20/24 KB   21/24 KB   24/24 KB              Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-antrun-plugin/1.3/maven-antrun-plugin-1.3.jar (24 KB at 37.9 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-assembly-plugin/2.2-beta-5/maven-assembly-plugin-2.2-beta-5.pom
-744 B      3 KB    7 KB   7 KB   10 KB   11 KB   13 KB   15 KB           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-assembly-plugin/2.2-beta-5/maven-assembly-plugin-2.2-beta-5.pom (15 KB at 77.1 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-plugins/16/maven-plugins-16.pom
-752 B   3 KB    7 KB   7 KB   9 KB   10 KB   13 KB   13 KB           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-plugins/16/maven-plugins-16.pom (13 KB at 75.7 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-assembly-plugin/2.2-beta-5/maven-assembly-plugin-2.2-beta-5.jar
-1/204 KB   3/204 KB   7/204 KB   9/204 KB   11/204 KB   12/204 KB   13/204 KB   15/204 KB   16/204 KB   17/204 KB   19/204 KB   20/204 KB   23/204 KB   27/204 KB   28/204 KB   32/204 KB   36/204 KB   37/204 KB   38/204 KB   42/204 KB   44/204 KB   46/204 KB   50/204 KB   52/204 KB   53/204 KB   57/204 KB   58/204 KB   61/204 KB   64/204 KB   66/204 KB   67/204 KB   69/204 KB   73/204 KB   74/204 KB   75/204 KB   77/204 KB   78/204 KB   82/204 KB   86/204 KB   87/204 KB   89/204 KB   90/204 KB   91/204 KB   93/204 KB   97/204 KB   101/204 KB   102/204 KB   105/204 KB   106/204 KB   108/204 KB   110/204 KB   114/204 KB   116/204 KB   118/204 KB   119/204 KB   123/204 KB   124/204 KB   126/204 KB   128/204 KB   130/204 KB   132/204 KB   134/204 KB   138/204 KB   140/204 KB   142/204 KB   146/204 KB   150/204 KB   151/204 KB   152/204 KB   155/204 KB   156/204 KB   157/204 KB   159/204 KB   160/204 KB   161/204 KB   163/204 KB   164/204 KB   167/204 KB   168/204 KB   169/204 KB   172/204 KB   173/204 KB   176/204 KB   177/204 KB   179/204 KB   183/204 KB   187/204 KB   188/204 KB   189/204 KB   193/204 KB   196/204 KB   197/204 KB   201/204 KB   202/204 KB   204/204 KB   204/204 KB                Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-assembly-plugin/2.2-beta-5/maven-assembly-plugin-2.2-beta-5.jar (204 KB at 336.6 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-dependency-plugin/2.8/maven-dependency-plugin-2.8.pom
-756 B        2 KB    5 KB   9 KB   10 KB   12 KB           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-dependency-plugin/2.8/maven-dependency-plugin-2.8.pom (12 KB at 62.8 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-dependency-plugin/2.8/maven-dependency-plugin-2.8.jar
-1/150 KB   4/150 KB   5/150 KB   8/150 KB   9/150 KB   13/150 KB   15/150 KB   16/150 KB   19/150 KB   20/150 KB   24/150 KB   25/150 KB   29/150 KB   30/150 KB   32/150 KB   33/150 KB   34/150 KB   36/150 KB   40/150 KB   41/150 KB   42/150 KB   45/150 KB   48/150 KB   50/150 KB   52/150 KB   53/150 KB   54/150 KB   57/150 KB   58/150 KB   61/150 KB   62/150 KB   64/150 KB   68/150 KB   72/150 KB   75/150 KB   78/150 KB   81/150 KB   83/150 KB   85/150 KB   89/150 KB   90/150 KB   91/150 KB   93/150 KB   94/150 KB   95/150 KB   97/150 KB   98/150 KB   99/150 KB   103/150 KB   107/150 KB   108/150 KB   110/150 KB   111/150 KB   112/150 KB   114/150 KB   116/150 KB   118/150 KB   120/150 KB   122/150 KB   123/150 KB   124/150 KB   126/150 KB   130/150 KB   134/150 KB   135/150 KB   136/150 KB   139/150 KB   140/150 KB   142/150 KB   144/150 KB   146/150 KB   147/150 KB   148/150 KB   149/150 KB   150/150 KB                Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/plugins/maven-dependency-plugin/2.8/maven-dependency-plugin-2.8.jar (150 KB at 208.6 KB/sec)
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building mort-group 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ mort-group ---
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.pom
-802 B        2 KB    5 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.pom (5 KB at 28.6 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.pom
-804 B   2 KB    5 KB   6 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.pom (6 KB at 49.4 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-components/11/maven-shared-components-11.pom
-772 B   2 KB    6 KB   8 KB   9 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-components/11/maven-shared-components-11.pom (9 KB at 31.7 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.pom
-2 KB   4 KB   6 KB   9 KB   9 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.pom (9 KB at 58.7 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/xml-apis/xml-apis/2.0.2/xml-apis-2.0.2.pom
-346/346 B               Downloaded: http://maven.mogujie.org/nexus/content/groups/public/xml-apis/xml-apis/2.0.2/xml-apis-2.0.2.pom (346 B at 2.7 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-archiver/2.3/plexus-archiver-2.3.pom
-2 KB        3 KB   4 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-archiver/2.3/plexus-archiver-2.3.pom (4 KB at 19.9 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.pom
-2 KB   3 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.pom (3 KB at 15.4 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.pom
-791 B   2 KB    4 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.pom (4 KB at 26.7 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.pom
-813 B   2 KB    4 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.pom (4 KB at 23.9 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-components/8/maven-shared-components-8.pom
-2 KB   3 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-components/8/maven-shared-components-8.pom (3 KB at 18.4 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-parent/7/maven-parent-7.pom
-746 B   2 KB    4 KB   7 KB   10 KB   13 KB   17 KB   18 KB   19 KB   21 KB           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-parent/7/maven-parent-7.pom (21 KB at 135.6 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact/2.0.2/maven-artifact-2.0.2.pom
-765/765 B               Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact/2.0.2/maven-artifact-2.0.2.pom (765 B at 5.2 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven/2.0.2/maven-2.0.2.pom
-896 B       3 KB    6 KB   10 KB   12 KB   13 KB           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven/2.0.2/maven-2.0.2.pom (13 KB at 67.3 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-utils/1.1/plexus-utils-1.1.pom
-767/767 B               Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-utils/1.1/plexus-utils-1.1.pom (767 B at 4.2 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact-manager/2.0.2/maven-artifact-manager-2.0.2.pom
-2 KB               Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact-manager/2.0.2/maven-artifact-manager-2.0.2.pom (2 KB at 9.5 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-repository-metadata/2.0.2/maven-repository-metadata-2.0.2.pom
-2 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-repository-metadata/2.0.2/maven-repository-metadata-2.0.2.pom (2 KB at 3.3 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/wagon/wagon-provider-api/1.0-alpha-6/wagon-provider-api-1.0-alpha-6.pom
-588/588 B               Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/wagon/wagon-provider-api/1.0-alpha-6/wagon-provider-api-1.0-alpha-6.pom (588 B at 1.3 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/wagon/wagon/1.0-alpha-6/wagon-1.0-alpha-6.pom
-2 KB        3 KB   7 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/wagon/wagon/1.0-alpha-6/wagon-1.0-alpha-6.pom (7 KB at 8.9 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-dependency-analyzer/1.4/maven-dependency-analyzer-1.4.pom
-806 B   2 KB    5 KB   6 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-dependency-analyzer/1.4/maven-dependency-analyzer-1.4.pom (6 KB at 19.1 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-project/2.0.5/maven-project-2.0.5.pom
-2 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-project/2.0.5/maven-project-2.0.5.pom (2 KB at 9.0 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven/2.0.5/maven-2.0.5.pom
-957 B   3 KB    6 KB   6 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven/2.0.5/maven-2.0.5.pom (6 KB at 32.4 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-settings/2.0.5/maven-settings-2.0.5.pom
-2 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-settings/2.0.5/maven-settings-2.0.5.pom (2 KB at 10.8 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-model/2.0.5/maven-model-2.0.5.pom
-2 KB   3 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-model/2.0.5/maven-model-2.0.5.pom (3 KB at 17.6 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-profile/2.0.5/maven-profile-2.0.5.pom
-2 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-profile/2.0.5/maven-profile-2.0.5.pom (2 KB at 7.6 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact-manager/2.0.5/maven-artifact-manager-2.0.5.pom
-2 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact-manager/2.0.5/maven-artifact-manager-2.0.5.pom (2 KB at 12.1 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-repository-metadata/2.0.5/maven-repository-metadata-2.0.5.pom
-2 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-repository-metadata/2.0.5/maven-repository-metadata-2.0.5.pom (2 KB at 9.0 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact/2.0.5/maven-artifact-2.0.5.pom
-727/727 B               Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/maven-artifact/2.0.5/maven-artifact-2.0.5.pom (727 B at 5.1 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.pom
-781 B       2 KB    4 KB   5 KB          Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.pom (5 KB at 39.0 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.jar
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.jar
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-archiver/2.3/plexus-archiver-2.3.jar
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.jar
-3/21 KB   4/21 KB   5/21 KB   7/21 KB   8/21 KB   11/21 KB   13/21 KB   1/183 KB   13/21 KB   5/183 KB   13/21 KB   7/183 KB   13/21 KB   8/183 KB   13/21 KB   9/183 KB   13/21 KB   11/183 KB   13/21 KB   12/183 KB   13/21 KB   12/183 KB   15/21 KB   13/183 KB   15/21 KB   13/183 KB   16/21 KB   13/183 KB   17/21 KB   13/183 KB   19/21 KB   13/183 KB   20/21 KB   13/183 KB   21/21 KB   1/37 KB   13/183 KB   21/21 KB   1/37 KB   13/183 KB   21/21 KB   1/41 KB   1/37 KB   13/183 KB   21/21 KB   5/41 KB   1/37 KB   13/183 KB   21/21 KB   7/41 KB   5/37 KB   13/183 KB   21/21 KB   7/41 KB   5/37 KB   13/183 KB   21/21 KB   8/41 KB   5/37 KB   13/183 KB   21/21 KB   9/41 KB   5/37 KB   13/183 KB   21/21 KB   11/41 KB   7/37 KB   13/183 KB   21/21 KB   11/41 KB   8/37 KB   13/183 KB   21/21 KB   11/41 KB   8/37 KB   13/183 KB   21/21 KB   12/41 KB   8/37 KB   13/183 KB   21/21 KB   13/41 KB   9/37 KB   13/183 KB   21/21 KB   13/41 KB   11/37 KB   13/183 KB   21/21 KB   13/41 KB   12/37 KB   13/183 KB   21/21 KB   13/41 KB   13/37 KB   13/183 KB   21/21 KB   13/41 KB   13/37 KB   15/183 KB   21/21 KB   13/41 KB   13/37 KB   16/183 KB   21/21 KB   13/41 KB   13/37 KB   17/183 KB   21/21 KB   13/41 KB   13/37 KB   19/183 KB   21/21 KB   13/41 KB   13/37 KB   20/183 KB   21/21 KB   13/41 KB   13/37 KB   21/183 KB   21/21 KB   13/41 KB   13/37 KB   23/183 KB   21/21 KB   13/41 KB   13/37 KB   24/183 KB   21/21 KB   13/41 KB   13/37 KB   25/183 KB   21/21 KB   13/41 KB   13/37 KB   27/183 KB   21/21 KB   13/41 KB   13/37 KB   28/183 KB   21/21 KB   13/41 KB   13/37 KB   29/183 KB   21/21 KB   13/41 KB   13/37 KB   30/183 KB   21/21 KB   13/41 KB   13/37 KB   32/183 KB   21/21 KB   13/41 KB   13/37 KB   32/183 KB   21/21 KB   15/41 KB   13/37 KB   32/183 KB   21/21 KB   16/41 KB   13/37 KB   32/183 KB   21/21 KB   17/41 KB                                                Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.jar (21 KB at 122.0 KB/sec)
-15/37 KB   32/183 KB   17/41 KB              Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.jar
-16/37 KB   32/183 KB   17/41 KB   17/37 KB   32/183 KB   17/41 KB   19/37 KB   32/183 KB   17/41 KB   19/37 KB   32/183 KB   19/41 KB   19/37 KB   32/183 KB   20/41 KB   19/37 KB   32/183 KB   21/41 KB   19/37 KB   32/183 KB   23/41 KB   19/37 KB   32/183 KB   24/41 KB   20/37 KB   32/183 KB   24/41 KB   21/37 KB   32/183 KB   24/41 KB   21/37 KB   32/183 KB   25/41 KB   21/37 KB   32/183 KB   27/41 KB   21/37 KB   32/183 KB   29/41 KB   23/37 KB   32/183 KB   29/41 KB   23/37 KB   32/183 KB   30/41 KB   24/37 KB   32/183 KB   30/41 KB   24/37 KB   32/183 KB   32/41 KB   25/37 KB   32/183 KB   32/41 KB   27/37 KB   32/183 KB   32/41 KB   28/37 KB   32/183 KB   32/41 KB   29/37 KB   32/183 KB   32/41 KB   30/37 KB   32/183 KB   32/41 KB   32/37 KB   32/183 KB   32/41 KB   32/37 KB   33/183 KB   32/41 KB   32/37 KB   34/183 KB   32/41 KB   32/37 KB   36/183 KB   32/41 KB   32/37 KB   37/183 KB   32/41 KB   32/37 KB   38/183 KB   32/41 KB   32/37 KB   40/183 KB   32/41 KB   32/37 KB   42/183 KB   32/41 KB   32/37 KB   44/183 KB   32/41 KB   32/37 KB   45/183 KB   32/41 KB   32/37 KB   46/183 KB   32/41 KB   32/37 KB   48/183 KB   32/41 KB   32/37 KB   49/183 KB   32/41 KB   32/37 KB   50/183 KB   32/41 KB   32/37 KB   52/183 KB   32/41 KB   32/37 KB   53/183 KB   32/41 KB   32/37 KB   54/183 KB   32/41 KB   32/37 KB   56/183 KB   32/41 KB   32/37 KB   57/183 KB   32/41 KB   32/37 KB   57/183 KB   33/41 KB   32/37 KB   58/183 KB   33/41 KB   32/37 KB   60/183 KB   33/41 KB   32/37 KB   61/183 KB   33/41 KB   32/37 KB   61/183 KB   34/41 KB   32/37 KB   61/183 KB   36/41 KB   32/37 KB   61/183 KB   37/41 KB   33/37 KB   61/183 KB   37/41 KB   34/37 KB   61/183 KB   37/41 KB   36/37 KB   61/183 KB   37/41 KB   37/37 KB   61/183 KB   37/41 KB   37/37 KB   61/183 KB   1/39 KB   37/41 KB   37/37 KB   61/183 KB   3/39 KB   37/41 KB   37/37 KB   61/183 KB   4/39 KB   37/41 KB   37/37 KB   61/183 KB   5/39 KB   37/41 KB   37/37 KB   61/183 KB   7/39 KB   37/41 KB   37/37 KB   61/183 KB   8/39 KB   37/41 KB   37/37 KB   61/183 KB   9/39 KB   37/41 KB   37/37 KB   61/183 KB   11/39 KB   37/41 KB   37/37 KB   61/183 KB   12/39 KB   37/41 KB   37/37 KB   61/183 KB   13/39 KB   37/41 KB   37/37 KB   61/183 KB   15/39 KB   37/41 KB   37/37 KB   61/183 KB   16/39 KB   37/41 KB   37/37 KB   61/183 KB   17/39 KB   37/41 KB   37/37 KB   61/183 KB   19/39 KB   37/41 KB   37/37 KB   61/183 KB   19/39 KB   38/41 KB   37/37 KB   61/183 KB   19/39 KB   40/41 KB   37/37 KB   61/183 KB   19/39 KB   41/41 KB   37/37 KB   62/183 KB   19/39 KB   41/41 KB   37/37 KB   64/183 KB   19/39 KB   41/41 KB   37/37 KB   65/183 KB   19/39 KB   41/41 KB   37/37 KB   66/183 KB   19/39 KB   41/41 KB   37/37 KB   67/183 KB   19/39 KB   41/41 KB   37/37 KB   69/183 KB   19/39 KB   41/41 KB   37/37 KB   70/183 KB   19/39 KB   41/41 KB   37/37 KB   71/183 KB   19/39 KB   41/41 KB   37/37 KB   73/183 KB   19/39 KB   41/41 KB   37/37 KB   74/183 KB   19/39 KB   41/41 KB   37/37 KB   75/183 KB   19/39 KB   41/41 KB   37/37 KB   77/183 KB   19/39 KB   41/41 KB   37/37 KB   78/183 KB   19/39 KB   41/41 KB   37/37 KB   79/183 KB   19/39 KB   41/41 KB   37/37 KB   81/183 KB   19/39 KB   41/41 KB   37/37 KB   82/183 KB   19/39 KB   41/41 KB   37/37 KB   83/183 KB   19/39 KB   41/41 KB   37/37 KB   85/183 KB   19/39 KB   41/41 KB   37/37 KB   89/183 KB   19/39 KB   41/41 KB   1/89 KB   37/37 KB   89/183 KB   19/39 KB   41/41 KB   5/89 KB   37/37 KB   89/183 KB   19/39 KB   41/41 KB   9/89 KB   37/37 KB   89/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   89/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   90/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   93/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   94/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   97/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   98/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   99/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   102/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   19/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   20/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   21/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   23/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   24/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   25/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   27/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   29/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   30/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   32/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   34/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   36/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   37/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   38/39 KB   41/41 KB   13/89 KB   37/37 KB   103/183 KB   39/39 KB   41/41 KB   13/89 KB   37/37 KB   105/183 KB   39/39 KB   41/41 KB   13/89 KB   37/37 KB   106/183 KB   39/39 KB   41/41 KB   13/89 KB   37/37 KB   110/183 KB   39/39 KB   41/41 KB                                                            Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.jar (37 KB at 87.6 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.jar
-13/89 KB   111/183 KB   39/39 KB   41/41 KB              13/89 KB   114/183 KB   39/39 KB   41/41 KB   13/89 KB   115/183 KB   39/39 KB   41/41 KB   13/89 KB   116/183 KB   39/39 KB   41/41 KB   13/89 KB   119/183 KB   39/39 KB   41/41 KB                                                 Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.jar (41 KB at 93.1 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-dependency-analyzer/1.4/maven-dependency-analyzer-1.4.jar
-13/89 KB   120/183 KB   39/39 KB              13/89 KB   122/183 KB   39/39 KB   13/89 KB   123/183 KB   39/39 KB   13/89 KB   124/183 KB   39/39 KB   13/89 KB   126/183 KB   39/39 KB   13/89 KB   127/183 KB   39/39 KB   13/89 KB   128/183 KB   39/39 KB   13/89 KB   130/183 KB   39/39 KB   13/89 KB   131/183 KB   39/39 KB   13/89 KB   132/183 KB   39/39 KB   13/89 KB   134/183 KB   39/39 KB   13/89 KB   135/183 KB   39/39 KB   13/89 KB   136/183 KB   39/39 KB   13/89 KB   138/183 KB   39/39 KB   13/89 KB   139/183 KB   39/39 KB   13/89 KB   140/183 KB   39/39 KB   15/89 KB   140/183 KB   39/39 KB   16/89 KB   140/183 KB   39/39 KB   16/89 KB   142/183 KB   39/39 KB   17/89 KB   142/183 KB   39/39 KB   19/89 KB   143/183 KB   39/39 KB   19/89 KB   143/183 KB   39/39 KB   20/89 KB   143/183 KB   39/39 KB   23/89 KB   143/183 KB   39/39 KB   24/89 KB   143/183 KB   39/39 KB   25/89 KB   143/183 KB   39/39 KB   27/89 KB   143/183 KB   39/39 KB   28/89 KB   143/183 KB   39/39 KB   29/89 KB   143/183 KB   39/39 KB   30/89 KB   143/183 KB   39/39 KB   32/89 KB   143/183 KB   39/39 KB   32/89 KB   146/183 KB   39/39 KB   32/89 KB   147/183 KB   39/39 KB   32/89 KB   151/183 KB   39/39 KB   32/89 KB   152/183 KB   39/39 KB   32/89 KB   153/183 KB   39/39 KB   32/89 KB   155/183 KB   39/39 KB   32/89 KB   157/183 KB   39/39 KB   32/89 KB   159/183 KB   39/39 KB   32/89 KB   160/183 KB   39/39 KB   32/89 KB   161/183 KB   39/39 KB   32/89 KB   163/183 KB   39/39 KB   32/89 KB   164/183 KB   39/39 KB   32/89 KB   165/183 KB   39/39 KB   32/89 KB   167/183 KB   39/39 KB   32/89 KB   168/183 KB   39/39 KB   32/89 KB   169/183 KB   39/39 KB   32/89 KB   172/183 KB   39/39 KB   32/89 KB   173/183 KB   39/39 KB   32/89 KB   176/183 KB   39/39 KB   32/89 KB   177/183 KB   39/39 KB   3/57 KB   32/89 KB   177/183 KB   39/39 KB   4/57 KB   32/89 KB   177/183 KB   39/39 KB   5/57 KB   32/89 KB   177/183 KB   39/39 KB   7/57 KB   32/89 KB   177/183 KB   39/39 KB   8/57 KB   32/89 KB   177/183 KB   39/39 KB   9/57 KB   32/89 KB   177/183 KB   39/39 KB   12/57 KB   32/89 KB   177/183 KB   39/39 KB   13/57 KB   32/89 KB   177/183 KB   39/39 KB   15/57 KB   32/89 KB   177/183 KB   39/39 KB   16/57 KB   32/89 KB   177/183 KB   39/39 KB   17/57 KB   32/89 KB   177/183 KB   39/39 KB                                                 Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.jar (39 KB at 113.1 KB/sec)
-Downloading: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.jar
-19/57 KB   32/89 KB   177/183 KB              20/57 KB   32/89 KB   177/183 KB   21/57 KB   32/89 KB   177/183 KB   23/57 KB   32/89 KB   177/183 KB   24/57 KB   32/89 KB   177/183 KB   24/57 KB   32/89 KB   179/183 KB   24/57 KB   32/89 KB   180/183 KB   24/57 KB   32/89 KB   181/183 KB   24/57 KB   32/89 KB   183/183 KB   24/57 KB   33/89 KB   183/183 KB   24/57 KB   34/89 KB   183/183 KB   24/57 KB   36/89 KB   183/183 KB   24/57 KB   37/89 KB   183/183 KB   24/57 KB   38/89 KB   183/183 KB   24/57 KB   40/89 KB   183/183 KB   24/57 KB   41/89 KB   183/183 KB   24/57 KB   42/89 KB   183/183 KB   24/57 KB   44/89 KB   183/183 KB   24/57 KB   45/89 KB   183/183 KB   24/57 KB   46/89 KB   183/183 KB   24/57 KB   48/89 KB   183/183 KB   24/57 KB   50/89 KB   183/183 KB   24/57 KB   53/89 KB   183/183 KB   24/57 KB   53/89 KB   183/183 KB   1/27 KB   24/57 KB   53/89 KB   183/183 KB   5/27 KB   24/57 KB   53/89 KB   183/183 KB   9/27 KB   24/57 KB   54/89 KB   183/183 KB   9/27 KB   24/57 KB   54/89 KB   183/183 KB   13/27 KB   24/57 KB   54/89 KB   183/183 KB   17/27 KB   24/57 KB   54/89 KB   183/183 KB   21/27 KB   24/57 KB   56/89 KB   183/183 KB   21/27 KB   24/57 KB   56/89 KB   183/183 KB   25/27 KB   25/57 KB   56/89 KB   183/183 KB   25/27 KB   25/57 KB   56/89 KB   183/183 KB   27/27 KB   27/57 KB   56/89 KB   183/183 KB   27/27 KB   28/57 KB   56/89 KB   183/183 KB   27/27 KB   30/57 KB   56/89 KB   183/183 KB   27/27 KB   32/57 KB   56/89 KB   183/183 KB   27/27 KB   33/57 KB   56/89 KB   183/183 KB   27/27 KB   36/57 KB   56/89 KB   183/183 KB   27/27 KB   38/57 KB   56/89 KB   183/183 KB   27/27 KB   40/57 KB   56/89 KB   183/183 KB   27/27 KB   41/57 KB   56/89 KB   183/183 KB   27/27 KB   42/57 KB   56/89 KB   183/183 KB   27/27 KB   44/57 KB   56/89 KB   183/183 KB   27/27 KB   45/57 KB   56/89 KB   183/183 KB   27/27 KB   46/57 KB   56/89 KB   183/183 KB   27/27 KB   48/57 KB   56/89 KB   183/183 KB   27/27 KB   48/57 KB   57/89 KB   183/183 KB   27/27 KB   49/57 KB   57/89 KB   183/183 KB   27/27 KB   49/57 KB   58/89 KB   183/183 KB   27/27 KB   49/57 KB   61/89 KB   183/183 KB   27/27 KB   50/57 KB   61/89 KB   183/183 KB   27/27 KB   52/57 KB   61/89 KB   183/183 KB   27/27 KB   53/57 KB   61/89 KB   183/183 KB   27/27 KB   53/57 KB   62/89 KB   183/183 KB   27/27 KB   53/57 KB   64/89 KB   183/183 KB   27/27 KB   54/57 KB   64/89 KB   183/183 KB   27/27 KB   56/57 KB   64/89 KB   183/183 KB   27/27 KB   57/57 KB   64/89 KB   183/183 KB   27/27 KB   57/57 KB   64/89 KB   183/183 KB   27/27 KB   1/29 KB   57/57 KB   64/89 KB   183/183 KB   27/27 KB   5/29 KB   57/57 KB   64/89 KB   183/183 KB   27/27 KB   7/29 KB                                                           Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-archiver/2.3/plexus-archiver-2.3.jar (183 KB at 212.2 KB/sec)
-57/57 KB   64/89 KB   27/27 KB   8/29 KB                57/57 KB   64/89 KB   27/27 KB   11/29 KB   57/57 KB   64/89 KB   27/27 KB   12/29 KB   57/57 KB   64/89 KB   27/27 KB   13/29 KB   57/57 KB   64/89 KB   27/27 KB   15/29 KB   57/57 KB   64/89 KB   27/27 KB   16/29 KB   57/57 KB   64/89 KB   27/27 KB   17/29 KB   57/57 KB   64/89 KB   27/27 KB   19/29 KB   57/57 KB   64/89 KB   27/27 KB   20/29 KB   57/57 KB   64/89 KB   27/27 KB   21/29 KB   57/57 KB   64/89 KB   27/27 KB   23/29 KB   57/57 KB   64/89 KB   27/27 KB   24/29 KB   57/57 KB   64/89 KB   27/27 KB   25/29 KB   57/57 KB   64/89 KB   27/27 KB   27/29 KB   57/57 KB   65/89 KB   27/27 KB   27/29 KB   57/57 KB   65/89 KB   27/27 KB   27/29 KB   57/57 KB   66/89 KB   27/27 KB   27/29 KB   57/57 KB   67/89 KB   27/27 KB   27/29 KB   57/57 KB   69/89 KB   27/27 KB   27/29 KB   57/57 KB   71/89 KB   27/27 KB   27/29 KB   57/57 KB   73/89 KB   27/27 KB   27/29 KB   57/57 KB   77/89 KB   27/27 KB   27/29 KB   57/57 KB   79/89 KB   27/27 KB   27/29 KB   57/57 KB   82/89 KB   27/27 KB   27/29 KB   57/57 KB   83/89 KB   27/27 KB   27/29 KB   57/57 KB   85/89 KB   27/27 KB   27/29 KB   57/57 KB   86/89 KB   27/27 KB   27/29 KB   57/57 KB   87/89 KB   27/27 KB   27/29 KB   57/57 KB   89/89 KB   27/27 KB   27/29 KB   57/57 KB   89/89 KB   27/27 KB   28/29 KB   57/57 KB   89/89 KB   27/27 KB   29/29 KB                                               Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/codehaus/plexus/plexus-io/2.0.6/plexus-io-2.0.6.jar (57 KB at 114.7 KB/sec)
-                                            Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-dependency-analyzer/1.4/maven-dependency-analyzer-1.4.jar (27 KB at 54.2 KB/sec)
-                                                                                        Downloaded: http://maven.mogujie.org/nexus/content/groups/public/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar (89 KB at 91.8 KB/sec)
-Downloaded: http://maven.mogujie.org/nexus/content/groups/public/org/apache/maven/shared/maven-invoker/2.0.11/maven-invoker-2.0.11.jar (29 KB at 61.1 KB/sec)
-[INFO] com.demo:mort-group:war:1.0-SNAPSHOT
-[INFO] +- org.springframework:spring-context:jar:4.3.2.RELEASE:compile
-[INFO] |  +- org.springframework:spring-aop:jar:4.3.2.RELEASE:compile
-[INFO] |  \- org.springframework:spring-expression:jar:4.3.2.RELEASE:compile
-[INFO] +- org.springframework:spring-jdbc:jar:4.3.2.RELEASE:compile
-[INFO] |  \- org.springframework:spring-tx:jar:4.3.2.RELEASE:compile
-[INFO] +- org.springframework:spring-core:jar:4.3.2.RELEASE:compile
-[INFO] |  \- commons-logging:commons-logging:jar:1.2:compile
-[INFO] +- org.springframework:spring-beans:jar:4.3.2.RELEASE:compile
-[INFO] +- org.springframework:spring-webmvc:jar:4.3.2.RELEASE:compile
-[INFO] |  \- org.springframework:spring-web:jar:4.3.2.RELEASE:compile
-[INFO] +- org.springframework:spring-orm:jar:3.2.4.RELEASE:compile
-[INFO] |  \- aopalliance:aopalliance:jar:1.0:compile
-[INFO] +- org.springframework.boot:spring-boot-starter-amqp:jar:1.4.0.RELEASE:compile
-[INFO] |  +- org.springframework.boot:spring-boot-starter:jar:1.4.0.RELEASE:compile
-[INFO] |  |  +- org.springframework.boot:spring-boot:jar:1.4.0.RELEASE:compile
-[INFO] |  |  +- org.springframework.boot:spring-boot-autoconfigure:jar:1.4.0.RELEASE:compile
-[INFO] |  |  +- org.springframework.boot:spring-boot-starter-logging:jar:1.4.0.RELEASE:compile
-[INFO] |  |  |  +- ch.qos.logback:logback-classic:jar:1.1.7:compile
-[INFO] |  |  |  |  \- ch.qos.logback:logback-core:jar:1.1.7:compile
-[INFO] |  |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.21:compile
-[INFO] |  |  |  +- org.slf4j:jul-to-slf4j:jar:1.7.21:compile
-[INFO] |  |  |  \- org.slf4j:log4j-over-slf4j:jar:1.7.21:compile
-[INFO] |  |  \- org.yaml:snakeyaml:jar:1.17:runtime
-[INFO] |  +- org.springframework:spring-messaging:jar:4.3.2.RELEASE:compile
-[INFO] |  \- org.springframework.amqp:spring-rabbit:jar:1.6.1.RELEASE:compile
-[INFO] |     +- com.rabbitmq:amqp-client:jar:3.6.3:compile
-[INFO] |     +- org.springframework.amqp:spring-amqp:jar:1.6.1.RELEASE:compile
-[INFO] |     \- com.rabbitmq:http-client:jar:1.0.0.RELEASE:compile
-[INFO] |        +- org.apache.httpcomponents:httpclient:jar:4.3.6:compile
-[INFO] |        |  +- org.apache.httpcomponents:httpcore:jar:4.3.3:compile
-[INFO] |        |  \- commons-codec:commons-codec:jar:1.6:compile
-[INFO] |        \- com.fasterxml.jackson.core:jackson-databind:jar:2.5.1:compile
-[INFO] |           +- com.fasterxml.jackson.core:jackson-annotations:jar:2.5.0:compile
-[INFO] |           \- com.fasterxml.jackson.core:jackson-core:jar:2.5.1:compile
-[INFO] +- org.hibernate:hibernate-validator:jar:5.1.3.Final:compile
-[INFO] |  +- org.jboss.logging:jboss-logging:jar:3.1.3.GA:compile
-[INFO] |  \- com.fasterxml:classmate:jar:1.0.0:compile
-[INFO] +- org.hibernate:hibernate-core:jar:4.2.16.Final:compile
-[INFO] |  +- antlr:antlr:jar:2.7.7:compile
-[INFO] |  +- dom4j:dom4j:jar:1.6.1:compile
-[INFO] |  +- org.javassist:javassist:jar:3.18.1-GA:compile
-[INFO] |  +- org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:jar:1.0.1.Final:compile
-[INFO] |  +- org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.1.Final:compile
-[INFO] |  \- org.hibernate.common:hibernate-commons-annotations:jar:4.0.2.Final:compile
-[INFO] +- org.hibernate:hibernate-ehcache:jar:4.3.8.Final:compile
-[INFO] |  +- org.jboss.logging:jboss-logging-annotations:jar:1.2.0.Beta1:compile
-[INFO] |  \- net.sf.ehcache:ehcache-core:jar:2.4.3:compile
-[INFO] |     \- org.slf4j:slf4j-api:jar:1.6.1:compile
-[INFO] +- mysql:mysql-connector-java:jar:5.1.34:compile
-[INFO] +- commons-dbcp:commons-dbcp:jar:1.4:compile
-[INFO] |  \- commons-pool:commons-pool:jar:1.5.4:compile
-[INFO] +- jstl:jstl:jar:1.2:compile
-[INFO] +- log4j:log4j:jar:1.2.17:test
-[INFO] +- commons-fileupload:commons-fileupload:jar:1.2.1:compile
-[INFO] +- commons-io:commons-io:jar:1.4:compile
-[INFO] +- junit:junit:jar:4.12:test
-[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
-[INFO] +- javax.servlet.jsp:jsp-api:jar:2.2:compile
-[INFO] +- javax.servlet:javax.servlet-api:jar:3.0.1:test
-[INFO] +- javax.validation:validation-api:jar:1.1.0.Final:compile
-[INFO] +- org.apache.ant:ant:jar:1.7.0:compile
-[INFO] |  \- org.apache.ant:ant-launcher:jar:1.7.0:compile
-[INFO] +- org.mybatis:mybatis:jar:3.4.1:provided
-[INFO] +- org.mybatis:mybatis-spring:jar:1.3.0:compile
-[INFO] +- org.springframework.batch:spring-batch-infrastructure:jar:3.0.7.RELEASE:provided
-[INFO] |  \- org.springframework.retry:spring-retry:jar:1.1.0.RELEASE:compile
-[INFO] +- com.atomikos:transactions-jdbc:jar:4.0.3:test
-[INFO] |  \- com.atomikos:transactions-jta:jar:4.0.3:test
-[INFO] |     +- com.atomikos:transactions-api:jar:4.0.3:test
-[INFO] |     +- com.atomikos:transactions:jar:4.0.3:test
-[INFO] |     \- com.atomikos:atomikos-util:jar:4.0.3:test
-[INFO] +- org.apache.derby:derby:jar:10.12.1.1:test
-[INFO] +- ognl:ognl:jar:3.1.10:test
-[INFO] +- cglib:cglib:jar:3.2.4:test
-[INFO] |  \- org.ow2.asm:asm:jar:5.1:test
-[INFO] +- org.jboss.byteman:byteman-bmunit:jar:3.0.6:test
-[INFO] |  +- org.jboss.byteman:byteman:jar:3.0.6:test
-[INFO] |  +- org.jboss.byteman:byteman-submit:jar:3.0.6:test
-[INFO] |  +- org.jboss.byteman:byteman-install:jar:3.0.6:test
-[INFO] |  \- com.sun:tools:jar:1.6:system
-[INFO] +- org.springframework:spring-test:jar:4.3.2.RELEASE:test
-[INFO] +- org.hsqldb:hsqldb:jar:2.3.4:test
-[INFO] +- com.mockrunner:mockrunner-core:jar:1.0.1:test
-[INFO] |  \- oro:oro:jar:2.0.8:test
-[INFO] +- com.mockrunner:mockrunner-ejb:jar:1.0.1:test
-[INFO] +- com.mockrunner:mockrunner-jdbc:jar:1.0.1:test
-[INFO] \- javax.transaction:transaction-api:jar:1.1:test
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 17.384 s
-[INFO] Finished at: 2016-08-24T14:21:19+08:00
-[INFO] Final Memory: 16M/157M
-[INFO] ------------------------------------------------------------------------

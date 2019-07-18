@@ -62,7 +62,7 @@ public class Test {
             }
         }
 
-
+        Thread.getAllStackTraces();//打印线程栈
 
         Environment myDbEnvironment = null;
         Database myDatabase = null;
