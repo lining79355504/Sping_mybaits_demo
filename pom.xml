@@ -467,7 +467,7 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.0</version>
+                <version>1.3.7</version>
                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
@@ -476,6 +476,16 @@
                         </goals>
                     </execution>
                 </executions>
+
+<!--                &lt;!&ndash;禁止覆盖 实体, 而是重新生成新 实体&ndash;&gt;-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;指定配置文件的位置&ndash;&gt;-->
+<!--                    <configurationFile>-->
+<!--                        ${project.basedir}/src/main/resources/generatorConfig.xml-->
+<!--                    </configurationFile>-->
+<!--                    <overwrite>false</overwrite>-->
+<!--                </configuration>-->
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

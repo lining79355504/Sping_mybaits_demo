@@ -2,7 +2,7 @@
 
 
 
-java -jar src/jdbcdriver/mybatis-generator-core-1.3.6.jar -configfile src/main/resources/generatorConfig.xml -overwrite
+java -jar src/jdbcdriver/mybatis-generator-core-1.3.7.jar -configfile src/main/resources/generatorConfig.xml -overwrite
 
 java -jar mybatis-generator-core-x.x.x.jar -configfile generatorConfig.xml
 java -jar mybatis-generator-core-x.x.x.jar -configfile generatorConfig.xml -overwrite

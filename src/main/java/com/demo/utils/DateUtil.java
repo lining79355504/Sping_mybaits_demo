@@ -5,10 +5,7 @@ import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Author:  lining17
@@ -16,6 +13,19 @@ import java.util.Map;
  */
 public class DateUtil {
 
+
+
+    public static final int SECONDS_IN_DAY = 60 * 60 * 24;
+
+    public static final int MILLIS_IN_MINUTE = 60 * 1000;
+
+    public static final long MILLIS_IN_DAY = 1000L * SECONDS_IN_DAY;
+
+    public static final String DAY_PATTERN = "yyyy-MM-dd";
+
+    public static final String HOUR_MINUTE_PATTERN = "HH:mm";
+
+    public static final String SECOND_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * @param minute
@@ -101,7 +111,49 @@ public class DateUtil {
     }
 
 
+    //开始结束时间是否跨天
+    public static boolean isIntraDay(long star, long end) {
+        final long interval = end - star;
+        return interval < MILLIS_IN_DAY
+                && interval > -1L * MILLIS_IN_DAY
+                && toDay(star) == toDay(end);
+    }
 
+    public static int timeStampToMinuteOrder(long time){
+
+        Date date=new Date();
+        date.setTime(time);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        Long dayZero = calendar.getTimeInMillis();
+        return (int) ((time - dayZero) / MILLIS_IN_MINUTE);
+    }
+
+    public static String minuteOrderToDateStr(long startTime ,int minuteOrder){
+        Date date=new Date();
+        date.setTime(startTime);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        long timeStamp = minuteOrder*MILLIS_IN_MINUTE + calendar.getTimeInMillis();
+        return timestampToDateStr(HOUR_MINUTE_PATTERN,timeStamp);
+    }
+
+    private static long toDay(long millis) {
+        return (millis + TimeZone.getDefault().getOffset(millis)) / MILLIS_IN_DAY;
+    }
+
+    public static String timestampToDateStr(String pattern, long timestamp){
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(new Date(timestamp));
+    }
 
 
 
