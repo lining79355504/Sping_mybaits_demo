@@ -27,6 +27,7 @@ def testComplex(obj, c) {
     return sum + c.age;
 }
 
+
 def test(obj, c) {
     int sum = 0;
     obj.list.each {
