@@ -46,7 +46,6 @@
             <!-- 在切入点指定拦截器-->
         <aop:advisor advice-ref="springMethodInterceptor" pointcut-ref="myAnnotationCutPoint"/>
 
-
     </aop:config>
 
 

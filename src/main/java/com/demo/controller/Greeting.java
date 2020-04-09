@@ -4,20 +4,20 @@ import com.demo.annotataion.MyAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.channels.NotYetConnectedException;
+import java.util.Map;
 
-@Controller
+@Controller("test")
 public class Greeting {
 
     Logger logger = LoggerFactory.getLogger(Greeting.class);
 
+    //原生获取参数
     @ResponseBody
     @RequestMapping(value = "/helloWorld" , method = RequestMethod.GET )
     @MyAnnotation(value = "helloWorld")
@@ -25,6 +25,20 @@ public class Greeting {
         logger.info("test asasa{} ",11212);
         logger.error("test error {} ,{},{},{},{},{},{},{},{} " , 3,3,3,3,3,3,3,3);
         return "Hello world!";
+    }
+
+    //get 获取URL参数
+    @RequestMapping("/paramTest")
+    public String paramTest(@RequestParam Map<String, Object> param){
+
+        return null;
+    }
+
+    //参数放body获取
+    @RequestMapping("/paramBodyTest")
+    public String paramBodyTest(@RequestBody Map<String, Object> param){
+
+        return null;
     }
 
 
