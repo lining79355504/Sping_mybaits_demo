@@ -11,6 +11,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,11 +23,9 @@ public class HttpUtils {
 
     private static final Logger log = LoggerFactory.getLogger(HttpUtils.class);
 
-    public static HttpEntity doGet(Map<String, String> params, String url, boolean isSplit) {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        CloseableHttpResponse response;
-        HttpEntity entity = null;
-        try {
+    public static String doGet(Map<String, String> params, String url, boolean isSplit) {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            CloseableHttpResponse response;
             URIBuilder uriBuilder = new URIBuilder(url);
             List<NameValuePair> list = new LinkedList<>();
             if (params != null) {
@@ -46,18 +45,16 @@ public class HttpUtils {
 
             HttpGet httpGet = new HttpGet(uriBuilder.build());
             response = httpClient.execute(httpGet);
-            entity = response.getEntity();
-
-            return entity;
+            HttpEntity entity = response.getEntity();
+            return EntityUtils.toString(entity, "UTF-8");
         } catch (Exception e) {
-            log.error("",e);
+            log.error("", e);
         }
-
-        return entity;
+        return null;
     }
 
-    public static HttpEntity doPost(Map<String, Object> params, String url) {
-        HttpEntity entity = null;
+    public static String doPost(Map<String, Object> params, String url) {
+//        CloseableHttpClient client = HttpClients.custom().setConnectionManager().build();
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             CloseableHttpResponse response;
             HttpPost httpPost = new HttpPost(url);
@@ -67,13 +64,12 @@ public class HttpUtils {
                 httpPost.setEntity(new StringEntity(body));
             }
             response = httpClient.execute(httpPost);
-            entity = response.getEntity();
-//            EntityUtils.toString(entity);
-            return entity;
+            HttpEntity entity = response.getEntity();
+            return EntityUtils.toString(entity, "UTF-8");
         } catch (Exception e) {
-            log.error("",e);
+            log.error("", e);
         }
-        return entity;
+        return null;
     }
 
 
