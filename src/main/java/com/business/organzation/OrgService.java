@@ -88,9 +88,8 @@ public class OrgService {
         return ret;
     }
 
-
-    public List<Map<String, NameDesc>>  orgSearch(String name) {
-        List<Map<String, NameDesc>>  ret = new ArrayList<>();
+    public List<Map<String, NameDesc>> orgSearch(String name) {
+        List<Map<String, NameDesc>> ret = new ArrayList<>();
         search(orgInfo, name, ret, new HashMap<>());
         return ret;
     }
@@ -111,6 +110,23 @@ public class OrgService {
             }
             search(organization, name, list, tmp);
         }
+    }
+
+    private OrgTree find(OrgTree orgInfo, String name, String type) {
+
+        if (null == orgInfo) {
+            return null;
+        }
+        for (OrgTree organization : orgInfo.getChildrenOrganizations()) {
+            String typeTmp = organization.getType();
+            String nameTmp = organization.getName();
+            if (typeTmp.equals(type) && nameTmp.equals(name)) {
+                return organization;
+            }
+
+            find(organization, name, type);
+        }
+        return null;
     }
 
 
@@ -134,6 +150,41 @@ public class OrgService {
         return null;
     }
 
+    // 根据所在层级 name 和type 找到指定下一级 levelType 的所有子节点
+    public List<OrgInfo> getLevelData(OrgTree organization, String name, String type, String levelType) {
+        List<OrgInfo> ret = new ArrayList<>();
+        getLevelData(organization, name, type, levelType, ret, false);
+        return ret;
+    }
+
+    public void getLevelData(OrgTree organization, String name, String type, String levelType,
+                             List<OrgInfo> result, boolean match) {
+        if (null == organization) {
+            return;
+        }
+
+        if (organization.getType().equals(type) && organization.getName().equals(name)) {
+            match = !match;
+        }
+
+        for (OrgTree childrenOrganization : organization.getChildrenOrganizations()) {
+            String currentType = childrenOrganization.getType();
+            String currentName = childrenOrganization.getName();
+
+            if (match && currentType.equals(levelType)) {
+                OrgInfo orgInfo = new OrgInfo();
+                orgInfo.setAdmins(childrenOrganization.getAdmin());
+                orgInfo.setType(currentType);
+                orgInfo.setName(currentName);
+                orgInfo.setDesc(childrenOrganization.getDesc());
+                result.add(orgInfo);
+                continue;
+            }
+            getLevelData(childrenOrganization, name, type, levelType, result, match);
+        }
+
+    }
+
 
     public static void main(String[] args) {
         OrgService orgService = new OrgService();
@@ -141,6 +192,7 @@ public class OrgService {
         log.info("{}", maps);
         List<OrgInfo> organization = orgService.organization("2", "2");
         log.info("{}", organization);
+        orgService.find(orgInfo, "2","2");
 
     }
 
