@@ -5,6 +5,11 @@ import java.text.DecimalFormat;
 /**
  * Author:  lining17
  * Date :  2019-07-29
+ *
+ * String.valueOf(double) 会把double 解析为科学计数法
+ *
+ * 如果计算追求经度过高 请使用BigDecimal
+ *
  */
 public class MathUtil {
 

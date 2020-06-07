@@ -5,10 +5,7 @@ import com.demo.utils.GsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -148,6 +145,18 @@ public class OrgService {
             }
         }
         return null;
+    }
+
+    //获取树的所有组织级别的名称 例如owt 等
+    private void getAllType(OrgTree organization, LinkedHashSet<String> ret) {
+        if (null == organization) {
+            return;
+        }
+        String type = organization.getType();
+        ret.add(type);
+        for (OrgTree childrenOrganization : organization.getChildrenOrganizations()) {
+            getAllType(childrenOrganization, ret);
+        }
     }
 
     // 根据所在层级 name 和type 找到指定下一级 levelType 的所有子节点
