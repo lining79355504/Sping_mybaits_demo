@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Date :  26/01/2018
  */
 public class ExecutorServiceManagerUtils {
-
+    //使用 ThreadPoolExecutor  避免是Executors  不能定义任务queue大小 ， 容易出现 任务queue过大 oom
     private volatile static ThreadPoolExecutor singleton = new ThreadPoolExecutor(100, 800, 60L, TimeUnit.SECONDS,
             new LinkedBlockingQueue<Runnable>(), new NameThreadFactory("cat-common"));
 
