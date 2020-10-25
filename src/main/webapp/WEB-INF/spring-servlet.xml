@@ -1,0 +1,77 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aontext="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+
+    <context:component-scan base-package="com.demo.controller"/>
+    <!---->
+
+
+    <!--<aop:aspectj-autoproxy />-->
+    <bean id="springMethodInterceptor" class="com.demo.aop.MyAnnotationHandler"/>
+
+
+    <!--<aop:config>-->
+        <!--<aop:aspect id="myAnnotationCutPoint" ref="springMethodInterceptor">-->
+            <!--&lt;!&ndash; 切入点 &ndash;&gt;-->
+            <!--<aop:pointcut id="myAnnotationCutPoint"-->
+                          <!--expression="execution(* com.demo.controller.HelloWorld.*(..)) "/>-->
+            <!--&lt;!&ndash; 在切入点指定拦截器 &ndash;&gt;-->
+        <!--</aop:aspect>-->
+
+    <!--</aop:config>-->
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>    <!--使用cglib代理-->
+
+    <!--aop 拦截器-->
+    <aop:config proxy-target-class="true">
+            <!-- 切入点 -->
+            <aop:pointcut id="myAnnotationCutPoint"
+                          expression="execution(* com.demo.controller.*.*(..)) "/>
+        <!--expression="execution(* com.demo.controller.*.*(..)) "/>-->
+            <!-- 在切入点指定拦截器-->
+        <aop:advisor advice-ref="springMethodInterceptor" pointcut-ref="myAnnotationCutPoint"/>
+
+    </aop:config>
+
+
+
+
+
+    <!-- 设置返回HTTP内容为UTF8编码 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--interceptors 拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.demo.aop.MvcInterceptors"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>

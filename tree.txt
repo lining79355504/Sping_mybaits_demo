@@ -1,0 +1,135 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.demo:mort-group:pom:1.0-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: junit:junit:jar -> version 3.8.1 vs 4.12 @ line 215, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:javax.servlet-api:jar -> duplicate declaration of version 3.0.1 @ line 334, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:javax.servlet-api:jar -> version 3.0.1 vs 4.0.0-b01 @ line 386, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 416, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building mort-group 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ mort-group ---
+[INFO] com.demo:mort-group:pom:1.0-SNAPSHOT
+[INFO] +- org.springframework:spring-context:jar:4.3.2.RELEASE:compile
+[INFO] |  +- org.springframework:spring-aop:jar:4.3.2.RELEASE:compile
+[INFO] |  \- org.springframework:spring-expression:jar:4.3.2.RELEASE:compile
+[INFO] +- org.springframework:spring-jdbc:jar:4.3.2.RELEASE:compile
+[INFO] |  \- org.springframework:spring-tx:jar:4.3.2.RELEASE:compile
+[INFO] +- ch.qos.logback:logback-classic:jar:1.1.7:compile
+[INFO] |  +- ch.qos.logback:logback-core:jar:1.1.7:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.20:compile
+[INFO] +- org.springframework:spring-core:jar:4.3.5.RELEASE:compile
+[INFO] |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] +- org.springframework:spring-beans:jar:4.3.2.RELEASE:compile
+[INFO] +- org.springframework:spring-webmvc:jar:4.3.2.RELEASE:compile
+[INFO] |  \- org.springframework:spring-web:jar:4.3.2.RELEASE:compile
+[INFO] +- org.springframework:spring-orm:jar:3.2.4.RELEASE:compile
+[INFO] |  \- aopalliance:aopalliance:jar:1.0:compile
+[INFO] +- org.springframework.boot:spring-boot-starter-amqp:jar:1.4.0.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter:jar:1.4.0.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot:jar:1.4.0.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot-autoconfigure:jar:1.4.0.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot-starter-logging:jar:1.4.0.RELEASE:compile
+[INFO] |  |  |  +- org.slf4j:jul-to-slf4j:jar:1.7.21:compile
+[INFO] |  |  |  \- org.slf4j:log4j-over-slf4j:jar:1.7.21:compile
+[INFO] |  |  \- org.yaml:snakeyaml:jar:1.17:runtime
+[INFO] |  +- org.springframework:spring-messaging:jar:4.3.2.RELEASE:compile
+[INFO] |  \- org.springframework.amqp:spring-rabbit:jar:1.6.1.RELEASE:compile
+[INFO] |     +- org.springframework.amqp:spring-amqp:jar:1.6.1.RELEASE:compile
+[INFO] |     \- com.rabbitmq:http-client:jar:1.0.0.RELEASE:compile
+[INFO] |        \- org.apache.httpcomponents:httpclient:jar:4.3.6:compile
+[INFO] |           +- org.apache.httpcomponents:httpcore:jar:4.3.3:compile
+[INFO] |           \- commons-codec:commons-codec:jar:1.6:compile
+[INFO] +- org.hibernate:hibernate-validator:jar:5.1.3.Final:compile
+[INFO] |  +- org.jboss.logging:jboss-logging:jar:3.1.3.GA:compile
+[INFO] |  \- com.fasterxml:classmate:jar:1.0.0:compile
+[INFO] +- org.hibernate:hibernate-core:jar:4.2.16.Final:compile
+[INFO] |  +- antlr:antlr:jar:2.7.7:compile
+[INFO] |  +- dom4j:dom4j:jar:1.6.1:compile
+[INFO] |  +- org.javassist:javassist:jar:3.18.1-GA:compile
+[INFO] |  +- org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:jar:1.0.1.Final:compile
+[INFO] |  +- org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.1.Final:compile
+[INFO] |  \- org.hibernate.common:hibernate-commons-annotations:jar:4.0.2.Final:compile
+[INFO] +- org.hibernate:hibernate-ehcache:jar:4.3.8.Final:compile
+[INFO] |  +- org.jboss.logging:jboss-logging-annotations:jar:1.2.0.Beta1:compile
+[INFO] |  \- net.sf.ehcache:ehcache-core:jar:2.4.3:compile
+[INFO] +- mysql:mysql-connector-java:jar:5.1.34:compile
+[INFO] +- commons-dbcp:commons-dbcp:jar:1.4:compile
+[INFO] |  \- commons-pool:commons-pool:jar:1.5.4:compile
+[INFO] +- jstl:jstl:jar:1.2:compile
+[INFO] +- commons-fileupload:commons-fileupload:jar:1.2.1:compile
+[INFO] +- commons-io:commons-io:jar:1.4:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- javax.servlet.jsp:jsp-api:jar:2.2:compile
+[INFO] +- javax.servlet:javax.servlet-api:jar:4.0.0-b01:compile
+[INFO] +- javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO] +- org.apache.ant:ant:jar:1.7.0:compile
+[INFO] |  \- org.apache.ant:ant-launcher:jar:1.7.0:compile
+[INFO] +- org.mybatis:mybatis:jar:3.4.1:compile
+[INFO] +- org.mybatis:mybatis-spring:jar:1.3.0:compile
+[INFO] +- org.springframework.batch:spring-batch-infrastructure:jar:3.0.7.RELEASE:provided
+[INFO] |  \- org.springframework.retry:spring-retry:jar:1.1.0.RELEASE:compile
+[INFO] +- com.atomikos:transactions-jdbc:jar:4.0.3:test
+[INFO] |  \- com.atomikos:transactions-jta:jar:4.0.3:test
+[INFO] |     +- com.atomikos:transactions-api:jar:4.0.3:test
+[INFO] |     +- com.atomikos:transactions:jar:4.0.3:test
+[INFO] |     \- com.atomikos:atomikos-util:jar:4.0.3:test
+[INFO] +- org.apache.derby:derby:jar:10.12.1.1:test
+[INFO] +- ognl:ognl:jar:3.1.10:test
+[INFO] +- cglib:cglib:jar:3.2.4:test
+[INFO] |  \- org.ow2.asm:asm:jar:5.1:test
+[INFO] +- org.jboss.byteman:byteman-bmunit:jar:3.0.6:test
+[INFO] |  +- org.jboss.byteman:byteman:jar:3.0.6:test
+[INFO] |  +- org.jboss.byteman:byteman-submit:jar:3.0.6:test
+[INFO] |  +- org.jboss.byteman:byteman-install:jar:3.0.6:test
+[INFO] |  \- com.sun:tools:jar:1.6:system
+[INFO] +- org.springframework:spring-test:jar:4.3.2.RELEASE:test
+[INFO] +- org.hsqldb:hsqldb:jar:2.3.4:test
+[INFO] +- log4j:log4j:jar:1.2.17:compile
+[INFO] +- net.logstash.logback:logstash-logback-encoder:jar:4.7:compile
+[INFO] |  \- com.fasterxml.jackson.core:jackson-databind:jar:2.6.5:compile
+[INFO] |     +- com.fasterxml.jackson.core:jackson-annotations:jar:2.6.0:compile
+[INFO] |     \- com.fasterxml.jackson.core:jackson-core:jar:2.6.5:compile
+[INFO] +- ch.qos.logback:logback-access:jar:1.2.2:compile
+[INFO] +- com.mockrunner:mockrunner-core:jar:1.0.1:test
+[INFO] |  \- oro:oro:jar:2.0.8:test
+[INFO] +- com.mockrunner:mockrunner-ejb:jar:1.0.1:test
+[INFO] +- com.mockrunner:mockrunner-jdbc:jar:1.0.1:test
+[INFO] +- javax.transaction:transaction-api:jar:1.1:test
+[INFO] +- com.alibaba:fastjson:jar:1.2.20:compile
+[INFO] +- org.aspectj:aspectjweaver:jar:1.8.9:compile
+[INFO] +- com.101tec:zkclient:jar:0.6:compile
+[INFO] |  +- org.slf4j:slf4j-log4j12:jar:1.6.1:compile
+[INFO] |  \- org.apache.zookeeper:zookeeper:jar:3.4.6:compile
+[INFO] |     +- jline:jline:jar:0.9.94:compile
+[INFO] |     \- io.netty:netty:jar:3.7.0.Final:compile
+[INFO] +- com.alibaba:dubbo:jar:2.5.3:compile
+[INFO] |  \- org.jboss.netty:netty:jar:3.2.5.Final:compile
+[INFO] +- redis.clients:jedis:jar:2.7.3:compile
+[INFO] |  \- org.apache.commons:commons-pool2:jar:2.3:compile
+[INFO] +- org.springframework.data:spring-data-redis:jar:1.7.2.RELEASE:compile
+[INFO] |  +- org.springframework.data:spring-data-keyvalue:jar:1.1.2.RELEASE:compile
+[INFO] |  +- org.springframework:spring-oxm:jar:4.2.6.RELEASE:compile
+[INFO] |  +- org.springframework:spring-context-support:jar:4.2.6.RELEASE:compile
+[INFO] |  \- org.slf4j:jcl-over-slf4j:jar:1.7.21:compile
+[INFO] +- javax.mail:mail:jar:1.4.7:compile
+[INFO] |  \- javax.activation:activation:jar:1.1:compile
+[INFO] +- com.rabbitmq:amqp-client:jar:3.5.1:compile
+[INFO] \- org.springframework.data:spring-data-mongodb:jar:1.9.2.RELEASE:compile
+[INFO]    +- org.springframework.data:spring-data-commons:jar:1.12.2.RELEASE:compile
+[INFO]    \- org.mongodb:mongo-java-driver:jar:2.14.0:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.297 s
+[INFO] Finished at: 2017-08-02T17:04:17+08:00
+[INFO] Final Memory: 14M/245M
+[INFO] ------------------------------------------------------------------------

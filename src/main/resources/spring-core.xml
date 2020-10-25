@@ -1,0 +1,193 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aontext="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+   <context:component-scan base-package="com.demo.service"/>
+   <context:component-scan base-package="com.demo.mapper"/>
+   <context:component-scan base-package="com.demo.springCore"/>
+   <context:component-scan base-package="com.demo.utils"/>
+   <context:component-scan base-package="com.demo.file"/>
+   <!--<context:component-scan base-package="com.demo.filters"/>-->
+   <!--<context:component-scan base-package="com.demo.bean"/>-->
+   <bean id="user" class="com.demo.bean.UserEntity">
+      <property name="name" value="mort">
+      </property>
+      <property name="age" value="122"></property>
+   </bean>
+    <!--<aop:aspectj-autoproxy />-->
+
+
+   <util:properties id="mortTestConfigs">
+      <!--<prop key="corgi.keeper.address">${corgi.keeper.address}</prop>-->
+      <!--<prop key="skinny.server.address">${skinny.server.address}</prop>-->
+      <!--<prop key="vaccum.zookeeper.address">${vaccum.zookeeper.address}</prop>-->
+      <!--<prop key="vaccum.zookeeper.session.timeout">${vaccum.zookeeper.session.timeout}</prop>-->
+      <!--<prop key="vaccum.zookeeper.connect.timeout">${vaccum.zookeeper.connect.timeout}</prop>-->
+      <!--<prop key="sequence.config">${sequence.config}</prop>-->
+      <prop key="database.url">${database.url}</prop>
+      <prop key="database.driver">${database.driver}</prop>
+      <prop key="database.user">${database.user}</prop>
+      <prop key="database.password">${database.password}</prop>
+
+   </util:properties>
+
+   <!--<util:properties id="mortTestConfigs" location="classpath:test.properties"/>-->
+
+   <util:properties id="flowControl">
+      <prop key="flow.all">${flow.count}</prop>
+      <prop key="flow.hellw">${flow.hello}</prop>
+   </util:properties>
+
+   <!-- 配置文件引入 必须在resource 下 对应环境下的  dev_config.properties  -->
+   <context:property-placeholder location="classpath*:*.properties"/>
+
+
+   <!--&lt;!&ndash; 配置数据源  根据 id="jdbcDataSource" ref 到mybatis jdbc 数据连接&ndash;&gt;-->
+   <!--<bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+      <!--<property name="driverClassName">-->
+         <!--<value>com.mysql.jdbc.Driver</value>-->
+      <!--</property>-->
+      <!--<property name="url">-->
+         <!--<value>jdbc:mysql://172.19.30.22/ams?useUnicode=true&amp;characterEncoding=UTF-8</value>-->
+         <!--&lt;!&ndash;ams是我的数据库  &ndash;&gt;-->
+      <!--</property>-->
+      <!--<property name="username">-->
+         <!--<value>root</value>-->
+      <!--</property>-->
+      <!--<property name="password">-->
+         <!--<value>Mls@20160421</value>-->
+      <!--</property>-->
+   <!--</bean>-->
+
+   <!-- 配置数据源  根据 id="jdbcDataSource" ref 到mybatis jdbc 数据连接-->
+   <bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName">
+         <value>${database.driver}</value>
+      </property>
+      <property name="url">
+         <value>${database.url}?useUnicode=true&amp;characterEncoding=UTF-8</value>
+         <!--ams是我的数据库  -->
+      </property>
+      <property name="username">
+         <value>${database.user}</value>
+      </property>
+      <property name="password">
+         <value>${database.password}</value>
+      </property>
+   </bean>
+
+
+   <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+      <!--<property name="dataSource" ref="jdbcDataSource" />-->
+      <!--<property name="configLocation" value="/WEB-INF/mybatis-config.xml"></property>-->
+   <!--</bean>-->
+   <!--<bean id="TokenDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+      <!--<property name="mapperInterface" value="com.springMyBatis.system.dao.UserDao"></property>-->
+      <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+   <!--</bean>-->
+
+
+   <!-- MyBatis配置 -->
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="jdbcDataSource" />
+      <property name="configLocation" value="classpath:conf/MyBatisConfiguration.xml" />
+      <property name="mapperLocations" value="classpath*:/sqlmap/map/*Mapper.xml" />
+      <!--<property name="typeAliasesPackage" value="${mybatis.alias.basepackage}" />-->
+   </bean>
+
+   <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+      <property name="basePackage" value="com.demo.mapper" />
+      <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+
+   </bean>
+
+
+
+
+   <!--  spring  redis bean setting    -->
+   <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+      <property name="maxIdle" value="${redis.maxIdle}" />
+      <!--<property name="maxActive" value="${redis.maxActive}" />-->
+      <!--<property name="maxWait" value="${redis.maxWait}" />-->
+      <property name="maxWaitMillis" value="${redis.maxWait}" />
+      <property name="maxTotal" value="${redis.maxActive}" />
+      <property name="minIdle" value="${redis.minIdle}" />
+      <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+      <property name="testOnReturn" value="${redis.testOnBorrow}" />
+      <property name="testWhileIdle" value="${redis.testOnBorrow}" />
+   </bean>
+
+   <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+         p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.passwd}"
+         p:usePool="true"
+         p:timeout="300"
+         p:poolConfig-ref="poolConfig"
+   >
+   </bean>
+
+   <!--<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">-->
+   <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+      <property name="connectionFactory"   ref="connectionFactory" />
+      <property name="keySerializer">  <!-- 声明序列化方是 存储到redis 的key value  不会有乱码-->
+         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+      </property>
+      <property name="valueSerializer">
+         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+      </property>
+      <property name="hashKeySerializer">
+         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+      </property>
+      <property name="hashValueSerializer">
+         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+      </property>
+   </bean>
+
+
+
+   <util:properties id="redisConf">
+      <prop key="redisConf.host">${redis.host}</prop>
+      <prop key="redisConf.port">${redis.port}</prop>
+      <prop key="redisConf.port">${redis.passwd}</prop>
+   </util:properties>
+
+   <!--spring bean config end -->
+
+
+   <!--自定义 property 解析文件 xml 使用${}替换properties中的配置 原理是编译的时候替换
+   分布式配置Lion 也是这样实现的xml配置的替换 配置文件内容不会泄露-->
+   <bean id="propertyConfigurer" class="com.demo.utils.PropertyPlaceholder">
+      <property name="order" value="2"/>
+      <property name="ignoreUnresolvablePlaceholders" value="true" />
+      <property name="locations">
+         <list>
+            <value>classpath:test.properties</value>
+         </list>
+      </property>
+   </bean>
+
+
+
+
+</beans>
+
+
+
+
+
+
+
+

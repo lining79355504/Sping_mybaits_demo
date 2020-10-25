@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.daoTmp.MobileTagValueMapper">
+  <resultMap id="BaseResultMap" type="com.demo.entityTmp.MobileTagValue">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="domain" jdbcType="VARCHAR" property="domain" />
+    <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+    <result column="tag_id" jdbcType="INTEGER" property="tagId" />
+    <result column="tag_value" jdbcType="VARCHAR" property="tagValue" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, domain, item_id, tag_id, tag_value, description, status, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_tag_value
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mobile_tag_value
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.demo.entityTmp.MobileTagValue" useGeneratedKeys="true">
+    insert into mobile_tag_value (domain, item_id, tag_id, 
+      tag_value, description, status, 
+      updatetime)
+    values (#{domain,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, #{tagId,jdbcType=INTEGER}, 
+      #{tagValue,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.demo.entityTmp.MobileTagValue" useGeneratedKeys="true">
+    insert into mobile_tag_value
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="domain != null">
+        domain,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="tagId != null">
+        tag_id,
+      </if>
+      <if test="tagValue != null">
+        tag_value,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="domain != null">
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagValue != null">
+        #{tagValue,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entityTmp.MobileTagValue">
+    update mobile_tag_value
+    <set>
+      <if test="domain != null">
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="tagId != null">
+        tag_id = #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagValue != null">
+        tag_value = #{tagValue,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entityTmp.MobileTagValue">
+    update mobile_tag_value
+    set domain = #{domain,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=VARCHAR},
+      tag_id = #{tagId,jdbcType=INTEGER},
+      tag_value = #{tagValue,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
