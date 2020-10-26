@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" version="4">
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="jpa" name="JPA">
       <configuration>
@@ -106,20 +106,11 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.derby:derby:10.12.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: ognl:ognl:3.1.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: cglib:cglib:3.2.4" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:5.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:6.0_ALPHA" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman-bmunit:3.0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman:3.0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman-submit:3.0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman-install:3.0.6" level="project" />
-    <orderEntry type="module-library">
-      <library name="Maven: com.sun:tools:1.6">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/sun/tools/1.6/tools-1.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hsqldb:hsqldb:2.3.4" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
