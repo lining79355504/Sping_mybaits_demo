@@ -7,7 +7,7 @@
 
 <generatorConfiguration>
     <!-- 数据库驱动包 -->
-    <classPathEntry location="/Users/mort/Sping_mybaits_demo/src/jdbcdriver/mysql-connector-java-8.0.20.jar" />
+    <classPathEntry location="/Users/mort/Sping_mybaits_demo/jdbcdriver/mysql-connector-java-8.0.22.jar" />
 
 
     <!--

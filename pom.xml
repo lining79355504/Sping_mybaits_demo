@@ -13,6 +13,17 @@
         <dao.target.dir>src/main/java</dao.target.dir>
     </properties>
 
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>3.8.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -458,6 +469,14 @@
             <version>2.4.15</version>
         </dependency>
 
+
+        <!--  grpc   https://mvnrepository.com/artifact/io.grpc/grpc-stub  -->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-all</artifactId>
+            <version>1.31.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -473,14 +492,14 @@
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.7</version>
-                <executions>
-                    <execution>
-                        <id>Generate MyBatis Artifacts</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>Generate MyBatis Artifacts</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
 
 <!--                &lt;!&ndash;禁止覆盖 实体, 而是重新生成新 实体&ndash;&gt;-->
 <!--                <configuration>-->
@@ -559,7 +578,39 @@
                 </configuration>
                 <version>2.5</version>
             </plugin>
+
+
+            <!--   grpc plugin  maven or idea右侧plugins maven 运行插件生成目标文件 目标文件在source目录下
+             调用方和业务方之间通过 proto文件来关联调用的服务 方法 参数等-->
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>0.6.1</version>
+                <configuration>
+                    <protocArtifact>com.google.protobuf:protoc:3.0.0:exe:${os.detected.classifier}</protocArtifact>
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:0.15.0:exe:${os.detected.classifier}</pluginArtifact>
+                    <protocExecutable>/usr/local/bin/protoc</protocExecutable>
+                    <protoSourceRoot>${project.basedir}/src/main/java/com/demo/grpc/proto</protoSourceRoot>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compile-custom</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.4.1.Final</version>
+            </extension>
+        </extensions>
     </build>
 
 

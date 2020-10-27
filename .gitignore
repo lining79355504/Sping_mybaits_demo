@@ -32,5 +32,5 @@ target/classes/com/
 target/mort-group-1.0-SNAPSHOT/WEB-INF/classes/com/
 target/mort-group-1.0-SNAPSHOT/WEB-INF/lib/
 /.idea/
-!/mort-group.iml
+/mort-group.iml
 *.iml
