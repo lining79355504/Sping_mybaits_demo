@@ -11,6 +11,7 @@
 
     <properties>
         <dao.target.dir>src/main/java</dao.target.dir>
+        <jetcd.version>0.5.4</jetcd.version>
     </properties>
 
 
@@ -469,13 +470,28 @@
             <version>2.4.15</version>
         </dependency>
 
-
         <!--  grpc   https://mvnrepository.com/artifact/io.grpc/grpc-stub  -->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-all</artifactId>
-            <version>1.31.1</version>
+            <version>1.33.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.etcd/jetcd-core -->
+        <dependency>
+            <groupId>io.etcd</groupId>
+            <artifactId>jetcd-core</artifactId>
+            <version>${jetcd.version}</version>
+<!--            <version>0.5.4</version>-->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>1.78</version>
+        </dependency>
+
 
     </dependencies>
 
