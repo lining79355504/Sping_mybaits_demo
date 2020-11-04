@@ -37,16 +37,19 @@ public class HelloWorldServer {
         /* The port on which the server should run */
         int port = 50051;
         server = ServerBuilder.forPort(port)
-                .addService(new GreeterImpl())
+                .addService(new GreeterImpl())  //结合spring bean 管理 根据@XXRPCService注解 添加服务。等待程序完全启动后 注入到注册中心
+                //注册中心上线后 client 检测到变更 启动小部分流量心跳检测 检测通过后 开启配置路由 负载策略 运行
                 .build()
                 .start();
         logger.info("Server started, listening on " + port);
+
+
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
                 System.err.println("*** shutting down gRPC server since JVM is shutting down");
-                HelloWorldServer.this.stop();
+                HelloWorldServer.this.stop();   //发布时 停服务使用
                 System.err.println("*** server shut down");
             }
         });
@@ -73,7 +76,9 @@ public class HelloWorldServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         final HelloWorldServer server = new HelloWorldServer();
         server.start();
+        logger.info("start test ");
         server.blockUntilShutdown();
+        logger.info("end test ");
     }
 
     static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
