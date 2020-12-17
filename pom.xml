@@ -493,6 +493,13 @@
         </dependency>
 
 
+        <!--        -->
+        <dependency>
+            <groupId>net.sourceforge.jdbclogger</groupId>
+            <artifactId>jdbclogger</artifactId>
+            <version>0.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -536,6 +543,7 @@
                     <target>7</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -545,6 +553,12 @@
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+            <!--打jar包时生成源码-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

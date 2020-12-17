@@ -6,6 +6,7 @@ import com.demo.dao.StockDetail;
 import com.demo.mapper.StockDetailMapper;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
+import com.demo.utils.PropertyUtils;
 import com.google.common.util.concurrent.RateLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,6 +73,8 @@ public class HelloWorld {
     public String index(HttpServletRequest req, HttpServletResponse res) {
 
         RateLimiter rateLimiter = RateLimiter.create(5);
+
+        PropertyUtils.get("database.url", "/test.properties");
 
         rateLimiter.setRate(200);
         rateLimiter.tryAcquire();

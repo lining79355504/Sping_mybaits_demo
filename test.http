@@ -7,6 +7,8 @@
 
 GET {{baseUrl}}/cat/mobile/container/config
 Accept: application/json
-
+Cookie:
+Content-Type: application/json
+{}
 
 ###

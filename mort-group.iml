@@ -221,5 +221,11 @@
     <orderEntry type="library" name="Maven: net.jodah:failsafe:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.auto.service:auto-service-annotations:1.0-rc7" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.78" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.jdbclogger:jdbclogger:0.6" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.jdbclogger:jdbclogger-core:0.6" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.jdbclogger:jdbclogger-oracle:0.6" level="project" />
+    <orderEntry type="library" name="Maven: ojdbc:ojdbc:14" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.jdbclogger:jdbclogger-spring:0.6" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.7.0" level="project" />
   </component>
 </module>

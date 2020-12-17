@@ -4,13 +4,12 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 
-
     <display-name>mort test</display-name>
 
     <listener>
         <listener-class>com.demo.servletContextLister.MyServletContextListerTest</listener-class>
     </listener>
-    
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -35,7 +34,6 @@
     </servlet-mapping>
 
 
-
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -52,12 +50,23 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <filter>
         <filter-name>flowControllFilter</filter-name>
         <filter-class>com.demo.filters.FlowControlFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>flowControllFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>responseChange-filter</filter-name>
+        <filter-class>com.demo.filters.ResponseChangeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>responseChange-filter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
