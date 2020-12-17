@@ -21,6 +21,8 @@ import java.lang.reflect.Method;
  *
  * 注意   Field ob= ReflectionUtils.findField(os.getClass(),"ob");
  * AopUtils 用法
+ *
+ * 可参考 https://juejin.cn/post/6844903858393595917
  **/
 public class SpringReflectProxyDemo implements ApplicationListener, ApplicationContextAware , Filter {
 

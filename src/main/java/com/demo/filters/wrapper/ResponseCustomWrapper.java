@@ -1,4 +1,4 @@
-package com.demo.filters;
+package com.demo.filters.wrapper;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;

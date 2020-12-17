@@ -1,11 +1,10 @@
 package com.demo.filters;
 
-import org.springframework.stereotype.Component;
+import com.demo.filters.wrapper.ResponseCustomWrapper;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.ResponseWrapper;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
