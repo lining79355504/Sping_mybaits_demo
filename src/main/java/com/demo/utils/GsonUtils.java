@@ -1,5 +1,6 @@
 package com.demo.utils;
 
+import com.demo.utils.annotation.SerializeFilter;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -26,8 +27,23 @@ import java.util.Map;
 public class GsonUtils {
 
     private static Gson gson =
-            new GsonBuilder().registerTypeAdapter(new TypeToken<Map<String, Object>>() {
-            }.getType(), new GsonTypeAdapter()).setFieldNamingStrategy(new NamingStrategy()).create();
+            new GsonBuilder()
+                    .registerTypeAdapter(new TypeToken<Map<String, Object>>() {}.getType(), new GsonTypeAdapter())
+                    .setFieldNamingStrategy(new NamingStrategy())
+                    .setExclusionStrategies(new ExclusionStrategy() {
+                        @Override
+                        public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+                            //自定义注解跳过字段
+                            SerializeFilter annotation = fieldAttributes.getAnnotation(SerializeFilter.class);
+                            return null != annotation;
+                        }
+
+                        @Override
+                        public boolean shouldSkipClass(Class<?> aClass) {
+                            return false;
+                        }
+                    })
+                    .create();
 
     public static JsonObject jsonParse(String jsonStr) {
         return gson.fromJson(jsonStr, JsonObject.class);

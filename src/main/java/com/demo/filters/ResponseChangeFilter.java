@@ -1,6 +1,7 @@
 package com.demo.filters;
 
 import com.demo.filters.wrapper.ResponseCustomWrapper;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import java.io.UnsupportedEncodingException;
  * @date 2020/12/16
  * 可以设置返回值统一加密 等
  **/
+@Component("responseChangeFilter")
 public class ResponseChangeFilter implements Filter {
 
     @Override

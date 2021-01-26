@@ -63,7 +63,18 @@
 
     <filter>
         <filter-name>responseChange-filter</filter-name>
-        <filter-class>com.demo.filters.ResponseChangeFilter</filter-class>
+<!--        使用spring  DelegatingFilterProxy 这种方式可以在filter里注入bean 直接filter class里使用filter 不支持注入bean -->
+<!--        <filter-class>com.demo.filters.ResponseChangeFilter</filter-class>-->
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>responseChangeFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>responseChange-filter</filter-name>

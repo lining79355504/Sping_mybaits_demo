@@ -16,6 +16,8 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
+   <bean id="responseChangeFilter" class="com.demo.filters.ResponseChangeFilter"/>
+
    <context:component-scan base-package="com.demo.service"/>
    <context:component-scan base-package="com.demo.mapper"/>
    <context:component-scan base-package="com.demo.springCore"/>

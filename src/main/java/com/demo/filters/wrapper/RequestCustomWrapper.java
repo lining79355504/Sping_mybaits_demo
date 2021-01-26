@@ -77,6 +77,7 @@ public class RequestCustomWrapper extends HttpServletRequestWrapper {
     }
 
 
+    //重写这个方法实现 inputStream读取使用新的wrapper
     @Override
     public ServletInputStream getInputStream() throws IOException {
 
@@ -127,4 +128,21 @@ public class RequestCustomWrapper extends HttpServletRequestWrapper {
         return results[0];
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    //修改后可以修改 httprequest参数
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    @Override
+    public Map<String, String[]> getParameterMap() {
+        return parameterMap;
+    }
+
+    public void setParameterMap(Map<String, String[]> parameterMap) {
+        this.parameterMap = parameterMap;
+    }
 }

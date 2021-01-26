@@ -2,11 +2,14 @@ package com.demo.utils;
 
 import com.demo.test.entity.AccAccountWalletLogPoEntity;
 import com.demo.test.entity.CanalBinlogEntity;
+import com.demo.utils.annotation.SerializeFilter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +28,7 @@ public class JacksonUtils {
     static {
         MAPPER = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
         MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        MAPPER.setAnnotationIntrospector(new CustomAnnotationSerializer());
     }
 
     public static String serialize(Object obj) {
@@ -54,71 +58,57 @@ public class JacksonUtils {
         return null;
     }
 
-    public static void main(String[] args) {
 
-        String str = "{\n" +
-                "\t\"data\": [{\n" +
-                "\t\t\"id\": \"328282268\",\n" +
-                "\t\t\"account_id\": \"362333\",\n" +
-                "\t\t\"operation_type\": \"0\",\n" +
-                "\t\t\"cash\": \"0\",\n" +
-                "\t\t\"remark\": \"\",\n" +
-                "\t\t\"is_deleted\": \"0\",\n" +
-                "\t\t\"ctime\": \"2020-11-03 21:29:34\",\n" +
-                "\t\t\"mtime\": \"2020-11-03 21:29:34\",\n" +
-                "\t\t\"red_packet\": \"101\",\n" +
-                "\t\t\"date\": \"2020-11-03\",\n" +
-                "\t\t\"agent_id\": \"1985586\",\n" +
-                "\t\t\"sales_type\": \"12\",\n" +
-                "\t\t\"old_agent_id\": \"0\",\n" +
-                "\t\t\"special_red_packet\": \"0\"\n" +
-                "\t}],\n" +
-                "\t\"database\": \"business_ad\",\n" +
-                "\t\"es\": 1604410174000,\n" +
-                "\t\"id\": 29691,\n" +
-                "\t\"isDdl\": false,\n" +
-                "\t\"mysqlType\": {\n" +
-                "\t\t\"id\": \"bigint(20) unsigned\",\n" +
-                "\t\t\"account_id\": \"int(11)\",\n" +
-                "\t\t\"operation_type\": \"tinyint(4)\",\n" +
-                "\t\t\"cash\": \"bigint(20)\",\n" +
-                "\t\t\"remark\": \"varchar(128)\",\n" +
-                "\t\t\"is_deleted\": \"tinyint(4)\",\n" +
-                "\t\t\"ctime\": \"datetime\",\n" +
-                "\t\t\"mtime\": \"datetime\",\n" +
-                "\t\t\"red_packet\": \"bigint(20)\",\n" +
-                "\t\t\"date\": \"date\",\n" +
-                "\t\t\"agent_id\": \"int(11)\",\n" +
-                "\t\t\"sales_type\": \"tinyint(4) unsigned\",\n" +
-                "\t\t\"old_agent_id\": \"int(11) unsigned\",\n" +
-                "\t\t\"special_red_packet\": \"bigint(20) unsigned\"\n" +
-                "\t},\n" +
-                "\t\"old\": null,\n" +
-                "\t\"pkNames\": [\"id\"],\n" +
-                "\t\"sql\": \"\",\n" +
-                "\t\"sqlType\": {\n" +
-                "\t\t\"id\": -5,\n" +
-                "\t\t\"account_id\": 4,\n" +
-                "\t\t\"operation_type\": -6,\n" +
-                "\t\t\"cash\": -5,\n" +
-                "\t\t\"remark\": 12,\n" +
-                "\t\t\"is_deleted\": -6,\n" +
-                "\t\t\"ctime\": 93,\n" +
-                "\t\t\"mtime\": 93,\n" +
-                "\t\t\"red_packet\": -5,\n" +
-                "\t\t\"date\": 91,\n" +
-                "\t\t\"agent_id\": 4,\n" +
-                "\t\t\"sales_type\": -6,\n" +
-                "\t\t\"old_agent_id\": 4,\n" +
-                "\t\t\"special_red_packet\": -5\n" +
-                "\t},\n" +
-                "\t\"table\": \"acc_account_wallet_log\",\n" +
-                "\t\"ts\": 1604410174079,\n" +
-                "\t\"type\": \"INSERT\"\n" +
-                "}";
+    /**
+     * // 自定义注解支持
+     * spring 默认jackson配置支持  spring默认序列化配置
+     * <p>
+     * <mvc:annotation-driven>
+     * <mvc:message-converters>
+     * <ref bean="stringHttpMessageConverter"/>
+     * <ref bean="mappingJacksonHttpMessageConverter"/>
+     * </mvc:message-converters>
+     * </mvc:annotation-driven>
+     * <p>
+     * <p>
+     * <bean id="stringHttpMessageConverter"
+     * class="org.springframework.http.converter.StringHttpMessageConverter"/>
+     * <p>
+     * <bean id="mappingJacksonHttpMessageConverter"
+     * class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+     * <property name="supportedMediaTypes">
+     * <list>
+     * <value>application/json;charset=UTF-8</value>
+     * <value>text/html;charset=UTF-8</value>
+     * </list>
+     * </property>
+     * <property name="objectMapper">
+     * <bean class="com.bilibili.adp.advertiser.portal.openapi.valid.serialize.CustomMapper"/>
+     * </property>
+     * </bean>
+     *
+     * <bean class="com.bilibili.adp.advertiser.portal.openapi.valid.serialize.OpenAPICustomSerializer"/>
+     *
+     * <bean class=" org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+     * <property name="messageConverters">
+     * <list>
+     * <ref bean="mappingJacksonHttpMessageConverter"/>
+     * </list>
+     * </property>
+     * </bean>
+     */
 
-        CanalBinlogEntity<AccAccountWalletLogPoEntity> ret = deserialize(str, new TypeReference<CanalBinlogEntity<AccAccountWalletLogPoEntity>>() {
-        });
+    public static class CustomAnnotationSerializer extends JacksonAnnotationIntrospector {
 
+        @Override
+        public boolean hasIgnoreMarker(AnnotatedMember m) {
+            SerializeFilter annotation = m.getAnnotation(SerializeFilter.class);
+            if (null != annotation) {
+                return true;
+            } else {
+                return super.hasIgnoreMarker(m);
+            }
+        }
     }
+
 }
