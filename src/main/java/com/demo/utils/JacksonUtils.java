@@ -99,7 +99,8 @@ public class JacksonUtils {
      */
 
     /**
-     * 次方式有缓存 同一个objectMapper 只会第一次执行此方法 后续会从缓存里拉取类信息 导致不能在运行时动态改变序列化方式 不推荐使用
+     * 此方式有缓存 同一个objectMapper 只会第一次执行此方法 后续会从缓存里拉取类信息 导致不能在运行时动态改变序列化方式 不推荐使用
+     * 不同同一个objectMapper可以避免类似问题
      */
     public static class CustomAnnotationSerializer extends JacksonAnnotationIntrospector {
 

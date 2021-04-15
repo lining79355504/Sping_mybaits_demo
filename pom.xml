@@ -509,6 +509,23 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <!--和上面的配置一样，放到 build 节点里面 -->
+        <!--单元测试时会引用src/main/resources下的资源文件-->
+        <testResources>
+            <testResource>
+                <directory>src/main/resources/</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>*.properties</include>
+                    <include>*.xml</include>
+                    <include>i18n/*</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>src/main/resources/${profile.env}</directory>
+            </testResource>
+        </testResources>
+
         <plugins>
             <!--mybatis generator maven plugin -->
             <plugin>
