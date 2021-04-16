@@ -79,29 +79,5 @@ public class ExecutorServiceManagerUtils {
     }
 
 
-    public static void main(String[] args) {
-        List<Integer> tmp = new ArrayList<>();
-        tmp.add(0);
-        tmp.add(1);
-        tmp.add(2);
-        tmp.add(3);
-        tmp.add(4);
-        tmp.add(5);
-//        tmp.add(6);
-
-        int i = 0;
-        while (i < tmp.size()) {
-            int endIndex = tmp.size();
-            if (i + 2 > tmp.size()) {
-                endIndex = tmp.size();
-            } else {
-                endIndex = i + 2;
-            }
-            List<Integer> subAccountIds = tmp.subList(i, endIndex);
-            System.out.println("args = " + JSON.toJSON(subAccountIds));
-            i = endIndex;
-        }
-    }
-
 }
 

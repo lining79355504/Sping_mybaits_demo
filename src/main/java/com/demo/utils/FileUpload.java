@@ -16,6 +16,9 @@ import java.util.zip.GZIPInputStream;
  * @author mort
  * @Description
  * @date 2021/4/15
+ *
+ *
+ * multipart/form-data  适合文件上传
  **/
 public class FileUpload {
 
@@ -163,4 +166,21 @@ public class FileUpload {
         String result = formUpload("http://localhost:8080/web_api/v1/cpc/support/upload", textMap, fileMap, "contentType");
         System.out.println("args = " + JSON.toJSON(result));
     }
+
+
+    /**
+     * 服务端接收
+     *
+     *
+     *     @PostMapping("/support/upload")
+     *     public JSONObject creativeUpload(@RequestParam(value = "account_id") Integer accountId,
+     *                                      @RequestParam(value = "template_id", required = false) Integer templateId,
+     *                                      @RequestParam(value = "template_group_id", required = false) Integer templateGroupId,
+     *                                      @RequestParam("type") Integer type,
+     *                                      @RequestParam("file") MultipartFile multipartFile,
+     *                                      @RequestParam(value = "save", defaultValue = "false") Boolean saveToCreativeCenter) throws IOException {
+     *
+     *
+     *                                      }
+     */
 }
