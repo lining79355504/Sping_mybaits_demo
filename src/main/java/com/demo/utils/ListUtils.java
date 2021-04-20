@@ -1,13 +1,12 @@
 package com.demo.utils;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.util.CollectionUtils;
+import redis.clients.jedis.BinaryClient;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author mort
@@ -67,7 +66,7 @@ public class ListUtils {
             }
         });
 
-        sortNullToEnd(testList, "DESC", true, new Comparator<Integer>() {
+        sortNullToEnd(testList, "ASC", true, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o1.compareTo(o2);
@@ -75,7 +74,22 @@ public class ListUtils {
         });
         System.out.println(JSON.toJSON(testList));
 
+        sortNullToEnd(testList, "DESC", new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        System.out.println(JSON.toJSON(testList));
 
+        Map<Integer, List<Integer>> map1 = new HashMap<>();
+        map1.put(1, Arrays.asList(1));
+        map1.put(3, Arrays.asList(1,2,3));
+
+        Map<Integer, List<Integer>> map2 = new HashMap<>();
+        map2.put(1, Arrays.asList(1,2));
+        map2.put(2, Arrays.asList(1,2,3));
+        retain(map1, map2);
     }
 
 
@@ -133,4 +147,58 @@ public class ListUtils {
         }
     }
 
+
+    // sort 排序 null位置设置
+    public static <T> void sortNullToEnd(List<T> list, String sortType, Comparator<T> comparator) {
+
+        if ("ASC".equals(sortType)) {
+            list.sort(new Comparator<T>() {
+                @Override
+                public int compare(T o1, T o2) {
+                    if (null != o1 && null != o2) {
+                        return comparator.compare(o1, o2);
+                    } else {
+                        return o1 == null ? 1 : -1;
+                    }
+                }
+            });
+        }
+
+        if ("DESC".equals(sortType)) {
+
+            list.sort(new Comparator<T>() {
+                @Override
+                public int compare(T o1, T o2) {
+
+                    if (null != o1 && null != o2) {
+                        return comparator.compare(o2, o1);
+                    } else {
+                        return o2 == null ? -1 : 1;
+                    }
+                }
+            });
+        }
+    }
+
+
+
+//
+//    private static Map<Integer, List<Integer>> retain(Map<Integer, List<Integer>> activateCreatives, Map<Integer, List<Integer>> newCreatives) {
+//        return newCreatives.entrySet().stream().filter(item -> null != activateCreatives.get(item.getKey())
+//        ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+//    }
+
+    //聚合第一个key 和第二个key
+    private static Map<Integer, List<Integer>> retain(Map<Integer, List<Integer>> activateCreatives, Map<Integer, List<Integer>> newCreatives) {
+        Map<Integer, List<Integer>> accountFilterMap = newCreatives.entrySet().stream().filter(item -> null != activateCreatives.get(item.getKey())
+        ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return accountFilterMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, item -> {
+            if (CollectionUtils.isEmpty(item.getValue()) || CollectionUtils.isEmpty(activateCreatives.get(item.getKey()))) {
+                return new ArrayList<>();
+            }
+            List<Integer> newList = new ArrayList<>(item.getValue());
+            newList.retainAll(activateCreatives.get(item.getKey()));
+            return newList;
+        }));
+    }
 }

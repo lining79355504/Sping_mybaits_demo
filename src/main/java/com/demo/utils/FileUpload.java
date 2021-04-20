@@ -23,8 +23,7 @@ import java.util.zip.GZIPInputStream;
 public class FileUpload {
 
 
-    public static String formUpload(String urlStr, Map<String, String> textMap,
-                                    Map<String, String> fileMap,String contentType) {
+    public static String formUpload(String urlStr, Map<String, String> params, Map<String, String> fileMap) {
         String res = "";
         HttpURLConnection conn = null;
         // boundary就是request头和上传文件内容的分隔符
@@ -48,10 +47,10 @@ public class FileUpload {
             conn.setRequestProperty("Content-Type",
                     "multipart/form-data; boundary=" + BOUNDARY);
             OutputStream out = new DataOutputStream(conn.getOutputStream());
-            // text
-            if (textMap != null) {
+            // formdata 参数填充
+            if (params != null) {
                 StringBuffer strBuf = new StringBuffer();
-                Iterator iter = textMap.entrySet().iterator();
+                Iterator iter = params.entrySet().iterator();
                 while (iter.hasNext()) {
                     Map.Entry entry = (Map.Entry) iter.next();
                     String inputName = (String) entry.getKey();
@@ -68,7 +67,7 @@ public class FileUpload {
                 }
                 out.write(strBuf.toString().getBytes());
             }
-            // file
+            // 文件填充
             if (fileMap != null) {
                 Iterator iter = fileMap.entrySet().iterator();
                 while (iter.hasNext()) {
@@ -80,7 +79,7 @@ public class FileUpload {
                     }
                     File file = new File(inputValue);
                     String filename = file.getName();
-
+                    String contentType ;
                     //没有传入文件类型，同时根据文件获取不到类型，默认采用application/octet-stream
                     contentType = new MimetypesFileTypeMap().getContentType(file);
                     //contentType非空采用filename匹配默认的图片类型
@@ -108,8 +107,7 @@ public class FileUpload {
 
                     strBuf.append("Content-Type:" + contentType + "\r\n\r\n");
                     out.write(strBuf.toString().getBytes());
-                    DataInputStream in = new DataInputStream(
-                            new FileInputStream(file));
+                    DataInputStream in = new DataInputStream(new FileInputStream(file));
                     int bytes = 0;
                     byte[] bufferOut = new byte[1024];
                     while ((bytes = in.read(bufferOut)) != -1) {
@@ -127,17 +125,17 @@ public class FileUpload {
             StringBuffer strBuf = new StringBuffer();
             //如果返回有强制gzip压缩 则必须如此解析。
             //无gzip压缩 直接 BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            GZIPInputStream gZipS = null;
-            gZipS =new GZIPInputStream(conn.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(gZipS, "UTF-8"));
-
+//            GZIPInputStream gZipS = null;
+//            gZipS =new GZIPInputStream(conn.getInputStream());
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(gZipS, "UTF-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             int ss;
             while ((ss = reader.read()) != -1) {
                 strBuf.append((char) ss);
             }
             res = strBuf.toString();
             reader.close();
-            gZipS.close();
+//            gZipS.close();
             reader = null;
         } catch (Exception e) {
             System.out.println("发送POST请求出错。" + urlStr);
@@ -151,19 +149,25 @@ public class FileUpload {
         return res;
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
-        Map<String, String> textMap = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<String, String>();
         //普通参数：可以设置多个input的name，value
-        textMap.put("name", "testname");
-        textMap.put("type", "1");
-        textMap.put("template_group_id", "10");
-        textMap.put("account_id", "10010");
+        params.put("type", "1");
+        params.put("template_group_id", "1");
+        params.put("account_id", "3");
+        params.put("appkey", "B06618AE37F34D03AB61F07CF058996F");
+        params.put("sign", "395f78769c7ae93aa90e674acf8ffe00");
+        params.put("ts", "1618563977548");
+
         //文件：设置file的name，路径
         Map<String, String> fileMap = new HashMap<String, String>();
-        fileMap.put("file", "/Users/mort/Downloads/WechatIMG30.png");
+//        fileMap.put("/Users/mort/Downloads/WechatIMG30.png", "/Users/mort/Downloads/WechatIMG30.png");
+//        fileMap.put("file", "/Users/mort/Downloads/600X400");
+        fileMap.put("file", "/Users/mort/Downloads/640*400.jpeg");
+//        fileMap.put("file", "/Users/mort/Downloads/WechatIMG30.png");
 
-        String result = formUpload("http://localhost:8080/web_api/v1/cpc/support/upload", textMap, fileMap, "contentType");
+        String result = formUpload("http://cm.bilibili.com/takumi/api/open_api/launch/cpc/meta_data/support/upload", params, fileMap);
         System.out.println("args = " + JSON.toJSON(result));
     }
 
