@@ -2,7 +2,9 @@ package com.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.demo.annotataion.MyAnnotation;
+import com.demo.dao.StockDealJson;
 import com.demo.dao.StockDetail;
+import com.demo.mapper.StockDealJsonMapper;
 import com.demo.mapper.StockDetailMapper;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +52,9 @@ public class HelloWorld {
 
     @Autowired
     private StockDetailMapper stockDetailMapper;
+
+    @Autowired
+    private StockDealJsonMapper stockDealJsonMapper;
 
 
     private AtomicInteger redisQps = new AtomicInteger();
@@ -117,6 +124,17 @@ public class HelloWorld {
         }finally {
             logger.info(" redis qps is :  {} , {} " , redisQps.decrementAndGet()  , ret );
         }
+
+
+        StockDealJson tmp = new StockDealJson();
+        tmp.setStockId("688218");
+        tmp.setDealDay(Timestamp.valueOf("2020-10-20 00:00:00"));
+        try {
+            stockDealJsonMapper.insertSelective(tmp);
+        }catch (DuplicateKeyException du){
+            logger.error("dup", du);
+        }
+
 
         StockDetail stockDetail = stockDetailMapper.selectByPrimaryKey(104469L);
 

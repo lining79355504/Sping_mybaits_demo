@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.StockDealJsonMapper">
+  <resultMap id="BaseResultMap" type="com.demo.dao.StockDealJson">
+    <!--@mbg.generated-->
+    <!--@Table stock_deal_json-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="stock_id" jdbcType="VARCHAR" property="stockId" />
+    <result column="deal_day" jdbcType="TIMESTAMP" property="dealDay" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+    <result column="price_a_d" jdbcType="DECIMAL" property="priceAD" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, stock_id, deal_day, content, add_time, price_a_d
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from stock_deal_json
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from stock_deal_json
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.demo.dao.StockDealJson" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stock_deal_json (stock_id, deal_day, content, 
+      add_time, price_a_d)
+    values (#{stockId,jdbcType=VARCHAR}, #{dealDay,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, 
+      #{addTime,jdbcType=INTEGER}, #{priceAD,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.demo.dao.StockDealJson" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into stock_deal_json
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stockId != null">
+        stock_id,
+      </if>
+      <if test="dealDay != null">
+        deal_day,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="priceAD != null">
+        price_a_d,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stockId != null">
+        #{stockId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealDay != null">
+        #{dealDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="priceAD != null">
+        #{priceAD,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.dao.StockDealJson">
+    <!--@mbg.generated-->
+    update stock_deal_json
+    <set>
+      <if test="stockId != null">
+        stock_id = #{stockId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealDay != null">
+        deal_day = #{dealDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="priceAD != null">
+        price_a_d = #{priceAD,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.dao.StockDealJson">
+    <!--@mbg.generated-->
+    update stock_deal_json
+    set stock_id = #{stockId,jdbcType=VARCHAR},
+      deal_day = #{dealDay,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      price_a_d = #{priceAD,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
