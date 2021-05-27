@@ -8,6 +8,7 @@ import com.demo.mapper.StockDealJsonMapper;
 import com.demo.mapper.StockDetailMapper;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
+import com.demo.springCore.resource.MyBeanAwareByAnnotation;
 import com.demo.utils.PropertyUtils;
 import com.google.common.util.concurrent.RateLimiter;
 import org.slf4j.Logger;
@@ -55,6 +56,9 @@ public class HelloWorld {
 
     @Autowired
     private StockDealJsonMapper stockDealJsonMapper;
+
+    @Autowired
+    private MyBeanAwareByAnnotation myBeanAwareByAnnotation;
 
 
     private AtomicInteger redisQps = new AtomicInteger();
@@ -137,6 +141,8 @@ public class HelloWorld {
 
 
         StockDetail stockDetail = stockDetailMapper.selectByPrimaryKey(104469L);
+
+        stockDealJsonMapper.selectByPrimaryKey(381549L);
 
         ret = JSONObject.toJSONString(stockDetail);
 

@@ -6,6 +6,8 @@
        xmlns:aontext="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:sharding="http://shardingsphere.apache.org/schema/shardingsphere/sharding"
+       xmlns:master-slave="http://shardingsphere.apache.org/schema/shardingsphere/masterslave"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/context
@@ -13,7 +15,12 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 	http://www.springframework.org/schema/aop
-	http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://shardingsphere.apache.org/schema/shardingsphere/sharding
+    http://shardingsphere.apache.org/schema/shardingsphere/sharding/sharding.xsd
+    http://shardingsphere.apache.org/schema/shardingsphere/masterslave
+    http://shardingsphere.apache.org/schema/shardingsphere/masterslave/master-slave.xsd">
 
 
    <bean id="responseChangeFilter" class="com.demo.filters.ResponseChangeFilter"/>
@@ -92,6 +99,63 @@
       </property>
    </bean>
 
+   <bean id="c3p0Master" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+      <property name="driverClass" value="${database.driver}"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="user" value="${database.user}"></property>
+      <property name="password" value="${database.password}"></property>
+      <property name="maxPoolSize" value="10"></property>
+      <property name="maxIdleTime" value="7200"></property>
+      <property name="testConnectionOnCheckin" value="true"></property>
+      <property name="idleConnectionTestPeriod" value="5"></property>
+      <property name="preferredTestQuery" value="SELECT 1"></property>
+      <property name="checkoutTimeout" value="1800000"></property>
+   </bean>
+
+   <bean id="c3p0Salver1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+      <property name="driverClass" value="${database.driver}"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="user" value="${database.user}"></property>
+      <property name="password" value="${database.password}"></property>
+      <property name="maxPoolSize" value="10"></property>
+      <property name="maxIdleTime" value="7200"></property>
+      <property name="testConnectionOnCheckin" value="true"></property>
+      <property name="idleConnectionTestPeriod" value="5"></property>
+      <property name="preferredTestQuery" value="SELECT 1"></property>
+      <property name="checkoutTimeout" value="1800000"></property>
+   </bean>
+
+
+   <bean id="c3p0Salver2" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+      <property name="driverClass" value="${database.driver}"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="user" value="${database.user}"></property>
+      <property name="password" value="${database.password}"></property>
+      <property name="maxPoolSize" value="10"></property>
+      <property name="maxIdleTime" value="7200"></property>
+      <property name="testConnectionOnCheckin" value="true"></property>
+      <property name="idleConnectionTestPeriod" value="5"></property>
+      <property name="preferredTestQuery" value="SELECT 1"></property>
+      <property name="checkoutTimeout" value="1800000"></property>
+   </bean>
+
+
+   <!--
+   1：注册中心 配置动态生效  给一个token和对应的appkey一致 通过接口鉴权获取配置中心的配置
+   https://shardingsphere.apache.org/document/legacy/4.x/document/cn/features/orchestration/supported-center-repo/
+   2：鉴权 appkey     给一个token和对应的appkey一致 通过接口鉴权获取配置中心的配置
+   3：数据库密码脱敏   密码脱敏由配置中心对应的占位符 通过配置中心的脱敏功能实现脱敏
+
+   -->
+   <!-- 从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若strategy-ref存在则忽略该配置-->
+   <master-slave:load-balance-algorithm id="salverLoadBalanceAlgorithm" type="RANDOM"/>
+   <master-slave:data-source id="shardDataSource" master-data-source-name="c3p0Master" slave-data-source-names="c3p0Salver1,c3p0Salver2" strategy-ref="salverLoadBalanceAlgorithm" />
+
+   <master-slave:props>
+      <prop key="sql.show">true</prop>
+      <prop key="executor.size">10</prop>
+      <prop key="foo">bar</prop>
+   </master-slave:props>
 
    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
       <!--<property name="dataSource" ref="jdbcDataSource" />-->
@@ -105,7 +169,7 @@
 
    <!-- MyBatis配置 -->
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="jdbcDataSource" />
+      <property name="dataSource" ref="shardDataSource" />
       <property name="configLocation" value="classpath:conf/MyBatisConfiguration.xml" />
       <property name="mapperLocations" value="classpath*:/sqlmap/map/*Mapper.xml" />
       <!--<property name="typeAliasesPackage" value="${mybatis.alias.basepackage}" />-->
@@ -115,6 +179,12 @@
       <property name="basePackage" value="com.demo.mapper" />
       <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
    </bean>
+
+
+
+
+
+
 
 
 

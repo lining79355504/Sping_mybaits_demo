@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.*;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
@@ -33,7 +34,7 @@ public class RequestCustomWrapper extends HttpServletRequestWrapper {
      */
     public RequestCustomWrapper(HttpServletRequest request) {
         super(request);
-        parameterMap = request.getParameterMap();
+        parameterMap = new HashMap<>(request.getParameterMap());
 
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;

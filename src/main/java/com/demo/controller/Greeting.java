@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.channels.NotYetConnectedException;
+import java.util.List;
 import java.util.Map;
 
 @Controller("test")
@@ -37,6 +38,13 @@ public class Greeting {
     //参数放body获取
     @RequestMapping("/paramBodyTest")
     public String paramBodyTest(@RequestBody Map<String, Object> param){
+
+        return null;
+    }
+
+    //参数放body获取
+    @RequestMapping("/param_test")
+    public String paramTest(@RequestParam("ids") List<Integer> ids){
 
         return null;
     }

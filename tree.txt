@@ -1,30 +1,36 @@
 [INFO] Scanning for projects...
 [WARNING] 
-[WARNING] Some problems were encountered while building the effective model for com.demo:mort-group:pom:1.0-SNAPSHOT
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: junit:junit:jar -> version 3.8.1 vs 4.12 @ line 215, column 21
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:javax.servlet-api:jar -> duplicate declaration of version 3.0.1 @ line 334, column 21
-[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:javax.servlet-api:jar -> version 3.0.1 vs 4.0.0-b01 @ line 386, column 21
-[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 416, column 21
+[WARNING] Some problems were encountered while building the effective model for com.demo:mort-group:war:1.0-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: junit:junit:jar -> version 3.8.1 vs 4.12 @ line 233, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:javax.servlet-api:jar -> duplicate declaration of version 3.0.1 @ line 261, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: javax.servlet:javax.servlet-api:jar -> version 3.0.1 vs 4.0.0-b01 @ line 452, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: com.google.guava:guava:jar -> version 24.1-jre vs 23.0 @ line 468, column 21
+[WARNING] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-compiler-plugin @ line 570, column 21
 [WARNING] 
 [WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
 [WARNING] 
 [WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
 [WARNING] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Detecting the operating system and CPU architecture
+[INFO] ------------------------------------------------------------------------
+[INFO] os.detected.name: osx
+[INFO] os.detected.arch: x86_64
+[INFO] os.detected.classifier: osx-x86_64
 [INFO] 
-[INFO] ------------------------------------------------------------------------
+[INFO] ------------------------< com.demo:mort-group >-------------------------
 [INFO] Building mort-group 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
+[INFO] --------------------------------[ war ]---------------------------------
 [INFO] 
 [INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ mort-group ---
-[INFO] com.demo:mort-group:pom:1.0-SNAPSHOT
+[INFO] com.demo:mort-group:war:1.0-SNAPSHOT
 [INFO] +- org.springframework:spring-context:jar:4.3.2.RELEASE:compile
 [INFO] |  +- org.springframework:spring-aop:jar:4.3.2.RELEASE:compile
 [INFO] |  \- org.springframework:spring-expression:jar:4.3.2.RELEASE:compile
 [INFO] +- org.springframework:spring-jdbc:jar:4.3.2.RELEASE:compile
 [INFO] |  \- org.springframework:spring-tx:jar:4.3.2.RELEASE:compile
-[INFO] +- ch.qos.logback:logback-classic:jar:1.1.7:compile
-[INFO] |  +- ch.qos.logback:logback-core:jar:1.1.7:compile
-[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.20:compile
+[INFO] +- ch.qos.logback:logback-classic:jar:1.2.3:compile
+[INFO] |  \- ch.qos.logback:logback-core:jar:1.2.3:compile
 [INFO] +- org.springframework:spring-core:jar:4.3.5.RELEASE:compile
 [INFO] |  \- commons-logging:commons-logging:jar:1.2:compile
 [INFO] +- org.springframework:spring-beans:jar:4.3.2.RELEASE:compile
@@ -45,8 +51,7 @@
 [INFO] |     +- org.springframework.amqp:spring-amqp:jar:1.6.1.RELEASE:compile
 [INFO] |     \- com.rabbitmq:http-client:jar:1.0.0.RELEASE:compile
 [INFO] |        \- org.apache.httpcomponents:httpclient:jar:4.3.6:compile
-[INFO] |           +- org.apache.httpcomponents:httpcore:jar:4.3.3:compile
-[INFO] |           \- commons-codec:commons-codec:jar:1.6:compile
+[INFO] |           \- org.apache.httpcomponents:httpcore:jar:4.3.3:compile
 [INFO] +- org.hibernate:hibernate-validator:jar:5.1.3.Final:compile
 [INFO] |  +- org.jboss.logging:jboss-logging:jar:3.1.3.GA:compile
 [INFO] |  \- com.fasterxml:classmate:jar:1.0.0:compile
@@ -60,9 +65,12 @@
 [INFO] +- org.hibernate:hibernate-ehcache:jar:4.3.8.Final:compile
 [INFO] |  +- org.jboss.logging:jboss-logging-annotations:jar:1.2.0.Beta1:compile
 [INFO] |  \- net.sf.ehcache:ehcache-core:jar:2.4.3:compile
-[INFO] +- mysql:mysql-connector-java:jar:5.1.34:compile
+[INFO] +- mysql:mysql-connector-java:jar:8.0.20:compile
+[INFO] |  \- com.google.protobuf:protobuf-java:jar:3.8.0:compile
 [INFO] +- commons-dbcp:commons-dbcp:jar:1.4:compile
 [INFO] |  \- commons-pool:commons-pool:jar:1.5.4:compile
+[INFO] +- com.mchange:c3p0:jar:0.9.5.2:compile
+[INFO] |  \- com.mchange:mchange-commons-java:jar:0.2.11:compile
 [INFO] +- jstl:jstl:jar:1.2:compile
 [INFO] +- commons-fileupload:commons-fileupload:jar:1.2.1:compile
 [INFO] +- commons-io:commons-io:jar:1.4:compile
@@ -94,20 +102,32 @@
 [INFO] +- org.springframework:spring-test:jar:4.3.2.RELEASE:test
 [INFO] +- org.hsqldb:hsqldb:jar:2.3.4:test
 [INFO] +- log4j:log4j:jar:1.2.17:compile
-[INFO] +- net.logstash.logback:logstash-logback-encoder:jar:4.7:compile
-[INFO] |  \- com.fasterxml.jackson.core:jackson-databind:jar:2.6.5:compile
-[INFO] |     +- com.fasterxml.jackson.core:jackson-annotations:jar:2.6.0:compile
-[INFO] |     \- com.fasterxml.jackson.core:jackson-core:jar:2.6.5:compile
-[INFO] +- ch.qos.logback:logback-access:jar:1.2.2:compile
+[INFO] +- net.logstash.logback:logstash-logback-encoder:jar:4.11:compile
+[INFO] |  \- com.fasterxml.jackson.core:jackson-databind:jar:2.8.9:compile
+[INFO] |     +- com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0:compile
+[INFO] |     \- com.fasterxml.jackson.core:jackson-core:jar:2.8.9:compile
+[INFO] +- ch.qos.logback:logback-access:jar:1.2.3:compile
+[INFO] +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] +- net.sourceforge.javacsv:javacsv:jar:2.0:compile
+[INFO] +- org.apache.poi:poi:jar:3.15:compile
+[INFO] |  +- commons-codec:commons-codec:jar:1.10:compile
+[INFO] |  \- org.apache.commons:commons-collections4:jar:4.1:compile
+[INFO] +- org.apache.poi:poi-ooxml:jar:3.15:compile
+[INFO] |  +- org.apache.poi:poi-ooxml-schemas:jar:3.15:compile
+[INFO] |  |  \- org.apache.xmlbeans:xmlbeans:jar:2.6.0:compile
+[INFO] |  |     \- stax:stax-api:jar:1.0.1:compile
+[INFO] |  \- com.github.virtuald:curvesapi:jar:1.04:compile
+[INFO] +- org.slf4j:slf4j-log4j12:jar:1.7.25:test
 [INFO] +- com.mockrunner:mockrunner-core:jar:1.0.1:test
 [INFO] |  \- oro:oro:jar:2.0.8:test
 [INFO] +- com.mockrunner:mockrunner-ejb:jar:1.0.1:test
 [INFO] +- com.mockrunner:mockrunner-jdbc:jar:1.0.1:test
 [INFO] +- javax.transaction:transaction-api:jar:1.1:test
 [INFO] +- com.alibaba:fastjson:jar:1.2.20:compile
+[INFO] +- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] +- berkeleydb:berkeleydb:jar:1.5.1:compile
 [INFO] +- org.aspectj:aspectjweaver:jar:1.8.9:compile
 [INFO] +- com.101tec:zkclient:jar:0.6:compile
-[INFO] |  +- org.slf4j:slf4j-log4j12:jar:1.6.1:compile
 [INFO] |  \- org.apache.zookeeper:zookeeper:jar:3.4.6:compile
 [INFO] |     +- jline:jline:jar:0.9.94:compile
 [INFO] |     \- io.netty:netty:jar:3.7.0.Final:compile
@@ -123,13 +143,69 @@
 [INFO] +- javax.mail:mail:jar:1.4.7:compile
 [INFO] |  \- javax.activation:activation:jar:1.1:compile
 [INFO] +- com.rabbitmq:amqp-client:jar:3.5.1:compile
-[INFO] \- org.springframework.data:spring-data-mongodb:jar:1.9.2.RELEASE:compile
-[INFO]    +- org.springframework.data:spring-data-commons:jar:1.12.2.RELEASE:compile
-[INFO]    \- org.mongodb:mongo-java-driver:jar:2.14.0:compile
+[INFO] +- org.springframework.data:spring-data-mongodb:jar:1.9.2.RELEASE:compile
+[INFO] |  +- org.springframework.data:spring-data-commons:jar:1.12.2.RELEASE:compile
+[INFO] |  \- org.mongodb:mongo-java-driver:jar:2.14.0:compile
+[INFO] +- com.lmax:disruptor:jar:3.2.1:compile
+[INFO] +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:1.3.9:compile
+[INFO] |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] +- org.codehaus.groovy:groovy-all:jar:2.4.15:compile
+[INFO] +- io.grpc:grpc-all:jar:1.33.0:compile
+[INFO] |  +- io.grpc:grpc-api:jar:1.33.0:compile (version selected from constraint [1.33.0,1.33.0])
+[INFO] |  +- io.grpc:grpc-auth:jar:1.33.0:compile
+[INFO] |  |  \- com.google.auth:google-auth-library-credentials:jar:0.20.0:compile
+[INFO] |  +- io.grpc:grpc-context:jar:1.33.0:compile
+[INFO] |  +- io.grpc:grpc-core:jar:1.33.0:compile (version selected from constraint [1.33.0,1.33.0])
+[INFO] |  |  +- com.google.android:annotations:jar:4.1.1.4:runtime
+[INFO] |  |  \- io.perfmark:perfmark-api:jar:0.19.0:runtime
+[INFO] |  +- io.grpc:grpc-grpclb:jar:1.33.0:compile
+[INFO] |  |  \- com.google.protobuf:protobuf-java-util:jar:3.12.0:compile
+[INFO] |  +- io.grpc:grpc-netty:jar:1.33.0:compile
+[INFO] |  |  +- io.netty:netty-codec-http2:jar:4.1.51.Final:compile
+[INFO] |  |  |  +- io.netty:netty-common:jar:4.1.51.Final:compile
+[INFO] |  |  |  +- io.netty:netty-buffer:jar:4.1.51.Final:compile
+[INFO] |  |  |  +- io.netty:netty-transport:jar:4.1.51.Final:compile
+[INFO] |  |  |  |  \- io.netty:netty-resolver:jar:4.1.51.Final:compile
+[INFO] |  |  |  +- io.netty:netty-codec:jar:4.1.51.Final:compile
+[INFO] |  |  |  +- io.netty:netty-handler:jar:4.1.51.Final:compile
+[INFO] |  |  |  \- io.netty:netty-codec-http:jar:4.1.51.Final:compile
+[INFO] |  |  \- io.netty:netty-handler-proxy:jar:4.1.51.Final:runtime
+[INFO] |  |     \- io.netty:netty-codec-socks:jar:4.1.51.Final:runtime
+[INFO] |  +- io.grpc:grpc-okhttp:jar:1.33.0:compile
+[INFO] |  |  +- com.squareup.okhttp:okhttp:jar:2.7.4:compile
+[INFO] |  |  \- com.squareup.okio:okio:jar:1.13.0:runtime
+[INFO] |  +- io.grpc:grpc-protobuf:jar:1.33.0:compile
+[INFO] |  |  +- com.google.api.grpc:proto-google-common-protos:jar:1.17.0:compile
+[INFO] |  |  \- io.grpc:grpc-protobuf-lite:jar:1.33.0:compile
+[INFO] |  +- io.grpc:grpc-services:jar:1.33.0:compile
+[INFO] |  +- io.grpc:grpc-stub:jar:1.33.0:compile
+[INFO] |  +- io.grpc:grpc-testing:jar:1.33.0:compile
+[INFO] |  |  \- io.opencensus:opencensus-api:jar:0.24.0:compile
+[INFO] |  \- io.grpc:grpc-xds:jar:1.33.0:compile
+[INFO] |     +- io.grpc:grpc-alts:jar:1.33.0:compile
+[INFO] |     |  +- org.apache.commons:commons-lang3:jar:3.5:compile
+[INFO] |     |  +- org.conscrypt:conscrypt-openjdk-uber:jar:2.5.1:compile
+[INFO] |     |  \- com.google.auth:google-auth-library-oauth2-http:jar:0.20.0:compile
+[INFO] |     |     +- com.google.auto.value:auto-value-annotations:jar:1.7:compile
+[INFO] |     |     +- com.google.http-client:google-http-client:jar:1.34.0:compile
+[INFO] |     |     |  \- io.opencensus:opencensus-contrib-http-util:jar:0.24.0:compile
+[INFO] |     |     \- com.google.http-client:google-http-client-jackson2:jar:1.34.0:compile
+[INFO] |     +- com.google.re2j:re2j:jar:1.2:compile
+[INFO] |     +- org.bouncycastle:bcpkix-jdk15on:jar:1.61:compile
+[INFO] |     |  \- org.bouncycastle:bcprov-jdk15on:jar:1.61:compile
+[INFO] |     +- io.opencensus:opencensus-proto:jar:0.2.0:compile
+[INFO] |     \- io.grpc:grpc-netty-shaded:jar:1.33.0:compile (version selected from constraint [1.33.0,1.33.0])
+[INFO] +- io.etcd:jetcd-core:jar:0.5.4:compile
+[INFO] |  +- io.etcd:jetcd-common:jar:0.5.4:compile
+[INFO] |  +- net.jodah:failsafe:jar:2.4.0:compile
+[INFO] |  \- com.google.auto.service:auto-service-annotations:jar:1.0-rc7:compile
+[INFO] \- com.beust:jcommander:jar:1.78:compile
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 2.297 s
-[INFO] Finished at: 2017-08-02T17:04:17+08:00
-[INFO] Final Memory: 14M/245M
+[INFO] Total time:  1.468 s
+[INFO] Finished at: 2021-05-27T16:29:22+08:00
 [INFO] ------------------------------------------------------------------------
