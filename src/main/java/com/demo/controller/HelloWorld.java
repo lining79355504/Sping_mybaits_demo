@@ -6,8 +6,10 @@ import com.demo.dao.StockDealJson;
 import com.demo.dao.StockDetail;
 import com.demo.mapper.StockDealJsonMapper;
 import com.demo.mapper.StockDetailMapper;
+import com.demo.ratelimit.GuavaRateLimiterUtil;
 import com.demo.service.impl.AmsDbTestServiceImpl;
 import com.demo.service.impl.MqDemoServiceImpl;
+import com.demo.springCore.annotation.Limit;
 import com.demo.springCore.resource.MyBeanAwareByAnnotation;
 import com.demo.utils.PropertyUtils;
 import com.google.common.util.concurrent.RateLimiter;
@@ -27,11 +29,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -72,6 +76,12 @@ public class HelloWorld {
 
     private final static Logger logger = LoggerFactory.getLogger(HelloWorld.class);
 
+    private static RateLimiter limiter;
+
+    static {
+        limiter = GuavaRateLimiterUtil.createResourceRateLimiter("test", 1);
+    }
+
     /*
         @RequestParam Map<String, String> params   get post 都可已接收 全部的参数转为一个map
     *    public void export(@RequestParam Map<String, String> params ,HttpServletResponse response){
@@ -81,9 +91,10 @@ public class HelloWorld {
     @ResponseBody
     @RequestMapping("/hello")
     @MyAnnotation(value = "hello")
+    @Limit(name = "hello", qps = 1)
     public String index(HttpServletRequest req, HttpServletResponse res) {
 
-        RateLimiter rateLimiter = RateLimiter.create(5);
+        RateLimiter rateLimiter = limiter;
 
         PropertyUtils.get("database.url", "/test.properties");
 
@@ -192,6 +203,34 @@ public class HelloWorld {
         System.out.println(sList.get(0).getClass().toString());
 
 
+        //装箱 Integer 缓存 反射
+        Class cache = Integer.class.getDeclaredClasses()[0];
+        Field c = null;
+        try {
+            c = cache.getDeclaredField("cache");
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        c.setAccessible(true);
+
+        Integer[] array = new Integer[0];
+        try {
+            array = (Integer[]) c.get(cache);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+// array[129] is 1
+        array[130] = array[129];
+// Set 2 to be 1
+        array[131] = array[129];
+// Set 3 to be 1
+//        Integer a = new Integer(1);
+        Integer a = 1;
+        if (a == (Integer) 1 && a == (Integer) 2 && a == (Integer) 3) {
+            System.out.println("Success");
+        } else {
+            System.out.println("no");
+        }
     }
 
 

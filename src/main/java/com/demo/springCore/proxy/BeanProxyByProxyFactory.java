@@ -1,5 +1,8 @@
 package com.demo.springCore.proxy;
 
+import com.demo.ratelimit.GuavaRateLimiterUtil;
+import com.demo.springCore.annotation.Limit;
+import com.google.common.util.concurrent.RateLimiter;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BeanProxyByProxyFactory implements BeanPostProcessor {
 
-    private static final Logger logger = LoggerFactory.getLogger(BeanProxyByProxyFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(LImitBeanProxyFactory.class);
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -45,10 +48,12 @@ public class BeanProxyByProxyFactory implements BeanPostProcessor {
                 logger.info("BeanProxyByProxyFactory 结束执行 {} end", methodName);
                 return result;
             });
+
             pfb.addAdvisor(advisor);
 
             return pfb.getObject();
         }
         return bean;
     }
+
 }

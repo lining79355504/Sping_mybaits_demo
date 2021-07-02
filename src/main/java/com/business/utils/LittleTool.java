@@ -2,6 +2,7 @@ package com.business.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,11 @@ import java.util.Map;
 /**
  * Author:  lining17
  * Date :  2020-09-20
+ *
+ *  ClassPathBeanDefinitionScanner test
+ *
  */
+@Component
 public class LittleTool {
 
     public static void mapValueSum() {

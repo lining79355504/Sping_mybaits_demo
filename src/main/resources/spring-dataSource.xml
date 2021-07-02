@@ -1,0 +1,205 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aontext="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:sharding="http://shardingsphere.apache.org/schema/shardingsphere/sharding"
+       xmlns:master-slave="http://shardingsphere.apache.org/schema/shardingsphere/masterslave"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://shardingsphere.apache.org/schema/shardingsphere/sharding
+    http://shardingsphere.apache.org/schema/shardingsphere/sharding/sharding.xsd
+    http://shardingsphere.apache.org/schema/shardingsphere/masterslave
+    http://shardingsphere.apache.org/schema/shardingsphere/masterslave/master-slave.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+<!--   <util:properties id="mortTestConfigs">-->
+<!--      &lt;!&ndash;<prop key="corgi.keeper.address">${corgi.keeper.address}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="skinny.server.address">${skinny.server.address}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="vaccum.zookeeper.address">${vaccum.zookeeper.address}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="vaccum.zookeeper.session.timeout">${vaccum.zookeeper.session.timeout}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="vaccum.zookeeper.connect.timeout">${vaccum.zookeeper.connect.timeout}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="sequence.config">${sequence.config}</prop>&ndash;&gt;-->
+<!--      <prop key="database.url">${database.url}</prop>-->
+<!--      <prop key="database.driver">${database.driver}</prop>-->
+<!--      <prop key="database.user">${database.user}</prop>-->
+<!--      <prop key="database.password">${database.password}</prop>-->
+
+<!--   </util:properties>-->
+
+   <!-- 配置文件引入 必须在resource 下 对应环境下的  dev_config.properties  -->
+<!--   <context:property-placeholder location="classpath*:*.properties"/>-->
+
+
+   <!--&lt;!&ndash; 配置数据源  根据 id="jdbcDataSource" ref 到mybatis jdbc 数据连接&ndash;&gt;-->
+   <!--<bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+      <!--<property name="driverClassName">-->
+         <!--<value>com.mysql.jdbc.Driver</value>-->
+      <!--</property>-->
+      <!--<property name="url">-->
+         <!--<value>jdbc:mysql://172.19.30.22/ams?useUnicode=true&amp;characterEncoding=UTF-8</value>-->
+         <!--&lt;!&ndash;ams是我的数据库  &ndash;&gt;-->
+      <!--</property>-->
+      <!--<property name="username">-->
+         <!--<value>root</value>-->
+      <!--</property>-->
+      <!--<property name="password">-->
+         <!--<value>Mls@20160421</value>-->
+      <!--</property>-->
+   <!--</bean>-->
+
+   <!-- 配置数据源  根据 id="jdbcDataSource" ref 到mybatis jdbc 数据连接-->
+   <bean id="jdbcDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName">
+         <value>${database.driver}</value>
+      </property>
+      <property name="url">
+         <value>${database.url}?useUnicode=true&amp;characterEncoding=UTF-8</value>
+         <!--ams是我的数据库  -->
+      </property>
+      <property name="username">
+         <value>${database.user}</value>
+      </property>
+      <property name="password">
+         <value>${database.password}</value>
+      </property>
+   </bean>
+
+   <bean id="c3p0Master" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+      <property name="driverClass" value="${database.driver}"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="user" value="${database.user}"></property>
+      <property name="password" value="${database.password}"></property>
+      <property name="maxPoolSize" value="10"></property>
+      <property name="maxIdleTime" value="7200"></property>
+      <property name="testConnectionOnCheckin" value="true"></property>
+      <property name="idleConnectionTestPeriod" value="5"></property>
+      <property name="preferredTestQuery" value="SELECT 1"></property>
+      <property name="checkoutTimeout" value="1800000"></property>
+   </bean>
+
+   <bean id="c3p0Salver1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+      <property name="driverClass" value="${database.driver}"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="user" value="${database.user}"></property>
+      <property name="password" value="${database.password}"></property>
+      <property name="maxPoolSize" value="10"></property>
+      <property name="maxIdleTime" value="7200"></property>
+      <property name="testConnectionOnCheckin" value="true"></property>
+      <property name="idleConnectionTestPeriod" value="5"></property>
+      <property name="preferredTestQuery" value="SELECT 1"></property>
+      <property name="checkoutTimeout" value="1800000"></property>
+   </bean>
+
+
+   <bean id="c3p0Salver2" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+      <property name="driverClass" value="${database.driver}"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="user" value="${database.user}"></property>
+      <property name="password" value="${database.password}"></property>
+      <property name="maxPoolSize" value="10"></property>
+      <property name="maxIdleTime" value="7200"></property>
+      <property name="testConnectionOnCheckin" value="true"></property>
+      <property name="idleConnectionTestPeriod" value="5"></property>
+      <property name="preferredTestQuery" value="SELECT 1"></property>
+      <property name="checkoutTimeout" value="1800000"></property>
+   </bean>
+
+
+   <!--
+   1：注册中心 配置动态生效  给一个token和对应的appkey一致 通过接口鉴权获取配置中心的配置
+   https://shardingsphere.apache.org/document/legacy/4.x/document/cn/features/orchestration/supported-center-repo/
+   2：鉴权 appkey     给一个token和对应的appkey一致 通过接口鉴权获取配置中心的配置
+   3：数据库密码脱敏   密码脱敏由配置中心对应的占位符 通过配置中心的脱敏功能实现脱敏
+
+   -->
+   <!-- 从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若strategy-ref存在则忽略该配置-->
+   <master-slave:load-balance-algorithm id="salverLoadBalanceAlgorithm" type="RANDOM"/>
+   <master-slave:data-source id="shardDataSource"
+                             master-data-source-name="c3p0Master"
+                             slave-data-source-names="c3p0Salver1,c3p0Salver2"
+                             strategy-ref="salverLoadBalanceAlgorithm">
+
+<!--      放在 master-slave 里面 参考http://shardingsphere.apache.org/schema/shardingsphere/masterslave/master-slave.xsd
+
+  xsd:element name="data-source"中的  <xsd:element ref="props"
+<xsd:element name="data-source">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element ref="props" minOccurs="0" />
+            </xsd:all>
+            <xsd:attribute name="id" type="xsd:string" use="required" />
+            <xsd:attribute name="master-data-source-name" type="xsd:string" use="required" />
+            <xsd:attribute name="slave-data-source-names" type="xsd:string" use="required" />
+            <xsd:attribute name="strategy-ref" type="xsd:string" />
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="props">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:propsType" />
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+-->
+      <master-slave:props>
+         <prop key="sql.show">true</prop>
+         <prop key="executor.size">10</prop>
+         <prop key="foo">bar</prop>
+      </master-slave:props>
+
+   </master-slave:data-source>
+   <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+      <!--<property name="dataSource" ref="jdbcDataSource" />-->
+      <!--<property name="configLocation" value="/WEB-INF/mybatis-config.xml"></property>-->
+   <!--</bean>-->
+   <!--<bean id="TokenDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+      <!--<property name="mapperInterface" value="com.springMyBatis.system.dao.UserDao"></property>-->
+      <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+   <!--</bean>-->
+
+
+   <!-- MyBatis配置 -->
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="shardDataSource" />
+      <property name="configLocation" value="classpath:conf/MyBatisConfiguration.xml" />
+      <property name="mapperLocations" value="classpath*:/sqlmap/map/*Mapper.xml" />
+      <!--<property name="typeAliasesPackage" value="${mybatis.alias.basepackage}" />-->
+   </bean>
+
+   <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+      <property name="basePackage" value="com.demo.mapper" />
+      <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+<!--      此属性标识只扫描带有制定注解的dao 该注解可自定义-->
+<!--      <property name="annotationClass" value="org.springframework.stereotype.Repository"/>-->
+   </bean>
+
+   <!-- transaction support-->
+   <!-- PlatformTransactionMnager -->
+   <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="shardDataSource" />
+   </bean>
+   <!-- enable transaction annotation support -->
+   <tx:annotation-driven transaction-manager="txManager"/>
+
+</beans>
+
+
+
+
+
+
+
+
