@@ -24,7 +24,7 @@ public class HttpInvokerCustomerIntercept implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        return null;
+        return bean;
     }
 
     @Override
@@ -36,12 +36,12 @@ public class HttpInvokerCustomerIntercept implements BeanPostProcessor {
 
             NameMatchMethodPointcutAdvisor advisor = new NameMatchMethodPointcutAdvisor();
             // method 匹配
-            advisor.addMethodName("invoke");
+            advisor.addMethodName("*");
             advisor.setAdvice((MethodInterceptor) invocation -> {
                 String methodName = invocation.getMethod().getName();
-                logger.info("BeanProxyByProxyFactory 开始执行 {} start", methodName);
+                logger.info("HttpInvokerCustomerIntercept 开始执行 {} start", methodName);
                 Object result = invocation.getMethod().invoke(invocation.getThis(), invocation.getArguments());
-                logger.info("BeanProxyByProxyFactory 结束执行 {} end", methodName);
+                logger.info("HttpInvokerCustomerIntercept 结束执行 {} end", methodName);
                 return result;
             });
 

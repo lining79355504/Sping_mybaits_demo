@@ -8,6 +8,7 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:sharding="http://shardingsphere.apache.org/schema/shardingsphere/sharding"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:master-slave="http://shardingsphere.apache.org/schema/shardingsphere/masterslave"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/context
@@ -19,7 +20,7 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 	http://shardingsphere.apache.org/schema/shardingsphere/sharding
     http://shardingsphere.apache.org/schema/shardingsphere/sharding/sharding.xsd
-    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://shardingsphere.apache.org/schema/shardingsphere/masterslave http://shardingsphere.apache.org/schema/shardingsphere/masterslave/master-slave.xsd">
 
 
    <bean id="responseChangeFilter" class="com.demo.filters.ResponseChangeFilter"/>
@@ -241,13 +242,6 @@
       </property>
    </bean>
 
-   <import resource="classpath*:spring-dataSource.xml"/>
-
-
-   <bean id="myBeanPackageDefinition" class="com.demo.springCore.beanRegister.MyBeanPackageDefinition">
-         <property name="basePackage" value="com.business.utils"/>
-   </bean>
-
 
    <!--    SOA  http invoker test -->
    <bean id="httpInvokerRequestExecutor"
@@ -258,7 +252,7 @@
 
    <bean id="soaTestApiService"
          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-      <property name="serviceUrl" value="${crm.service.url}/agentService"/>
+      <property name="serviceUrl" value="localhost:80/agentService"/>
       <property name="serviceInterface"
                 value="com.demo.api.SoaTestApiService"/>
       <property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>

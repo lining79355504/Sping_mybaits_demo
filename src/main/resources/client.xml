@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config mode="client">
+    <servers>
+        <!-- 服务端地址, 端口固定-->
+        <!-- 如果有多个Server, 就继续增加相应的节点配置 -->
+        <!-- 这是告诉客户端应该去链接哪个服务端，从哪个服务端里获取配置信息 ，相关源码也在 DefaultClientConfigManager中 -->
+        <server ip="127.0.0.1" port="2280" http-port="8080" />
+    </servers>
+</config>
