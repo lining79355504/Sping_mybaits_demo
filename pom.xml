@@ -12,7 +12,7 @@
     <properties>
         <dao.target.dir>src/main/java</dao.target.dir>
         <jetcd.version>0.5.4</jetcd.version>
-        <latest.release.version>4.0.0</latest.release.version>
+        <latest.release.version>4.1.1</latest.release.version>
     </properties>
 
 
@@ -372,6 +372,11 @@
                     <artifactId>mockejb</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping.cat</groupId>
+            <artifactId>cat-client</artifactId>
+            <version>1.5.3-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.mockrunner</groupId>

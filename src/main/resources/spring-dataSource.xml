@@ -7,6 +7,7 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:sharding="http://shardingsphere.apache.org/schema/shardingsphere/sharding"
+       xmlns:master-slave="http://shardingsphere.apache.org/schema/shardingsphere/masterslave"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
@@ -19,49 +20,26 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 	http://shardingsphere.apache.org/schema/shardingsphere/sharding
     http://shardingsphere.apache.org/schema/shardingsphere/sharding/sharding.xsd
-    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    http://shardingsphere.apache.org/schema/shardingsphere/masterslave
+    http://shardingsphere.apache.org/schema/shardingsphere/masterslave/master-slave.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-   <bean id="responseChangeFilter" class="com.demo.filters.ResponseChangeFilter"/>
+<!--   <util:properties id="mortTestConfigs">-->
+<!--      &lt;!&ndash;<prop key="corgi.keeper.address">${corgi.keeper.address}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="skinny.server.address">${skinny.server.address}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="vaccum.zookeeper.address">${vaccum.zookeeper.address}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="vaccum.zookeeper.session.timeout">${vaccum.zookeeper.session.timeout}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="vaccum.zookeeper.connect.timeout">${vaccum.zookeeper.connect.timeout}</prop>&ndash;&gt;-->
+<!--      &lt;!&ndash;<prop key="sequence.config">${sequence.config}</prop>&ndash;&gt;-->
+<!--      <prop key="database.url">${database.url}</prop>-->
+<!--      <prop key="database.driver">${database.driver}</prop>-->
+<!--      <prop key="database.user">${database.user}</prop>-->
+<!--      <prop key="database.password">${database.password}</prop>-->
 
-   <context:component-scan base-package="com.demo.service"/>
-   <context:component-scan base-package="com.demo.mapper"/>
-   <context:component-scan base-package="com.demo.springCore"/>
-   <context:component-scan base-package="com.demo.utils"/>
-   <context:component-scan base-package="com.demo.file"/>
-   <!--<context:component-scan base-package="com.demo.filters"/>-->
-   <!--<context:component-scan base-package="com.demo.bean"/>-->
-   <bean id="user" class="com.demo.bean.UserEntity">
-      <property name="name" value="mort">
-      </property>
-      <property name="age" value="122"></property>
-   </bean>
-    <!--<aop:aspectj-autoproxy />-->
-
-
-   <util:properties id="mortTestConfigs">
-      <!--<prop key="corgi.keeper.address">${corgi.keeper.address}</prop>-->
-      <!--<prop key="skinny.server.address">${skinny.server.address}</prop>-->
-      <!--<prop key="vaccum.zookeeper.address">${vaccum.zookeeper.address}</prop>-->
-      <!--<prop key="vaccum.zookeeper.session.timeout">${vaccum.zookeeper.session.timeout}</prop>-->
-      <!--<prop key="vaccum.zookeeper.connect.timeout">${vaccum.zookeeper.connect.timeout}</prop>-->
-      <!--<prop key="sequence.config">${sequence.config}</prop>-->
-      <prop key="database.url">${database.url}</prop>
-      <prop key="database.driver">${database.driver}</prop>
-      <prop key="database.user">${database.user}</prop>
-      <prop key="database.password">${database.password}</prop>
-
-   </util:properties>
-
-   <!--<util:properties id="mortTestConfigs" location="classpath:test.properties"/>-->
-
-   <util:properties id="flowControl">
-      <prop key="flow.all">${flow.count}</prop>
-      <prop key="flow.hellw">${flow.hello}</prop>
-   </util:properties>
+<!--   </util:properties>-->
 
    <!-- 配置文件引入 必须在resource 下 对应环境下的  dev_config.properties  -->
-   <context:property-placeholder location="classpath*:*.properties"/>
+<!--   <context:property-placeholder location="classpath*:*.properties"/>-->
 
 
    <!--&lt;!&ndash; 配置数据源  根据 id="jdbcDataSource" ref 到mybatis jdbc 数据连接&ndash;&gt;-->
@@ -148,15 +126,41 @@
    -->
    <!-- 从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若strategy-ref存在则忽略该配置-->
    <master-slave:load-balance-algorithm id="salverLoadBalanceAlgorithm" type="RANDOM"/>
-   <master-slave:data-source id="shardDataSource" master-data-source-name="c3p0Master" slave-data-source-names="c3p0Salver1,c3p0Salver2" strategy-ref="salverLoadBalanceAlgorithm" >
+   <master-slave:data-source id="shardDataSource"
+                             master-data-source-name="c3p0Master"
+                             slave-data-source-names="c3p0Salver1,c3p0Salver2"
+                             strategy-ref="salverLoadBalanceAlgorithm">
 
-   <master-slave:props>
-      <prop key="sql.show">true</prop>
-      <prop key="executor.size">10</prop>
-      <prop key="foo">bar</prop>
-   </master-slave:props>
+<!--      放在 master-slave 里面 参考http://shardingsphere.apache.org/schema/shardingsphere/masterslave/master-slave.xsd
+
+  xsd:element name="data-source"中的  <xsd:element ref="props"
+<xsd:element name="data-source">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element ref="props" minOccurs="0" />
+            </xsd:all>
+            <xsd:attribute name="id" type="xsd:string" use="required" />
+            <xsd:attribute name="master-data-source-name" type="xsd:string" use="required" />
+            <xsd:attribute name="slave-data-source-names" type="xsd:string" use="required" />
+            <xsd:attribute name="strategy-ref" type="xsd:string" />
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="props">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:propsType" />
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+-->
+      <master-slave:props>
+         <prop key="sql.show">true</prop>
+         <prop key="executor.size">10</prop>
+         <prop key="foo">bar</prop>
+      </master-slave:props>
+
    </master-slave:data-source>
-
    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
       <!--<property name="dataSource" ref="jdbcDataSource" />-->
       <!--<property name="configLocation" value="/WEB-INF/mybatis-config.xml"></property>-->
@@ -178,102 +182,17 @@
    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
       <property name="basePackage" value="com.demo.mapper" />
       <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+<!--      此属性标识只扫描带有制定注解的dao 该注解可自定义-->
+<!--      <property name="annotationClass" value="org.springframework.stereotype.Repository"/>-->
    </bean>
 
-   <!--  spring  redis bean setting    -->
-   <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-      <property name="maxIdle" value="${redis.maxIdle}" />
-      <!--<property name="maxActive" value="${redis.maxActive}" />-->
-      <!--<property name="maxWait" value="${redis.maxWait}" />-->
-      <property name="maxWaitMillis" value="${redis.maxWait}" />
-      <property name="maxTotal" value="${redis.maxActive}" />
-      <property name="minIdle" value="${redis.minIdle}" />
-      <property name="testOnBorrow" value="${redis.testOnBorrow}" />
-      <property name="testOnReturn" value="${redis.testOnBorrow}" />
-      <property name="testWhileIdle" value="${redis.testOnBorrow}" />
+   <!-- transaction support-->
+   <!-- PlatformTransactionMnager -->
+   <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="shardDataSource" />
    </bean>
-
-   <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-         p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.passwd}"
-         p:usePool="true"
-         p:timeout="300"
-         p:poolConfig-ref="poolConfig"
-   >
-   </bean>
-
-   <!--<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">-->
-   <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-      <property name="connectionFactory"   ref="connectionFactory" />
-      <property name="keySerializer">  <!-- 声明序列化方是 存储到redis 的key value  不会有乱码-->
-         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
-      </property>
-      <property name="valueSerializer">
-         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
-      </property>
-      <property name="hashKeySerializer">
-         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
-      </property>
-      <property name="hashValueSerializer">
-         <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
-      </property>
-   </bean>
-
-
-
-   <util:properties id="redisConf">
-      <prop key="redisConf.host">${redis.host}</prop>
-      <prop key="redisConf.port">${redis.port}</prop>
-      <prop key="redisConf.port">${redis.passwd}</prop>
-   </util:properties>
-
-   <!--spring bean config end -->
-
-
-   <!--自定义 property 解析文件 xml 使用${}替换properties中的配置 原理是编译的时候替换
-   分布式配置Lion 也是这样实现的xml配置的替换 配置文件内容不会泄露-->
-   <bean id="propertyConfigurer" class="com.demo.utils.PropertyPlaceholder">
-      <property name="order" value="2"/>
-      <property name="ignoreUnresolvablePlaceholders" value="true" />
-      <property name="locations">
-         <list>
-            <value>classpath:test.properties</value>
-         </list>
-      </property>
-   </bean>
-
-   <import resource="classpath*:spring-dataSource.xml"/>
-
-
-   <bean id="myBeanPackageDefinition" class="com.demo.springCore.beanRegister.MyBeanPackageDefinition">
-         <property name="basePackage" value="com.business.utils"/>
-   </bean>
-
-
-   <!--    SOA  http invoker test -->
-   <bean id="httpInvokerRequestExecutor"
-         class="org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor">
-      <property name="connectTimeout" value="3000"/>
-      <property name="readTimeout" value="60000"/>
-   </bean>
-
-   <bean id="soaTestApiService"
-         class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-      <property name="serviceUrl" value="${crm.service.url}/agentService"/>
-      <property name="serviceInterface"
-                value="com.demo.api.SoaTestApiService"/>
-      <property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>
-   </bean>
-
-<!--   参照  mvc:interceptors  -->
-<!--&lt;!&ndash;   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">&ndash;&gt;-->
-<!--   <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
-<!--      <property name="interceptors">-->
-<!--         <list>-->
-<!--            <ref bean="limiterInterceptor"/>-->
-<!--         </list>-->
-<!--      </property>-->
-<!--   </bean>-->
-
+   <!-- enable transaction annotation support -->
+   <tx:annotation-driven transaction-manager="txManager"/>
 
 </beans>
 
