@@ -35,6 +35,7 @@ target/mort-group-1.0-SNAPSHOT/WEB-INF/lib/
 /.idea/
 /mort-group.iml
 *.iml
+/*.iml
 logs/
 src/main/java/com/demo/grpc/api/
 src/main/java/com/demo/grpc/registry/consul/
