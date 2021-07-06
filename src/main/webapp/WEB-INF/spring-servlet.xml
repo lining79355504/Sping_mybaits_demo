@@ -72,6 +72,10 @@
             <mvc:mapping path="/**"/>
             <bean class="com.demo.aop.MvcInterceptors"/>
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.demo.springCore.controllerMethodInterceptor.LimiterInterceptor"/>
+        </mvc:interceptor>
     </mvc:interceptors>
 
 </beans>

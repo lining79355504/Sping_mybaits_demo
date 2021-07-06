@@ -132,6 +132,33 @@
          <property name="basePackage" value="com.business.utils"/>
    </bean>
 
+
+   <!--    SOA  http invoker test -->
+   <bean id="httpInvokerRequestExecutor"
+         class="org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor">
+      <property name="connectTimeout" value="3000"/>
+      <property name="readTimeout" value="60000"/>
+   </bean>
+
+   <bean id="soaTestApiService"
+         class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+      <property name="serviceUrl" value="${crm.service.url}/agentService"/>
+      <property name="serviceInterface"
+                value="com.demo.api.SoaTestApiService"/>
+      <property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>
+   </bean>
+
+<!--   参照  mvc:interceptors  -->
+<!--&lt;!&ndash;   <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">&ndash;&gt;-->
+<!--   <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
+<!--      <property name="interceptors">-->
+<!--         <list>-->
+<!--            <ref bean="limiterInterceptor"/>-->
+<!--         </list>-->
+<!--      </property>-->
+<!--   </bean>-->
+
+
 </beans>
 
 

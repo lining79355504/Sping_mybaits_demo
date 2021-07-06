@@ -13,6 +13,8 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Method;
+
 /**
  * @author mort
  * @Description
@@ -20,12 +22,15 @@ import org.springframework.stereotype.Component;
  * <p>
  * <p>
  * ProxyFactoryBean 创建spring的bean代理
+ *
+ * 熔断 降级 故障注入 流量探测 恢复降级  方法级别限流 打点 性能分析
+ *
  **/
 @Component
-public class LImitBeanProxyFactory implements BeanPostProcessor {
+public class LimitBeanProxyFactory implements BeanPostProcessor {   //这种方式获取不到 controller的bean注解
 
 
-    private static final Logger logger = LoggerFactory.getLogger(BeanProxyByProxyFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(LimitBeanProxyFactory.class);
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -34,6 +39,10 @@ public class LImitBeanProxyFactory implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        if(!hasLimitAnnotation(bean)){
+            return bean;
+        }
+
         ProxyFactoryBean pfb = new ProxyFactoryBean();
         pfb.setTarget(bean);
         pfb.setAutodetectInterfaces(false);
@@ -42,10 +51,6 @@ public class LImitBeanProxyFactory implements BeanPostProcessor {
         // method 匹配
         advisor.addMethodName("*");
         advisor.setAdvice((MethodInterceptor) invocation -> {
-//                String methodName = invocation.getMethod().getName();
-//                logger.info("BeanProxyByProxyFactory 开始执行 {} start", methodName);
-//                Object result = invocation.getMethod().invoke(invocation.getThis(), invocation.getArguments());
-//                logger.info("BeanProxyByProxyFactory 结束执行 {} end", methodName);
 
             boolean annotation = invocation.getMethod().isAnnotationPresent(Limit.class);
             if (annotation) {
@@ -56,24 +61,28 @@ public class LImitBeanProxyFactory implements BeanPostProcessor {
                     RateLimiter rateLimiter = GuavaRateLimiterUtil.createResourceRateLimiter(name, qps);
                     boolean tryAcquire = rateLimiter.tryAcquire();
                     if (tryAcquire) {
-                        Object result = invocation.getMethod().invoke(invocation.getThis(), invocation.getArguments());
-                        return result;
+                        return invocation.getMethod().invoke(invocation.getThis(), invocation.getArguments());
                     } else {
-                        throw new Exception("rate limiter");
+                        logger.info("rate limiter {} , qps {}", name, qps);
+                        throw new Exception("rate limiter" + name);
                     }
-                } else {
-                    return invocation.getMethod().invoke(invocation.getThis(), invocation.getArguments());
                 }
-
             }
-
-            return null;
+            return invocation.getMethod().invoke(invocation.getThis(), invocation.getArguments());
 
         });
 
         pfb.addAdvisor(advisor);
         return pfb.getObject();
+    }
 
-//        return bean;
+    private boolean hasLimitAnnotation(Object bean) {
+        Method[] methods = bean.getClass().getMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(Limit.class)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
