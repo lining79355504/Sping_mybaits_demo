@@ -36,7 +36,7 @@ public class HttpInvokerCustomerIntercept implements BeanPostProcessor {
 
             NameMatchMethodPointcutAdvisor advisor = new NameMatchMethodPointcutAdvisor();
             // method 匹配
-            advisor.addMethodName("*");
+            advisor.addMethodName("invoke");
             advisor.setAdvice((MethodInterceptor) invocation -> {
                 String methodName = invocation.getMethod().getName();
                 logger.info("HttpInvokerCustomerIntercept 开始执行 {} start", methodName);

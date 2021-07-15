@@ -97,6 +97,8 @@ public class HelloWorld {
 
             SoaTestParamApiDto paramApiDto = new SoaTestParamApiDto();
             paramApiDto.setId(0);
+            stockDealJsonMapper.selectByPrimaryKey(381549L);
+
             soaTestApiService.getById(paramApiDto);
             String ret = "";
 

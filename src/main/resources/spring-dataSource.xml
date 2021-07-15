@@ -78,7 +78,7 @@
 
    <bean id="c3p0Master" class="com.mchange.v2.c3p0.ComboPooledDataSource">
       <property name="driverClass" value="${database.driver}"></property>
-      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8&amp;queryInterceptors=com.demo.jdbc.MysqlConnectorInterceptor"></property>
       <property name="user" value="${database.user}"></property>
       <property name="password" value="${database.password}"></property>
       <property name="maxPoolSize" value="10"></property>
@@ -91,7 +91,7 @@
 
    <bean id="c3p0Salver1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
       <property name="driverClass" value="${database.driver}"></property>
-      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8&amp;queryInterceptors=com.demo.jdbc.MysqlConnectorInterceptor"></property>
       <property name="user" value="${database.user}"></property>
       <property name="password" value="${database.password}"></property>
       <property name="maxPoolSize" value="10"></property>
@@ -105,7 +105,7 @@
 
    <bean id="c3p0Salver2" class="com.mchange.v2.c3p0.ComboPooledDataSource">
       <property name="driverClass" value="${database.driver}"></property>
-      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+      <property name="jdbcUrl" value="${database.url}?useUnicode=true&amp;characterEncoding=UTF-8&amp;queryInterceptors=com.demo.jdbc.MysqlConnectorInterceptor"></property>
       <property name="user" value="${database.user}"></property>
       <property name="password" value="${database.password}"></property>
       <property name="maxPoolSize" value="10"></property>

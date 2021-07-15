@@ -45,7 +45,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:6.0_ALPHA" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:5.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.2.RELEASE" level="project" />
@@ -150,20 +150,11 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.derby:derby:10.12.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: ognl:ognl:3.1.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: cglib:cglib:3.2.4" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:5.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:6.0_ALPHA" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman-bmunit:3.0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman:3.0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman-submit:3.0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.byteman:byteman-install:3.0.6" level="project" />
-    <orderEntry type="module-library">
-      <library name="Maven: com.sun:tools:1.6">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/sun/tools/1.6/tools-1.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hsqldb:hsqldb:2.3.4" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
@@ -187,6 +178,12 @@
     <orderEntry type="library" scope="TEST" name="Maven: oro:oro:2.0.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.mockrunner:mockrunner-ejb:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.dianping.cat:cat-client:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.unidal.framework:foundation-service:2.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-container-default:1.6" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-classworlds:2.5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.xbean:xbean-reflect:3.7" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.0.24" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.5.4" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.0.24.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.mockrunner:mockrunner-jdbc:1.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: javax.transaction:transaction-api:1.1" level="project" />
