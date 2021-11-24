@@ -1,6 +1,7 @@
 package com.demo.mapper;
 
 import com.demo.dao.StockDealJson;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @Description 
@@ -15,6 +16,8 @@ public interface StockDealJsonMapper {
     int insertSelective(StockDealJson record);
 
     StockDealJson selectByPrimaryKey(Long id);
+
+    StockDealJson selectMuliTable(@Param("id") Long id, @Param("table_name") String tableName);
 
     int updateByPrimaryKeySelective(StockDealJson record);
 

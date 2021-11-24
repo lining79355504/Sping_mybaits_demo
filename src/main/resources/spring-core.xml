@@ -250,12 +250,22 @@
       <property name="readTimeout" value="60000"/>
    </bean>
 
+   <!--   invoker -->
    <bean id="soaTestApiService"
          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-      <property name="serviceUrl" value="localhost:80/agentService"/>
-      <property name="serviceInterface"
-                value="com.demo.api.SoaTestApiService"/>
+      <property name="serviceUrl" value="localhost:80/service/soaTestApiService"/>
+      <property name="serviceInterface" value="com.demo.api.SoaTestApiService"/>
       <property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>
+   </bean>
+
+
+   <!--   export -->
+   <bean name="/service/soaTestApiService" id="crmAccountInvoiceServiceExporter"
+         class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+      <property name="service">
+         <bean id="soaTestApiServiceImpl" class="com.demo.api.SoaTestApiServiceImpl"/>
+      </property>
+      <property name="serviceInterface" value="com.demo.api.SoaTestApiService"/>
    </bean>
 
 <!--   参照  mvc:interceptors  -->

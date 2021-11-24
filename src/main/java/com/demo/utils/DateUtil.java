@@ -1,5 +1,8 @@
 package com.demo.utils;
 
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -154,6 +157,16 @@ public class DateUtil {
         return sdf.format(new Date(timestamp));
     }
 
+    /**
+     * 环比计算
+     * @param begin
+     * @param end
+     * @return
+     */
+    public static Pair<Timestamp, Timestamp> buildChain(Timestamp begin, Timestamp end) {
+        long gap = end.getTime() - begin.getTime();
+        return Pair.of(new Timestamp(begin.getTime() - gap), begin);
+    }
 
 
     public static void main(String[] args) {

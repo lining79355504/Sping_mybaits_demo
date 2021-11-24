@@ -89,5 +89,10 @@ public class HelloWorldServer {
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }
+
+        @Override
+        public void sayHelloAgain(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
+            super.sayHelloAgain(request, responseObserver);
+        }
     }
 }
