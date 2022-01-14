@@ -83,11 +83,11 @@ public class JacksonUtils {
      * </list>
      * </property>
      * <property name="objectMapper">
-     * <bean class="com.bilibili.adp.advertiser.portal.openapi.valid.serialize.CustomMapper"/>
+     * <bean class="com.bi.adp.advertiser.portal.openapi.valid.serialize.CustomMapper"/>
      * </property>
      * </bean>
      *
-     * <bean class="com.bilibili.adp.advertiser.portal.openapi.valid.serialize.OpenAPICustomSerializer"/>
+     * <bean class="com.bi.adp.advertiser.portal.openapi.valid.serialize.OpenAPICustomSerializer"/>
      *
      * <bean class=" org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
      * <property name="messageConverters">

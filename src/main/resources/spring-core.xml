@@ -246,21 +246,23 @@
    <!--    SOA  http invoker test -->
    <bean id="httpInvokerRequestExecutor"
          class="org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor">
-      <property name="connectTimeout" value="3000"/>
+      <property name="connectTimeout" value="30000"/>
       <property name="readTimeout" value="60000"/>
+      <property name="connectionRequestTimeout" value="60000"/>
    </bean>
 
+<!--  注意 http invoker 不能作为 服务和调用方 在一个项目里使用同一个接口 -->
    <!--   invoker -->
    <bean id="soaTestApiService"
-         class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-      <property name="serviceUrl" value="localhost:80/service/soaTestApiService"/>
+         class="com.demo.springCore.httpInvoker.MyMyHttpInvoker">
+      <property name="serviceUrl" value="http://localhost:8080/mort_group_war_exploded/service/soaTestApiService"/>
       <property name="serviceInterface" value="com.demo.api.SoaTestApiService"/>
       <property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>
    </bean>
 
 
    <!--   export -->
-   <bean name="/service/soaTestApiService" id="crmAccountInvoiceServiceExporter"
+   <bean name="/service/soaTestApiService" id="soaTestApiServiceExport"
          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
       <property name="service">
          <bean id="soaTestApiServiceImpl" class="com.demo.api.SoaTestApiServiceImpl"/>

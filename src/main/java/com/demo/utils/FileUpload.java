@@ -167,7 +167,7 @@ public class FileUpload {
         fileMap.put("file", "/Users/mort/Downloads/640*400.jpeg");
 //        fileMap.put("file", "/Users/mort/Downloads/WechatIMG30.png");
 
-        String result = formUpload("http://cm.bilibili.com/takumi/api/open_api/launch/cpc/meta_data/support/upload", params, fileMap);
+        String result = formUpload("http://cm.bi.com/takumi/api/open_api/launch/cpc/meta_data/support/upload", params, fileMap);
         System.out.println("args = " + JSON.toJSON(result));
     }
 

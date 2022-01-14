@@ -34,6 +34,8 @@
     </servlet-mapping>
 
 
+<!-- 解决中文请求参数乱码 返回中文乱码处理 设置只针对 post请求生效  如果想对get生效 需要在tomcat下 server.xml下配置 server.xml
+    Connector标签增加useBodyEncodingForURI="true"属性即可 -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
