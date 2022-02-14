@@ -1,18 +1,14 @@
 package com.demo.es;
 
-import org.elasticsearch.client.RestHighLevelClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.elasticsearch.client.reactive.ReactiveElasticsearchClient;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.IndexOperations;
 import org.springframework.data.elasticsearch.core.index.AliasAction;
 import org.springframework.data.elasticsearch.core.index.AliasActionParameters;
 import org.springframework.data.elasticsearch.core.index.AliasActions;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,8 +40,8 @@ public class EsDevUtils {
             HashMap<String, Object> map = new HashMap<>();
             map.put("number_of_shards", shards);
             map.put("number_of_replicas", replicas);
-            indexOperations.create(map);
             indexOperations.putMapping(TestPo.class);
+            boolean result = indexOperations.create(map);
             logger.info("job putMapping currentDateIndex newIndex is {}.", newIndexName);
 
             AliasActions aliasActions = new AliasActions();
@@ -56,9 +52,8 @@ public class EsDevUtils {
 //                    .withIsWriteIndex()
 //                    .withRouting()
                     .build()));
-            indexOperations.alias(aliasActions);
-            boolean result = indexOperations.create();
-            logger.info("job create currentDateIndex newIndex is {} , alias result  is {} ", newIndexName, result);
+            boolean aliasResult = indexOperations.alias(aliasActions);
+            logger.info("job create currentDateIndex newIndex is {} , create result  is {}  aliasResult is {} ", newIndexName, result, aliasResult);
         }
     }
 
