@@ -8,11 +8,13 @@ import org.springframework.data.elasticsearch.core.index.AliasAction;
 import org.springframework.data.elasticsearch.core.index.AliasActionParameters;
 import org.springframework.data.elasticsearch.core.index.AliasActions;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
+import org.springframework.data.elasticsearch.core.query.IndexQuery;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author mort
@@ -53,8 +55,13 @@ public class EsDevUtils {
 //                    .withRouting()
                     .build()));
             boolean aliasResult = indexOperations.alias(aliasActions);
+//            indexOperations.refresh();
             logger.info("job create currentDateIndex newIndex is {} , create result  is {}  aliasResult is {} ", newIndexName, result, aliasResult);
         }
+    }
+
+    public void bulk(ElasticsearchRestTemplate elasticsearchTemplate, List<TestPo> datas) {
+        elasticsearchTemplate.save(datas);
     }
 
 }
