@@ -42,6 +42,7 @@ public class EsDevUtils {
             HashMap<String, Object> map = new HashMap<>();
             map.put("number_of_shards", shards);
             map.put("number_of_replicas", replicas);
+            map.put("refresh_interval", "30s");  //设置自动refresh时间30s
             indexOperations.putMapping(TestPo.class);
             boolean result = indexOperations.create(map);
             logger.info("job putMapping currentDateIndex newIndex is {}.", newIndexName);
