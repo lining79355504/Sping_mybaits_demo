@@ -15,16 +15,21 @@ import com.demo.springCore.annotation.Limit;
 import com.demo.springCore.resource.MyBeanAwareByAnnotation;
 import com.demo.utils.PropertyUtils;
 import com.google.common.util.concurrent.RateLimiter;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Field;
@@ -63,6 +68,13 @@ public class HelloWorld {
     @Autowired
     private MyBeanAwareByAnnotation myBeanAwareByAnnotation;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    //可以主从分离 配置从库数据源 或者主从分离数据源 实现不新建dao和mapper的编程式主从分离
+    @Resource
+    @Qualifier("sqlSessionTemplate")
+    private SqlSessionTemplate sqlSessionTemplate;
 
     private AtomicInteger redisQps = new AtomicInteger();
 
@@ -122,6 +134,10 @@ public class HelloWorld {
 
             //mqDemoServiceImpl.receiveMessage("oms_name");
 
+
+            jdbcTemplate.execute("select 1 ");
+
+            sqlSessionTemplate.selectOne("com.demo.mapper.PointApplyMapper.selectByPrimaryKey", 12);
 
             //spring-data-redis set key value
 //        redisTemplate.executePipelined(new RedisCallback<Object>() {

@@ -19,11 +19,13 @@ package com.demo.grpc.service;
 import com.demo.grpc.GreeterGrpc;
 import com.demo.grpc.HelloReply;
 import com.demo.grpc.HelloRequest;
+import com.demo.grpc.plugins.GrpcServerInterceptor;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.logging.Logger;
+import io.grpc.protobuf.services.ProtoReflectionService;
 
 /**
  * Server that manages startup/shutdown of a {@code Greeter} server.
@@ -37,7 +39,10 @@ public class HelloWorldServer {
         /* The port on which the server should run */
         int port = 50051;
         server = ServerBuilder.forPort(port)
-                .addService(new GreeterImpl())  //结合spring bean 管理 根据@XXRPCService注解 添加服务。等待程序完全启动后 注入到注册中心
+                .addService(new GreeterImpl())
+                .addService(ProtoReflectionService.newInstance())
+                .intercept(new GrpcServerInterceptor()) //注册拦截器
+                //结合spring bean 管理 根据@XXRPCService注解 添加服务。等待程序完全启动后 注入到注册中心
                 //注册中心上线后 client 检测到变更 启动小部分流量心跳检测 检测通过后 开启配置路由 负载策略 运行
                 .build()
                 .start();

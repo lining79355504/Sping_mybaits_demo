@@ -21,7 +21,7 @@
             <dependency>
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
-                <version>3.8.0</version>
+                <version>3.21.12</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -504,7 +504,7 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-all</artifactId>
-            <version>1.33.0</version>
+            <version>1.63.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.etcd/jetcd-core -->
